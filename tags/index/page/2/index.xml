@@ -11,6 +11,24 @@
     
     
     <item>
+      <title>关于</title>
+      <link>https://www.devopsman.cn/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/about/</guid>
+      <description>关于站点 云原生生态圈是一个分享技术的站点。分享源于运维而不止于运维，涉及运维、开发等方面，诸如Docker、微服务、Devops、Go、Py</description>
+    </item>
+    
+    <item>
+      <title>友情链接</title>
+      <link>https://www.devopsman.cn/links/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/links/</guid>
+      <description>技术博客 飞翔沫沫情 其他</description>
+    </item>
+    
+    <item>
       <title>wordPress原来还可以这么用</title>
       <link>https://www.devopsman.cn/1/01/01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

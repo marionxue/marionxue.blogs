@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Fri, 10 Jul 2020 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 11 Aug 2021 14:25:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</title>
+      <link>https://www.devopsman.cn/2021/08/11/</link>
+      <pubDate>Wed, 11 Aug 2021 14:25:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/11/</guid>
+      <description>为了帮助系统管理员更好地保护开源容器编排工具Kubernetes，美国国家安全局(National Security Agency)和网络安全和基础设施安全局</description>
+    </item>
     
     <item>
       <title>我是如何将 Docker 镜像体积减小 90%</title>
@@ -18,6 +27,15 @@
       
       <guid>https://www.devopsman.cn/2021/08/04/</guid>
       <description>对于刚接触容器的人来说，他们很容易被自己构建的 Docker 镜像体积吓到，我只需要一个几 MB 的可执行文件而已，为何镜像的体积会达到 1 GB 以上？本文将会介绍几</description>
+    </item>
+    
+    <item>
+      <title>高可用监控方案Cortex探险</title>
+      <link>https://www.devopsman.cn/2021/08/04/</link>
+      <pubDate>Wed, 04 Aug 2021 15:15:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/04/</guid>
+      <description>Prometheus已成为cloud-native世界中的默认监控应用程序和系统。对于真是使用案例，Prometheus应该是高可用的，这是</description>
     </item>
     
     <item>
@@ -171,24 +189,6 @@
       
       <guid>https://www.devopsman.cn/2020/05/30/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>关于</title>
-      <link>https://www.devopsman.cn/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/about/</guid>
-      <description>关于站点 云原生生态圈是一个分享技术的站点。分享源于运维而不止于运维，涉及运维、开发等方面，诸如Docker、微服务、Devops、Go、Py</description>
-    </item>
-    
-    <item>
-      <title>友情链接</title>
-      <link>https://www.devopsman.cn/links/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/links/</guid>
-      <description>技术博客 飞翔沫沫情 其他</description>
     </item>
     
   </channel>

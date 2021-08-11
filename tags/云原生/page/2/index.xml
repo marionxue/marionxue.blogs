@@ -6,10 +6,28 @@
     <description>Recent content in 云原生 on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 12:40:06 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 04 Aug 2021 15:15:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于</title>
+      <link>https://www.devopsman.cn/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/about/</guid>
+      <description>关于站点 云原生生态圈是一个分享技术的站点。分享源于运维而不止于运维，涉及运维、开发等方面，诸如Docker、微服务、Devops、Go、Py</description>
+    </item>
+    
+    <item>
+      <title>友情链接</title>
+      <link>https://www.devopsman.cn/links/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/links/</guid>
+      <description>技术博客 飞翔沫沫情 其他</description>
+    </item>
     
     <item>
       <title>wordPress原来还可以这么用</title>
