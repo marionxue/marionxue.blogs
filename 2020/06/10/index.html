@@ -2,7 +2,7 @@
 <html lang="zh">
   <head>
     <title>
-        ECS上手把手搭建个人博客系统wordpress - 云原生生态圈
+        手把手带你打造骚气的命令行终端 - 云原生生态圈
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,32 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="wordpress博客网站搭建指南" />
+    <meta name="description" content="为什么你的终端这么美丽" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>ECS上手把手搭建个人博客系统wordpress - 云原生生态圈</title>
+    <title>手把手带你打造骚气的命令行终端 - 云原生生态圈</title>
     
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="ECS上手把手搭建个人博客系统wordpress" />
-<meta property="og:description" content="wordpress博客网站搭建指南" />
+    <meta property="og:title" content="手把手带你打造骚气的命令行终端" />
+<meta property="og:description" content="为什么你的终端这么美丽" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devopsman.cn/2020/06/10/" />
 <meta property="article:published_time" content="2020-06-10T12:00:06+09:00" />
 <meta property="article:modified_time" content="2020-06-10T12:00:06+09:00" />
-<meta itemprop="name" content="ECS上手把手搭建个人博客系统wordpress">
-<meta itemprop="description" content="wordpress博客网站搭建指南">
+<meta itemprop="name" content="手把手带你打造骚气的命令行终端">
+<meta itemprop="description" content="为什么你的终端这么美丽">
 <meta itemprop="datePublished" content="2020-06-10T12:00:06&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-10T12:00:06&#43;09:00" />
-<meta itemprop="wordCount" content="1279">
+<meta itemprop="wordCount" content="2381">
 
 
 
-<meta itemprop="keywords" content="wordpress,博客," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ECS上手把手搭建个人博客系统wordpress"/>
-<meta name="twitter:description" content="wordpress博客网站搭建指南"/>
+<meta itemprop="keywords" content="iterm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="手把手带你打造骚气的命令行终端"/>
+<meta name="twitter:description" content="为什么你的终端这么美丽"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -559,7 +559,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/2020/06/10/"
-    >ECS上手把手搭建个人博客系统wordpress</a
+    >手把手带你打造骚气的命令行终端</a
   >
 </h1>
 
@@ -574,8 +574,7 @@ function tagCloud(where, min, max) {
   
   <span class="article-tag">
     <i class="icon icon-tags"></i>&nbsp;
-    <a class="article-tag-link" href="/tags/wordpress/"> wordpress </a>
-    <a class="article-tag-link" href="/tags/%E5%8D%9A%E5%AE%A2/"> 博客 </a>
+    <a class="article-tag-link" href="/tags/iterm/"> iterm </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -586,135 +585,129 @@ function tagCloud(where, min, max) {
 	</span>
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="ECS上手把手搭建个人博客系统wordpress">0</span>
+    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="手把手带你打造骚气的命令行终端">0</span>
     </span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1279字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2381字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="安装-apache-http-服务">安装 Apache HTTP 服务</h2>
-<p>Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是最流行的Web服务器端软件之一。</p>
-<ol>
-<li>执行如下命令，安装Apache服务及其扩展包。</li>
-</ol>
-<pre><code>yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql
-</code></pre><p>返回类似如下图结果则表示安装成功。</p>
-<p><img src="/images/images.assets/TB1l7DUHpY7gK0jSZKzXXaikpXa-1050-137.png" alt="img"></p>
-<ol start="2">
-<li>执行如下命令，启动Apache服务。</li>
-</ol>
-<pre><code>systemctl start httpd.service
-</code></pre><ol start="3">
-<li>测试Apache服务是否安装并启动成功。</li>
-</ol>
-<p>Apache默认监听80端口，所以只需在浏览器访问ECS分配的IP地址http://&lt;ECS公网地址&gt;，如下图：</p>
-<p><img src="/images/images.assets/TB1HmVpaepyVu4jSZFhXXbBpVXa-1920-937.png" alt="img"></p>
-<h2 id="安装-mysql-数据库">安装 MySQL 数据库</h2>
-<p>由于使用wordpress搭建云上博客，需要使用MySQL数据库存储数据，所以这一步我们安装一下MySQL。</p>
-<ol>
-<li>执行如下命令，下载并安装MySQL官方的<code>Yum Repository</code>。</li>
-</ol>
-<pre><code>wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
-yum -y install mysql57-community-release-el7-10.noarch.rpm
-yum -y install mysql-community-server
-</code></pre><p><img src="/images/images.assets/TB1BRnVHxz1gK0jSZSgXXavwpXa-958-431.png" alt="img"></p>
-<ol start="2">
-<li>执行如下命令，启动 MySQL 数据库。</li>
-</ol>
-<pre><code>systemctl start mysqld.service
-</code></pre><ol start="3">
-<li>执行如下命令，查看MySQL运行状态。</li>
-</ol>
-<pre><code>systemctl status mysqld.service
-</code></pre><p><img src="/images/images.assets/TB1gszWHuT2gK0jSZFvXXXnFXXa-945-229.png" alt="img"></p>
-<ol start="4">
-<li>执行如下命令，查看MySQL初始密码。</li>
-</ol>
-<pre><code>grep &quot;password&quot; /var/log/mysqld.log
-</code></pre><p><img src="/images/images.assets/TB1FmNpaepyVu4jSZFhXXbBpVXa-834-36.png" alt="img"></p>
-<ol start="5">
-<li>执行如下命令，登录数据库。</li>
-</ol>
-<pre><code>mysql -uroot -p
-</code></pre><p><img src="/images/images.assets/TB1Wz6UHvb2gK0jSZK9XXaEgFXa-675-226.png" alt="img"></p>
-<ol start="6">
-<li>执行如下命令，修改MySQL默认密码。</li>
-</ol>
-<blockquote>
-<p><strong>说明</strong> 新密码设置的时候如果设置的过于简单会报错，必须同时包含大小写英文字母、数字和特殊符号中的三类字符。</p>
-</blockquote>
-<pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassWord1.';
-</code></pre><ol start="7">
-<li>执行如下命令，创建wordpress库。</li>
-</ol>
-<pre><code>create database wordpress; 
-</code></pre><ol start="8">
-<li>执行如下命令，创建wordpress库。 执行如下命令，查看是否创建成功。</li>
-</ol>
-<pre><code>show databases;
-</code></pre><ol start="9">
-<li>输入<code>exit</code>退出数据库。</li>
-</ol>
-<p><img src="/images/images.assets/TB14Bj0HxD1gK0jSZFKXXcJrVXa-836-664.png" alt="img"></p>
-<h2 id="安装-php-语言环境">安装 PHP 语言环境</h2>
-<p>WordPress是使用PHP语言开发的博客平台，用户可以在支持PHP和MySQL数据库的服务器上架设属于自己的网站。也可以把WordPress当作一个内容管理系统（CMS）来使用。</p>
-<ol>
-<li>执行如下命令，安装PHP环境。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install php php-mysql gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap
-</code></pre></div><ol start="2">
-<li>执行如下命令创建PHP测试页面。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;&lt;?php phpinfo(); ?&gt;&#34;</span> &gt; /var/www/html/phpinfo.php
-</code></pre></div><ol start="3">
-<li>执行如下命令，重启Apache服务。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
-</code></pre></div><ol start="4">
-<li>打开浏览器，访问<code>http://&lt;ECS公网地址&gt;/phpinfo.php</code>，显示如下页面表示PHP语言环境安装成功。</li>
-</ol>
-<p><img src="/images/images.assets/TB1oCVpaepyVu4jSZFhXXbBpVXa-601-840-20200609121710332.png" alt="img"></p>
-<h2 id="wordpress安装和配置">Wordpress安装和配置</h2>
-<p>本小节将在已搭建好的LAMP 环境中，安装部署 WordPress</p>
-<ol>
-<li>执行如下命令，安装wordpress。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install wordpress
-</code></pre></div><p>显示如下信息表示安装成功。</p>
-<p><img src="/images/images.assets/TB1b02VHEz1gK0jSZLeXXb9kVXa-1042-156.png" alt="img"></p>
-<ol start="2">
-<li>修改WordPress配置文件。</li>
-</ol>
-<p>1）执行如下命令，修改wp-config.php指向路径为绝对路径。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 进入/usr/share/wordpress目录。</span>
-cd /usr/share/wordpress
-<span style="color:#75715e"># 修改路径。</span>
-ln -snf /etc/wordpress/wp-config.php wp-config.php
-<span style="color:#75715e"># 查看修改后的目录结构。</span>
-ll
-</code></pre></div><p>2）执行如下命令，移动wordpress到Apache根目录。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 在Apache的根目录/var/www/html下，创建一个wp-blog文件夹。</span>
-mkdir /var/www/html/wp-blog
-mv * /var/www/html/wp-blog/
-</code></pre></div><p>3）执行以下命令修改wp-config.php配置文件。</p>
-<p>在执行命令前，请先替换以下三个参数值。</p>
+      <p>最近有很多朋友看了我的文章之后，问我你终端是怎么设置的，为什么如此<code>炫酷</code>，这这这&hellip;让我怎么说，难道我的文章不干吗？还是特干看不下去了？好吧，今天趁着周末给大家分享一下，如何设置一个你认为很高大上的终端，对于常用终端的发烧友来说无疑是一篇值得收藏的好文章，哈哈</p>
+<p>想要配置这么高大上的终端？你需要安装一个叫做<code>Iterm</code>的远程连接工具，官方说是<a href="https://www.iterm2.com/">macOS Terminal Replacement</a>，对的，你的电脑必须是Macos系统才可以，接下来我们一步一步的教你如何配置一个令你心仪的iterm，首先我们需要掌握一下基础的东西，然后在自定义一些喜欢的东西。</p>
+<h4 id="前期准备">前期准备</h4>
+<h5 id="安装iterm2">安装Iterm2</h5>
+<p>在<a href="https://www.iterm2.com/" title="iterm2官网">官网</a>下载好iterm2的二进制文件，然后直接托放到Macos系统的<code>Application</code>的文件夹内，然后你就可以在启动台``launch<code>里面找到</code>Iterm<code>了。安装完成之后，打开软件，</code>以下的操作均在iterm2上操作`。</p>
+<h5 id="配置oh-my-zsh">配置<code>oh-my-zsh</code></h5>
+<p>现在我们就需要配置一个<code>神助</code>工具<code>oh-my-zsh</code>来让你的Iterm2起飞，最开始的时候，你的iterm是这样的</p>
+<p><img src="/images/images.assets/image-20200613130224096.png" alt="image-20200613130224096"></p>
+<p>下面，我们修改默认的<code>bash</code>为<code>zsh</code>，这里要注意的是，后期需要做一些<code>命令别名</code>,<code>环境变量</code>的时候，就不再是以前的<code>bashrc</code>等了，应是<code>~/.zshrc</code>或者<code>/etc/zshrc</code>啦。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install zsh <span style="color:#75715e"># 安装zsh</span>
+chsh -s /bin/zsh
+</code></pre></div><p>如果你想要修改回来</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chsh -s /bin/bash
+</code></pre></div><p>修改之后，我们通过<code>wget</code>或者<code>curl</code>的方式下载<code>oh-my-zsh</code>，以下安装方式选择任意一种即可:</p>
 <ul>
-<li>database_name_here为之前步骤中创建的数据库名称，本示例为wordpress。</li>
-<li>username_here为数据库的用户名，本示例为root。</li>
-<li>password_here为数据库的登录密码，本示例为NewPassWord1.。</li>
+<li>curl方式</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/database_name_here/wordpress/&#39;</span> /var/www/html/wp-blog/wp-config.php
-sed -i <span style="color:#e6db74">&#39;s/username_here/root/&#39;</span> /var/www/html/wp-blog/wp-config.php
-sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</span> /var/www/html/wp-blog/wp-config.php
-</code></pre></div><p>4）执行以下命令，查看配置文件信息是否修改成功。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat -n /var/www/html/wp-blog/wp-config.php
-</code></pre></div><p><img src="/images/images.assets/TB1j02VHEz1gK0jSZLeXXb9kVXa-913-631.png" alt="img"></p>
-<ol start="3">
-<li>执行如下命令，重启Apache服务。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
-</code></pre></div><p><img src="/images/images.assets/wordpress-installing-1-1140x570.jpg" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><ul>
+<li>wget方式</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>执行完之后，就如下所示:</p>
+<p><img src="/images/images.assets/image-20200613130723249.png" alt="image-20200613130723249"></p>
+<p>实际上，就是通过curl或者wget的方式将<code>oh-my-zsh</code>的代码仓库克隆到你的家目录下<code>/Users/marionxue/.oh-my-zsh</code>下</p>
+<h5 id="提供字体支持">提供字体支持</h5>
+<p>接下来我们需要安装一些字体，这些字体提供了某些oh-my-zsh主题的特殊字符的支持，在美化配置上是必不可少的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/powerline/fonts.git --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+<span style="color:#75715e"># clone</span>
+git clone https://github.com/powerline/fonts.git --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+<span style="color:#75715e"># install</span>
+cd fonts
+./install.sh
+<span style="color:#75715e"># clean-up a bit</span>
+cd ..
+rm -rf fonts
+</code></pre></div><p>安装好之后，选择一款Powerline字体了：iterm2 -&gt; Preferences -&gt; Profiles -&gt; Text -&gt; Font -&gt; Change Font（我用的是<a href="https://github.com/ryanoasis/nerd-fonts" title="nerd-fonts">nerd-fonts</a>因为该字体支持非 <code>ASCII</code> 码字体，如下图所示）,当你的终端在配置主题之后，出现了乱码，那么你的字体一定是没有选对，这里需要使用powerline系列的字体，这是需要注意的地方。如果你需要安装nerd-fonts,直接使用<code>brew</code>即可</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew tap caskroom/fonts
+brew cask install font-hack-nerd-font
+</code></pre></div><p><img src="/images/images.assets/image-20200613145411438.png" alt="image-20200613145411438"></p>
+<h5 id="美化iterm2">美化iterm2</h5>
+<p>一些特别吸引眼球的美化设置都是通过在主题的基础上自定义修改实现的，默认的oh-my-zsh使用的主题是<code>ZSH_THEME=&quot;robbyrussell&quot;</code>，个人并不好看，下面我们自己选择一个合适的主题，我们可以在<code>/Users/marionxue/.oh-my-zsh/themes</code>下面查看默认提供的主题。而配置文件就是我们之前提及到的<code>~/.zshrc</code>文件，</p>
+<p><img src="/images/images.assets/image-20200613132704679.png" alt="image-20200613132704679"></p>
+<p>我们打开该文件找到<code>ZSH_THEME=&quot;robbyrussell&quot;</code>，然后修改<code>robbyrussell</code>为你喜欢的主题即可，我这里使用的是<code>ZSH_THEME=&quot;agnoster&quot;</code>不过我也推荐这个主题。记得每次修改<code>~/.zshrc</code>文件之后，需要<code>source ~/.zshrc</code>让配置文件生效，我们看一下效果图：</p>
+<p><img src="/images/images.assets/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt="agnoster"></p>
+<p>但是看起来比较单调，不是那么的高大上啊，于是有些人在网上肯定发现过以下这种样式，看起来相对比较完美，研究一下下面这种图的做法：</p>
+<p><img src="/images/images.assets/833995626.jpg" alt="3.jpg"></p>
+<p>仔细观察，<code>命令提示符</code>左侧显示的是<code>git</code>的分支，后侧显示的<code>执行结果状态</code>、执行命令的<code>数量</code>以及<code>时间</code>，这是一个比较流行的第三方 <a href="https://github.com/bhilburn/powerlevel9k" title="PowerLevel9k">PowerLevel9k</a> 开源主题，我们将其下载到<code>~/.oh-my-zsh/custom/themes</code>下，详细的配置设置参考github上的文档:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.oh-my-zsh/custom/themes
+https://github.com/bhilburn/powerlevel9k.git
+</code></pre></div><p>修改配置文件中的主题设置为:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ZSH_THEME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;powerlevel9k/powerlevel9k&#34;</span>
+</code></pre></div><p>然后配置<code>git</code>,<code>history</code>和<code>time</code>，我们在</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">POWERLEVEL9K_LEFT_PROMPT_ELEMENTS<span style="color:#f92672">=(</span>context dir vcs<span style="color:#f92672">)</span>
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS<span style="color:#f92672">=(</span>status history time<span style="color:#f92672">)</span>
+</code></pre></div><p>这样就完成了上图的配置。当然你可以设置一些带有icon的模式比如:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">POWERLEVEL9K_MODE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;nerdfont-complete&#39;</span>
+</code></pre></div><p>效果如下:</p>
+<p><img src="/images/images.assets/format,png.jpeg" alt="让 PowerLevel9K 主题显示图标字符 —— From AigeStudio"></p>
+<p>你也可以自已定义一些背景颜色，你可以通过执行一下命令获取配色</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">spectrum_bls <span style="color:#75715e"># 显示前配色</span>
+spectrum_ls <span style="color:#75715e"># 显示后配色</span>
+</code></pre></div><p><img src="/images/images.assets/image-20200613144120084.png" alt="image-20200613144120084"></p>
+<h4 id="美化进阶">美化进阶</h4>
+<p>这里就是美化终端的基本操作，下面我们看一下如何在原有的基础上配置一下自己喜欢的icon和插件：</p>
+<p><img src="/images/images.assets/image-20200613140442286.png" alt="image-20200613140442286"></p>
+<h5 id="红色框">红色框</h5>
+<p>红色框是iterm的资源状态栏，你可以在iterm2中使用快捷键<code>command+,</code>或者菜单栏打开首选项，进行设置，后面就不在赘述如何带开了，</p>
+<p><img src="/images/images.assets/image-20200613141322608.png" alt="image-20200613141322608"></p>
+<p>点击<code>configure status bar</code>将需要的托放在下面既可</p>
+<h5 id="青色的">青色的🐳</h5>
+<p>青色的🐳是一个emoji.可以利用<code>touchbar</code>填充上去，可以写文字</p>
+<p><img src="/images/images.assets/image-20200613141519848.png" alt="image-20200613141519848"></p>
+<h5 id="黄色的目录">黄色的目录</h5>
+<p>这里是安装的一些高效易用的插件</p>
+<ul>
+<li><a href="https://github.com/paulirish/git-open" title="git-open">git-open</a>: 一个快捷工具，当你<code>cd</code>到一个版本化的代码仓库目录下，执行<code>git-open</code>会自动打开浏览器并跳转到该代码仓库地址</li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions" title="zsh-autosuggestions">zsh-autosuggestions</a>:这是一个自动提示之前执行过的命令历史</li>
+<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting" title="zsh-syntax-highlighting">zsh-syntax-highlighting</a>:这是一个zsh语法高亮的插件</li>
+</ul>
+<p>这些插件安装配置简单，只需要<code>clone</code>对应的代码仓库到<code>/Users/marionxue/.oh-my-zsh/custom/plugins</code>下，然后在<code>.zshrc</code>配置文件下的<code>plugins</code>处配置上即可，注意我这里使用的是<code>agnoster</code>主题。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/.oh-my-zsh/custom/plugins
+git clone https://github.com/paulirish/git-open
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting
+
+vim ~/.zshrc
+plugins<span style="color:#f92672">=(</span>
+   git
+   zsh-syntax-highlighting
+   zsh-autosuggestions
+   git-open
+<span style="color:#f92672">)</span>
+</code></pre></div><p>最后是配置生效</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source ~/.zshrc
+</code></pre></div><h5 id="蓝色框内的配置">蓝色框内的配置</h5>
+<p>这里是通过<code>agnoster</code>主题加上一些自己修改的主题实现的。然后结合<code>~/.zshrc</code>配置命令行提示符的显示，你可以在<a href="https://apps.timwhitlock.info/emoji/tables/unicode" title="emoji网站">emoji网站1</a>，<a href="https://www.iemoji.com/view/emoji/1768/symbols/wheel-of-dharma" title="emoji网站2">emoji网站2</a>上找到对应的<strong>Bytes</strong></p>
+<p><img src="/images/images.assets/image-20200613142755511.png" alt="image-20200613142755511"></p>
+<p>其中的<code>devcluster</code>和<code>kube-ops</code>是我的k8s集群的集群名以及对应的命名空间，这里是利用<code>kubectx</code>、<code>kube-ps1</code>实现的，具体的你可以参考，下面是我的<code>部分</code>配置文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ZSH_THEME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;agnoster&#34;</span>
+DISABLE_AUTO_UPDATE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;true&#34;</span>
+DISABLE_UPDATE_PROMPT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;true&#34;</span>
+plugins<span style="color:#f92672">=(</span>
+   git
+   zsh-syntax-highlighting
+   zsh-autosuggestions
+   kubectl
+   kube-ps1
+   git-open
+<span style="color:#f92672">)</span>
+KUBE_PS1_SYMBOL_ENABLE<span style="color:#f92672">=</span>false
+KUBE_PS1_PREFIX<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\u2638\uFE0F  &#34;</span>
+KUBE_PS1_SUFFIX<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>
+KUBE_PS1_DIVIDER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\xf0\x9f\x94\xa5 &#34;</span>
+PS1<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;$(kube_ps1)&#39;</span>$PS1
+</code></pre></div><p>好了，到这里就结束了，希望你能有所收获~</p>
 
     </div>
     <div class="article-footer">
@@ -722,7 +715,7 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://www.devopsman.cn/2020/06/10/" title="ECS上手把手搭建个人博客系统wordpress" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
+      <a href="https://www.devopsman.cn/2020/06/10/" title="手把手带你打造骚气的命令行终端" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License: </strong>
@@ -753,13 +746,13 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/2020/06/10/" title="手把手带你打造骚气的命令行终端"><i
+                <a href="https://www.devopsman.cn/2020/06/07/" title="P站风格Logo生成器"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             <li class="next">
                 <a href="https://www.devopsman.cn/2020/06/10/"
-                    title="Docker容器命令行可视化工具-Lazydocker"><span>上一篇&nbsp;&nbsp;</span><i
+                    title="ECS上手把手搭建个人博客系统wordpress"><span>上一篇&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
@@ -826,153 +819,6 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
         
     })
     hljs.initHighlightingOnLoad();
-</script>
-<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
-<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
-
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(未命名)',
-            },
-            ROOT_URL: 'https:\/\/www.devopsman.cn',
-            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
-
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  </body>
-</html>
-            <a href="https://www.devopsman.cn/2020/07/04/"
-                    title="如何确定CPU消耗在哪些函数上"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="文章目录" role="button">
-                    <span>[&nbsp;</span><span>文章目录</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        <div class="bar-right">
-            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
-                data-mobile-sites="weibo,qq,qzone"></div>
-        </div>
-    </div>
-</nav>
-
-
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-twitter"></i></a></li>
-    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-weibo"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2016  -
-    2021
-    
-    
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
-    })
-    hljs.initHighlightingOnLoad();
-</script>
-<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
-<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
-
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(未命名)',
-            },
-            ROOT_URL: 'https:\/\/www.devopsman.cn',
-            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-<script>
-    tocbot.init({
-        
-        tocSelector: '.js-toc',
-        
-        contentSelector: '.js-toc-content',
-        
-        headingSelector: 'h1, h2, h3',
-        
-        hasInnerContainers: true,
-    });
-</script>
-
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  </body>
-</html>
-htingOnLoad();
 </script>
 <script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
 <script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
