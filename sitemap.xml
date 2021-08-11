@@ -3,49 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.devopsman.cn/tags/kubernetes/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
+    <loc>https://www.devopsman.cn/tags/docker/</loc>
+    <lastmod>2021-08-04T15:15:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.devopsman.cn/posts/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
+    <lastmod>2021-08-04T15:15:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.devopsman.cn/tags/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
+    <lastmod>2021-08-04T15:15:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.devopsman.cn/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2021/08/11/</loc>
-    <lastmod>2021-08-11T14:25:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/docker/</loc>
     <lastmod>2021-08-04T15:15:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -66,7 +45,35 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/mysql/</loc>
+    <loc>https://www.devopsman.cn/tags/yaml/</loc>
+    <lastmod>2020-12-31T12:40:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/2020/12/31/</loc>
+    <lastmod>2020-12-31T12:40:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
+    <lastmod>2020-12-31T12:40:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/2020/12/31/</loc>
+    <lastmod>2020-12-31T12:40:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/tags/sql/</loc>
     <lastmod>2020-12-30T12:40:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -80,7 +87,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2020-12-30T12:40:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -101,7 +108,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/calico/</loc>
+    <loc>https://www.devopsman.cn/2020/08/18/</loc>
     <lastmod>2020-08-18T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -115,36 +122,29 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/network/</loc>
+    <loc>https://www.devopsman.cn/2020/08/18/</loc>
     <lastmod>2020-08-18T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2020-08-18T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/blog/</loc>
-    <lastmod>2020-07-20T19:49:06+09:00</lastmod>
+    <loc>https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2020-08-18T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/hugo/</loc>
-    <lastmod>2020-07-20T19:49:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/hugo-template/</loc>
-    <lastmod>2020-07-20T19:49:06+09:00</lastmod>
+    <loc>https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/</loc>
+    <lastmod>2020-08-18T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -157,8 +157,22 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/zzo/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2020-07-20T19:49:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/tags/kubernetes/</loc>
+    <lastmod>2020-07-10T12:00:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2020-07-10T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -171,14 +185,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/wordpress/</loc>
-    <lastmod>2020-07-04T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/</loc>
     <lastmod>2020-07-04T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,6 +199,20 @@
   </url>
   
   <url>
+    <loc>https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2020-07-04T12:00:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/2020/06/10/</loc>
+    <lastmod>2020-06-10T12:00:06+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.devopsman.cn/2020/06/10/</loc>
     <lastmod>2020-06-10T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -206,28 +227,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/iterm/</loc>
-    <lastmod>2020-06-10T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
-    <lastmod>2020-06-10T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-06-10T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2020/06/10/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
     <lastmod>2020-06-10T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -241,13 +241,6 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/logoly/</loc>
-    <lastmod>2020-06-07T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.devopsman.cn/2020/06/07/</loc>
     <lastmod>2020-06-07T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -255,14 +248,14 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/github/</loc>
-    <lastmod>2020-06-04T12:00:06+09:00</lastmod>
+    <loc>https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/</loc>
+    <lastmod>2020-06-07T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/mkdocs/</loc>
+    <loc>https://www.devopsman.cn/tags/devops/</loc>
     <lastmod>2020-06-04T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -276,14 +269,14 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/travis/</loc>
-    <lastmod>2020-06-04T12:00:06+09:00</lastmod>
+    <loc>https://www.devopsman.cn/tags/termianl/</loc>
+    <lastmod>2020-05-30T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/termianl/</loc>
+    <loc>https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-05-30T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -292,111 +285,6 @@
   <url>
     <loc>https://www.devopsman.cn/2020/05/30/</loc>
     <lastmod>2020-05-30T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/categories/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/css/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/html/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/markdown/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2019/03/11/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/series/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/categories/syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/categories/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/series/themes-guide/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2019/03/09/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2019/03/08/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/emoji/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/2019/03/05/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -422,85 +310,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
+    <loc>https://www.devopsman.cn/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -512,19 +322,7 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/1/01/01/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/tive/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
+    <loc>https://www.devopsman.cn/series/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -536,7 +334,13 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://www.devopsman.cn/1/01/01/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.devopsman.cn/1/01/01/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

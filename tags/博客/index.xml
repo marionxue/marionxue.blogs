@@ -6,19 +6,10 @@
     <description>Recent content in 博客 on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Sat, 04 Jul 2020 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 19:49:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</title>
-      <link>https://www.devopsman.cn/2021/08/11/</link>
-      <pubDate>Wed, 11 Aug 2021 14:25:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2021/08/11/</guid>
-      <description>为了帮助系统管理员更好地保护开源容器编排工具Kubernetes，美国国家安全局(National Security Agency)和网络安全和基础设施安全局</description>
-    </item>
     
     <item>
       <title>我是如何将 Docker 镜像体积减小 90%</title>
@@ -27,6 +18,24 @@
       
       <guid>https://www.devopsman.cn/2021/08/04/</guid>
       <description>对于刚接触容器的人来说，他们很容易被自己构建的 Docker 镜像体积吓到，我只需要一个几 MB 的可执行文件而已，为何镜像的体积会达到 1 GB 以上？本文将会介绍几</description>
+    </item>
+    
+    <item>
+      <title>YAML工程师是怎么炼成的？</title>
+      <link>https://www.devopsman.cn/2020/12/31/</link>
+      <pubDate>Thu, 31 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/31/</guid>
+      <description>Yaml基础语法与技巧 字符支持：YAML支持Unicode字符集，可以使用UTF-8、UTF-16、UTF-32字符集 date: 2020-06-28 info: - name: Marionxue tags: - num: 1 -</description>
+    </item>
+    
+    <item>
+      <title>百度BFE成为CNCF接纳网络方向上的第一个开源项目</title>
+      <link>https://www.devopsman.cn/2020/12/31/</link>
+      <pubDate>Thu, 31 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/31/</guid>
+      <description>2020年6月24日，BFE开源项目被CNCF （Cloud Native Computing Foundation，云原生计算基金会）正式接纳为Sandbox Project</description>
     </item>
     
     <item>
@@ -48,12 +57,30 @@
     </item>
     
     <item>
+      <title>2020年10个最佳的Kubernetes工具</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>Kubernetes是容器编排的实际标准。Kubernetes作为首选的容器解决方案，已经迅速流行起来。我们来看看Kubernetes的10</description>
+    </item>
+    
+    <item>
       <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</title>
       <link>https://www.devopsman.cn/2020/08/18/</link>
       <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
       
       <guid>https://www.devopsman.cn/2020/08/18/</guid>
       <description>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于基于Consul的RabbitMQ集群。我们还将添加HAProxy</description>
+    </item>
+    
+    <item>
+      <title>如何搭建适合自己的个人网盘</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>介绍几种开源的网盘存储解决方案，可以在开源的网盘服务基础上，结合一些某云的存储服务，实现私人定制化个人网盘。 Nextcloud [NextCloud](&amp;ldquo;https://docs.nextcloud.com/&amp;quot; Nextcloud)是一个完</description>
     </item>
     
     <item>
@@ -102,7 +129,7 @@
     </item>
     
     <item>
-      <title>手把手带你打造骚气的命令行终端</title>
+      <title>Mac下手把手带你打造骚气的命令行终端</title>
       <link>https://www.devopsman.cn/2020/06/10/</link>
       <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
       
@@ -138,43 +165,6 @@
     </item>
     
     <item>
-      <title>Markdown Syntax Guide</title>
-      <link>https://www.devopsman.cn/2019/03/11/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/2019/03/11/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Placeholder Text</title>
-      <link>https://www.devopsman.cn/2019/03/09/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/2019/03/09/</guid>
-      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de
-pectora summo.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Math Typesetting</title>
-      <link>https://www.devopsman.cn/2019/03/08/</link>
-      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/2019/03/08/</guid>
-      <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Emoji Support</title>
-      <link>https://www.devopsman.cn/2019/03/05/</link>
-      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/2019/03/05/</guid>
-      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>关于</title>
       <link>https://www.devopsman.cn/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
@@ -190,6 +180,15 @@ pectora summo.&lt;/p&gt;</description>
       
       <guid>https://www.devopsman.cn/links/</guid>
       <description>技术博客 飞翔沫沫情 其他</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>场景 最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革新越来越快，对新的岗位的需求也是不断的</description>
     </item>
     
   </channel>

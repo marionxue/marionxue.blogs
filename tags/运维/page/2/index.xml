@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>运维 on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/</link>
+    <description>Recent content in 运维 on 云原生生态圈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Tue, 18 Aug 2020 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>wordPress原来还可以这么用</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>wordpress简介 WordPress是一个免费的开源内容管理系统CMS建立在具有PHP处理功能的MYSQL数据库上。凭借其可扩展的插件体</description>
+    </item>
+    
+    <item>
+      <title>与网络面试官开撕的那几个问题</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法</description>
+    </item>
+    
+    <item>
+      <title>云原生键值数据库TIKV毕业了</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>云原生键值数据库TIKV毕业了 云原生键值数据库项目现在在全球拥有近1,000个生产用户 旧金山，加利福尼亚- 2020年9月2日Cloud Native Computing F</description>
+    </item>
+    
+  </channel>
+</rss>
