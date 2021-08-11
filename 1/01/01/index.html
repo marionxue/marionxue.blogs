@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>
+         - 云原生生态圈
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法" />
+    <meta name="generator" content="Hugo 0.73.0 with theme pure" />
+    <title> - 云原生生态圈</title>
+    
+    
+    <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="" />
+<meta property="og:description" content="前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/1/01/01/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法">
+
+<meta itemprop="wordCount" content="4980">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/marionxue" target="_blank">
+            <img class="img-circle img-rotate" src="https://www.devopsman.cn/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">云原生生态圈</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">DevOps Enginer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">主页</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">归档</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">分类</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">标签</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">关于</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>云原生生态圈·网站改版了...~</p><br/><img src="https://image.devopsman.cn/wechat2020/image-20201231225654650.png" width="200px" height="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://www.devopsman.cn/tags/blog/" class="tag-list-link" rel="1">blog<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/calico/" class="tag-list-link" rel="2">calico<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/css/" class="tag-list-link" rel="1">css<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/emoji/" class="tag-list-link" rel="1">emoji<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/github/" class="tag-list-link" rel="1">github<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/html/" class="tag-list-link" rel="1">html<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/hugo/" class="tag-list-link" rel="1">hugo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/hugo-template/" class="tag-list-link" rel="1">hugo-template<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/iterm/" class="tag-list-link" rel="1">iterm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link" rel="2">kubernetes<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/logo/" class="tag-list-link" rel="1">logo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/logoly/" class="tag-list-link" rel="1">logoly<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/markdown/" class="tag-list-link" rel="2">markdown<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/mkdocs/" class="tag-list-link" rel="1">mkdocs<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/mysql/" class="tag-list-link" rel="2">mysql<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/network/" class="tag-list-link" rel="2">network<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/termianl/" class="tag-list-link" rel="1">termianl<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/text/" class="tag-list-link" rel="1">text<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/themes/" class="tag-list-link" rel="1">themes<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/tive/" class="tag-list-link" rel="2">tive<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/travis/" class="tag-list-link" rel="1">travis<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/wordpress/" class="tag-list-link" rel="2">wordpress<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/zzo/" class="tag-list-link" rel="1">zzo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link" rel="2">云原生<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link" rel="2">博客<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/" class="tag-list-link" rel="2">压测测试<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-list-link" rel="1">可视化<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link" rel="2">安全<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/" class="tag-list-link" rel="3">工具<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link" rel="1">年度文章<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="2">数据库<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="2">键值数据库<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link" rel="1">镜像优化<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://www.devopsman.cn/categories/syntax/" class="category-list-link">syntax</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://www.devopsman.cn/categories/themes/" class="category-list-link">themes</a><span class="category-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/blog/" class="tag-list-link">blog</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/calico/" class="tag-list-link">calico</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/css/" class="tag-list-link">css</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/emoji/" class="tag-list-link">emoji</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/github/" class="tag-list-link">github</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/html/" class="tag-list-link">html</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/hugo/" class="tag-list-link">hugo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/hugo-template/" class="tag-list-link">hugo-template</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/iterm/" class="tag-list-link">iterm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link">kubernetes</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/logo/" class="tag-list-link">logo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/logoly/" class="tag-list-link">logoly</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/markdown/" class="tag-list-link">markdown</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/mkdocs/" class="tag-list-link">mkdocs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/mysql/" class="tag-list-link">mysql</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/network/" class="tag-list-link">network</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/termianl/" class="tag-list-link">termianl</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/text/" class="tag-list-link">text</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/themes/" class="tag-list-link">themes</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/tive/" class="tag-list-link">tive</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/travis/" class="tag-list-link">travis</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/wordpress/" class="tag-list-link">wordpress</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/zzo/" class="tag-list-link">zzo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link">云原生</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link">博客</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/" class="tag-list-link">压测测试</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-list-link">可视化</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link">安全</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/" class="tag-list-link">工具</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link">年度文章</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">数据库</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">键值数据库</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link">镜像优化</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/04/" class="title">我是如何将 Docker 镜像体积减小 90%</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-04 15:15:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-04</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/12/30/" class="title">Yearning目前最流行的开源数据库审核平台</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-12-30 12:40:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-12-30</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/12/29/" class="title">云原生生态圈·2020年微信公众号全年文章目录索引</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-12-29 12:40:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-12-29</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/08/18/" class="title">Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-08-18 12:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-08-18</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/07/20/" class="title">Hugo-部署静态网站设计的一些思考</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-20 19:49:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-07-20</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/1/01/01/"
+    ></a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/1/01/01/" class="leancloud_visitors"  data-flag-title="">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 4980字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 10分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="前言">前言</h2>
+<p>最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法，就写了精通二字。没想到，大意了</p>
+<h2 id="开场">开场</h2>
+<p>朋友约的是十点半的面试，提前了十分钟到，然后安静地坐在沙发等待，顺便回忆下之前看的资料。快到十点半时，一个高瘦，穿着格子衫的男子推开门而进，说了句“你好，我们来开始面试吧！”，朋友不失礼貌地笑着回了句“行”</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c8c85bc46effc8ae573178c841eb7bdd.png" alt=""></p>
+<h3 id="面试官看你简历说精通tcp和ip那我们来讨论下网络模型和tcpip协议讲下你的理解先">面试官：看你简历说精通TCP和IP，那我们来讨论下网络模型和TCP、IP协议，讲下你的理解先</h3>
+<ul>
+<li>朋友（怎么一上来就问TCP，不按套路出牌啊，不该问问java基础吗？不过常规题，我还行）
+<img src="https://img-blog.csdnimg.cn/img_convert/23f43787215be08ef2be25a8f0f8041e.png" alt=""></li>
+<li>朋友：网络模型一般分七层：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。应用层的协议包括HTTP、FTP、SMTP，而TCP属于传输层，IP协议则属于网络层</li>
+<li>朋友：TCP/IP网络模型层次由上到下，层层包装，每一层都对应不同的协议解析，我来画个图
+<img src="https://img-blog.csdnimg.cn/img_convert/73f0ace294dd14cd4a647c82ac428ec8.png" alt=""></li>
+</ul>
+<h3 id="面试官看你画的图tcp有自己的首部结构这都有哪些字段最好说说它们的作用">面试官：看你画的图，TCP有自己的首部结构，这都有哪些字段，最好说说它们的作用</h3>
+<ul>
+<li>朋友（什么鬼！当我百度词典，这怎么记得住？等等，昨天晚上好像看过，有印象）
+<img src="https://img-blog.csdnimg.cn/img_convert/f459af980d9d408d00d4e88130deeca0.png" alt=""></li>
+<li>朋友：继续画个图，直观点
+<img src="https://img-blog.csdnimg.cn/img_convert/abba85798111dd4aed3250dfa6804ee2.png" alt=""></li>
+<li>朋友：TCP首部结构先是16位的源端口号和目标端口号、接着是32位的序列号和确认号。再下面就是4bit的头部长度和6个bit的保留位及6bit的标志位</li>
+<li>朋友：16位的属性则有窗口大小（控制发送窗口），检验和（校验数据段是否未被修改）及紧急指针。最后是选项，其长度由头部长度决定</li>
+<li>朋友：详细说下序列号，它是TCP报文段的一数字编号，为保证TCP可靠连接，每一个发送的数据段都要加上序列号。建立连接时，两端都会随机生成一个初始序列号。而确认号而是和序列号配合使用的，应答某次请求时，则返回一个确认号，它的值等于对方请求序列号加1</li>
+<li>朋友：而6个标志位分别是，URG：这是条紧急信息，ACK:应答消息，PSH:缓冲区尚未填满，RST:重置连接，SYN:建立连接消息标志，FIN：连接关闭通知信息</li>
+<li>朋友：窗口大小是接收端用来控制发送端的滑动窗口大小</li>
+</ul>
+<h3 id="面试官那tcp和udp有什么区别">面试官：那TCP和UDP有什么区别</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9a9b014373d3c5013ea55ee8f489874c.png" alt=""></p>
+<ul>
+<li>朋友（松了一口气）</li>
+<li>朋友：1）连接方面:TCP面向连接。UDP是无连接的，发送数据之前不需要建立连接</li>
+<li>朋友：2）安全方面:TCP提供可靠的服务，保证传送的数据，无差错，不丢失，不重复，且按序到达。UDP则是尽最大努力交付，不保证可靠交付</li>
+<li>朋友：3）传输效率：TCP传输效率相对较低，UDP传输效率高</li>
+</ul>
+<h3 id="面试官刚才你说tcp是可靠的连接它是怎么实现的">面试官：刚才你说TCP是可靠的连接，它是怎么实现的</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ecdcb68359c8c54e68a1cf67b750ab1b.gif" alt=""></p>
+<ul>
+<li>朋友：TCP的连接是基于三次握手，而断开则是四次挥手</li>
+<li>朋友：为了保障数据不丢失及错误（可靠性），它有报文校验、ACK应答、超时重传(发送方)、失序数据重传（接收方）、丢弃重复数据、流量控制（滑动窗口）和拥塞控制等机制</li>
+</ul>
+<h3 id="面试官具体说一说三次握手和四次挥手机制">面试官：具体说一说三次握手和四次挥手机制</h3>
+<ul>
+<li>朋友（又是常规题，晒晒水啦）</li>
+<li>朋友：TCP是可靠的双向通道，所以需要三次握手和四次挥手，我来画个图</li>
+<li>三次握手
+<img src="https://img-blog.csdnimg.cn/img_convert/8ac917b801b7d3c81bc293d1ae9449de.png" alt=""></li>
+<li>四次挥手
+<img src="https://img-blog.csdnimg.cn/img_convert/3803f2df4089791d4f745f1c2f3960c3.png" alt=""></li>
+<li>朋友：提前抢答下，关闭连接时需要四次挥手，比建立时多一次，是因为被动关闭端或许还有数据没被送出去，不能像握手时一样，第二次握手既是发起握手也是响应握手</li>
+</ul>
+<h3 id="面试官如果没有三次握手会有什么问题呢">面试官：如果没有三次握手会有什么问题呢</h3>
+<ul>
+<li>朋友：如果只有两次握手，client发连接请求后不会再ACK服务端的SYN</li>
+<li>朋友：此时若客户端因为自身原因判断建立连接失败，可能会重复建立TCP连接，而服务端却会认为那些被client丢弃的TCP还是有效，会白白浪费资源</li>
+</ul>
+<h3 id="面试官time_wait和close_wait的区别在哪">面试官：TIME_WAIT和CLOSE_WAIT的区别在哪</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f24a1b06860b1fc98c531bfe096d67be.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3803f2df4089791d4f745f1c2f3960c3.png" alt=""></p>
+<ul>
+<li>朋友：CLOSE_WAIT是被动关闭形成的；当对方close socket而发送FIN报文过来时，回应ACK之后进入CLOSE_WAIT状态。随后检查是否存在未传输数据，如果没有则发起第三次挥手，发送FIN报文给对方，进入LAST_ACK状态并等待对方ACK报文到来</li>
+<li>朋友：TIME_WAIT是主动关闭连接方式形成的；处于FIN_WAIT_2状态时，收到对方FIN报文后进入TIME_WAIT状态；之后再等待两个MSL(Maximum Segment Lifetime:报文最大生存时间)</li>
+</ul>
+<h3 id="面试官time_wait的作用呢还有为啥状态时间要保持两个msl">面试官：TIME_WAIT的作用呢，还有为啥状态时间要保持两个MSL</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c8e7d0c51294c23717fb3777d888cd2d.gif" alt=""></p>
+<ul>
+<li>朋友(这问得太深了吧，老哥。还好昨天偷偷补课了)</li>
+<li>朋友：1）TIME_WAIT的作用是为了保证最后一次挥手的ACK报文能送达给对方，如果ACK丢失，对方会超时重传FIN，主动关闭端会再次响应ACK过去；如果没有TIME_WAIT状态，直接关闭，对方重传的FIN报文则被响应一个RST报文，此RST会被动关闭端被解析成错误</li>
+<li>朋友：2）存在两个连接，第一个连接正常关闭，第二相同的连接紧接着建立；如果第一个连接的迷路报文到来，则会干扰第二连接，等待两个MSL则可以让上次连接的报文数据消逝在网络后</li>
+</ul>
+<h3 id="面试官刚才你还有提到拥塞控制tcp协议用什么方式去解决拥塞的">面试官：刚才你还有提到拥塞控制，TCP协议用什么方式去解决拥塞的</h3>
+<ul>
+<li>朋友：<strong>第一方式是慢启动和拥塞避免</strong></li>
+<li>朋友：1）慢启动，TCP发送端会维护一个拥塞窗口（congestionwindow）,简称为cwnd。拥塞窗口初始为1个报文段，每经过一次RTT（数据完全发送完到确认的时间），窗口大小翻倍（指数增长，只是前期慢）</li>
+<li>朋友：2）拥塞避免，它思路是让拥塞窗口cwnd缓慢增大，发送方的cwnd达到阀值ssthresh(初始值由系统决定的)之后，每经过一个RTT就把拥塞窗口加一，而不是加倍（收到两个或四个确认，都是cwnd+1），cwnd呈线性增加（加法增大）</li>
+<li>朋友：（画个图好解析）
+<img src="https://img-blog.csdnimg.cn/img_convert/ea262d615dc645c0bd721d1ae701424e.png" alt=""></li>
+<li>朋友：如果遇到网络拥塞，拥塞窗口阀值ssthresh减半，cwnd设置为1，重新进入慢启动阶段</li>
+</ul>
+<h3 id="面试官那拥塞控制还有其他什么方式呢">面试官：那拥塞控制还有其他什么方式呢</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7a7643f53d09357bf9d9e393379ab312.gif" alt=""></p>
+<ul>
+<li>朋友：<strong>快重传和快恢复</strong></li>
+<li>朋友：1）快重传是当接收方收到了一个失序的报文，则立马报告给发送方，赶紧重传</li>
+<li>朋友：假如接收方M1收到了，M2没有收到，之后的M3、M4、M5又发送了，此时接收方一共连续给发送方反馈了3个M1确认报文。那么快重传规定，发送方只要连续收到3个重复确认，立即重传对方发来的M2（重复确认报文的后一个报文）
+<img src="https://img-blog.csdnimg.cn/img_convert/3ebf0ed25f3f407e3fc96c80ca098e3d.png" alt=""></li>
+<li>朋友：2）快恢复</li>
+<li>朋友：当发送方连续收到三个重复确认，ssthresh减半；由于发送方可能认为网络现在没有拥塞，因此与慢启动不同，把cwnd值设置为ssthresh减半之后的值，然后执行拥塞避免算法，cwnd线性增大</li>
+<li>朋友：（再来一图）
+<img src="https://img-blog.csdnimg.cn/img_convert/f56c1d1ee79c69b14f7bc2c2d3fb2405.png" alt=""></li>
+</ul>
+<h3 id="面试官知道滑动窗口不客户端和服务端控制滑动窗口的过程是怎样的">面试官：知道滑动窗口不，客户端和服务端控制滑动窗口的过程是怎样的</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/aeafc263f5db7859e66f6401cfa2c746.png" alt=""></p>
+<ul>
+<li>朋友：接收端将自己可以接收的缓冲区大小放入TCP首部中的“窗口大小”字段，通过ACK报文来通知发送端，滑动窗口是接收端用来控制发送端发送数据的大小，从而达到流量控制</li>
+<li>朋友：其实发送方的窗口上限，是取值拥塞窗口和滑动窗口两者的最小值</li>
+</ul>
+<h3 id="面试官那你知道滑动窗口和拥塞窗口有什么区别不">面试官：那你知道滑动窗口和拥塞窗口有什么区别不</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/69b556a45967a6e743298eca90bb111b.png" alt=""></p>
+<ul>
+<li>朋友：相同点都是控制丢包现象，实现机制都是让发送方发得慢一点</li>
+<li>朋友：不同点在于控制的对象不同</li>
+<li>朋友：1）流量控制的对象是接收方，怕发送方发的太快，使得接收方来不及处理</li>
+<li>朋友：2）拥塞控制的对象是网络，怕发送方发的太快，造成网络拥塞，使得网络来不及处理</li>
+</ul>
+<h3 id="面试官tcp的粘包和拆包问题你怎么看">面试官：TCP的粘包和拆包问题，你怎么看</h3>
+<ul>
+<li>朋友：程序需要发送的数据大小和TCP报文段能发送MSS（Maximum Segment Size，最大报文长度）是不一样的</li>
+<li>朋友：大于MSS时，而需要把程序数据拆分为多个TCP报文段，称之为拆包；小于时，则会考虑合并多个程序数据为一个TCP报文段，则是粘包；其中MSS = TCP报文段长度-TCP首部长度</li>
+<li>朋友：在IP协议层或者链路层、物理层，都存在拆包、粘包现象</li>
+</ul>
+<h3 id="面试官那解决粘包和拆包的方法都有哪些">面试官：那解决粘包和拆包的方法都有哪些？</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e19700031b30d10d6c180174e6720a82.png" alt=""></p>
+<ul>
+<li>朋友：1）在数据尾部增加特殊字符进行分割</li>
+<li>朋友：2）将数据定为固定大小</li>
+<li>朋友：3）将数据分为两部分，一部分是头部，一部分是内容体；其中头部结构大小固定，且有一个字段声明内容体的大小</li>
+</ul>
+<h3 id="面试官syn-flood了解吗">面试官：SYN Flood了解吗</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/cf5fb874f44ea8f9051893c1057150f4.png" alt=""></p>
+<ul>
+<li>朋友：SYN Flood 伪造 SYN 报文向服务器发起连接，服务器在收到报文后用 SYN_ACK 应答，此应答发出去后，不会收到 ACK 报文，造成一个半连接</li>
+<li>朋友：若攻击者发送大量这样的报文，会在被攻击主机上出现大量的半连接，耗尽其资源，使正常的用户无法访问，直到半连接超时</li>
+</ul>
+<h3 id="面试官对tcp的掌握挺不错的下面问下http的知识你知道一次http请求程序一般经历了哪几个步骤">面试官：对TCP的掌握挺不错的，下面问下HTTP的知识。你知道一次HTTP请求，程序一般经历了哪几个步骤？</h3>
+<ul>
+<li>朋友：1）解析域名 -&gt; 2）发起TCP三次握手，建立连接 -&gt; 3）基于TCP发起HTTP请求 -&gt; 4）服务器响应HTTP请求，并返回数据 -&gt; 5）客户端解析返回数据
+<img src="https://img-blog.csdnimg.cn/img_convert/f165e3fae41e237a704e0642701c7b08.png" alt=""></li>
+</ul>
+<h3 id="面试官http有哪几种响应状态码列举几个你熟悉的">面试官：HTTP有哪几种响应状态码，列举几个你熟悉的</h3>
+<ul>
+<li>朋友：大概有以下几种
+<ul>
+<li>200：表示成功正常请求</li>
+<li>400：语义有误，一般是请求格式不对</li>
+<li>401：需求用户验证权限，一般是证书token没通过认证</li>
+<li>403：拒绝提供服务</li>
+<li>404：资源不存在</li>
+<li>500：服务器错误</li>
+<li>503：服务器临时维护，过载；可恢复</li>
+</ul>
+</li>
+</ul>
+<h3 id="面试官不错再考考你session和cookie有什么区别">面试官：不错，再考考你，session和cookie有什么区别</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/59e5dde74a120d836b243cce62b51b38.png" alt=""></p>
+<ul>
+<li>朋友：1）存储位置不同，cookie是保存在客户端的数据；session的数据存放在服务器上</li>
+<li>朋友：2）存储容量不同，单个cookie保存的数据小，一个站点最多保存20个Cookie；对于session来说并没有上限</li>
+<li>朋友：3）存储方式不同，cookie中只能保管ASCII字符串；session中能够存储任何类型的数据</li>
+<li>朋友：4）隐私策略不同，cookie对客户端是可见的；session存储在服务器上，对客户端是透明对</li>
+<li>朋友：5）有效期上不同，cookie可以长期有效存在；session依赖于名为JSESSIONID的cookie，过期时间默认为-1，只需关闭窗口该session就会失效</li>
+<li>朋友：6）跨域支持上不同，cookie支持跨域名访问；session不支持跨域名访问</li>
+</ul>
+<h3 id="面试官不错那你了解什么是http分块传送吗">面试官：不错，那你了解什么是HTTP分块传送吗</h3>
+<ul>
+<li>朋友：分块传送是HTTP的一种传输机制，允许服务端发送给客户端的数据分成多个部分，该协议在HTTP/1.1提供</li>
+</ul>
+<h3 id="面试官http分块传送有什么好处">面试官：HTTP分块传送有什么好处</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/46889f71b8ea173fa763a6f9dec727db.png" alt=""></p>
+<ul>
+<li>朋友：HTTP分块传输编码允许服务器为动态生成的内容维持HTTP持久连接</li>
+<li>朋友：分块传输编码允许服务器在最后发送消息头字段。对于那些头字段值在内容被生成之前无法知道的情形非常重要，例如消息的内容要使用散列进行签名</li>
+<li>朋友：HTTP服务器有时使用压缩 （gzip或deflate）以缩短传输花费的时间。分块传输编码可以用来分隔压缩对象的多个部分。在这种情况下，块不是分别压缩的，而是整个负载进行压缩。分块编码有利于一边进行压缩一边发送数据
+<img src="https://img-blog.csdnimg.cn/img_convert/8357d39a6b1ac0199cb2b7ce565c436a.gif" alt="img"></li>
+</ul>
+<h3 id="面试官http的长连接你怎么理解">面试官：HTTP的长连接你怎么理解</h3>
+<ul>
+<li>朋友：长连接是指客户端和服务建立TCP连接后，它们之间的连接会持续存在，不会因为一次HTTP请求后关闭，后续的请求也是用这个连接</li>
+<li>朋友：长连接可以省去TCP的建立和关闭操作，对于频繁请求的客户端适合使用长连接，但是注意恶意的长连接导致服务受损（建议内部服务之间使用）</li>
+</ul>
+<h3 id="面试官http是安全的吗怎么做到安全的http协议传输">面试官：HTTP是安全的吗？怎么做到安全的HTTP协议传输</h3>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/606dc4808bf8946232143d3b580fb8df.png" alt=""></p>
+<ul>
+<li>朋友：并非安全，HTTP传输的数据都是明文的，容易被第三方截取；要做安全传输数据，可以使用HTTP的升级版HTTPS协议</li>
+</ul>
+<h3 id="面试官https和http的区别你是怎么理解的">面试官：HTTPS和HTTP的区别，你是怎么理解的</h3>
+<ul>
+<li>朋友：1）http协议的连接是无状态的，明文传输</li>
+<li>朋友：2）HTTPS则是由SSL/TLS＋HTTP协议构建的有加密传输、身份认证的网络协议</li>
+</ul>
+<h3 id="面试官ssltls是什么https的安全性是怎样实现的">面试官：SSL/TLS是什么，HTTPS的安全性是怎样实现的？</h3>
+<ul>
+<li>朋友：SSL(Secure Socket Layer 安全套接层)是基于HTTPS下的一个协议加密层，保障数据私密性。TLS(Transport Layer Security)则是升级版的SSL</li>
+<li>朋友：https在http基础加了一层安全认证及加密层TLS或者SSL，它首先会通过安全层进行ca证书认证，正确获取服务端的公钥</li>
+<li>朋友：接着客户端会通过公钥和服务端确认一种加密算法，后面的数据则可以使用该加密算法对数据进行加密</li>
+</ul>
+<h3 id="面试官你能详细说下tlsssl的认证过程不此时面试官放在桌面的手机震动了起来他下意识看了看手机停顿下">面试官：你能详细说下TLS/SSL的认证过程不&hellip;（此时面试官放在桌面的手机震动了起来，他下意识看了看手机，停顿下)</h3>
+<p>朋友面试暂时告一段落（下回继续）</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/49410aa0a2969759ed69055b8517cadb.png" alt=""></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_48182198/article/details/107611341">腾讯面试HTTP与TCP/IP20连问，你能答出多少</a></li>
+<li><a href="https://blog.csdn.net/bjweimengshu/article/details/79214572">什么是TCP/IP协议？</a></li>
+<li><a href="https://developer.51cto.com/art/201906/597961.htm">太厉害了，终于有人能把TCP/IP协议讲的明明白白了！</a></li>
+<li><a href="https://blog.csdn.net/ligupeng7929/article/details/79597423">TCP的滑动窗口与拥塞窗口</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/1/01/01/" title="" target="_blank" rel="external">https://www.devopsman.cn/1/01/01/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/1/01/01/" title="Sonarqube 7.7社区版安装"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://www.devopsman.cn/1/01/01/"
+                    title=""><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

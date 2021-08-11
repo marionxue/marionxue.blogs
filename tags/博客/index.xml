@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on 云原生生态圈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Sat, 04 Jul 2020 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我是如何将 Docker 镜像体积减小 90%</title>
+      <link>https://www.devopsman.cn/2021/08/04/</link>
+      <pubDate>Wed, 04 Aug 2021 15:15:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/04/</guid>
+      <description>对于刚接触容器的人来说，他们很容易被自己构建的 Docker 镜像体积吓到，我只需要一个几 MB 的可执行文件而已，为何镜像的体积会达到 1 GB 以上？本文将会介绍几</description>
+    </item>
+    
+    <item>
+      <title>Yearning目前最流行的开源数据库审核平台</title>
+      <link>https://www.devopsman.cn/2020/12/30/</link>
+      <pubDate>Wed, 30 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/30/</guid>
+      <description>今天给大家分享目前最popular的MySQL SQL审计平台Yearning，这个平台可以帮助开发者快速的完成SQL语句的语法的审核、检测、</description>
+    </item>
+    
+    <item>
+      <title>云原生生态圈·2020年微信公众号全年文章目录索引</title>
+      <link>https://www.devopsman.cn/2020/12/29/</link>
+      <pubDate>Tue, 29 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/29/</guid>
+      <description>文章索引 在2020年即将过去的的最后几个小时，趁着大家都在看跨年晚会的时候，我整理了2020年云原生生态圈一整年写过的所有文章，一共147篇</description>
+    </item>
+    
+    <item>
+      <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于基于Consul的RabbitMQ集群。我们还将添加HAProxy</description>
+    </item>
+    
+    <item>
+      <title>Hugo-部署静态网站设计的一些思考</title>
+      <link>https://www.devopsman.cn/2020/07/20/</link>
+      <pubDate>Mon, 20 Jul 2020 19:49:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/20/</guid>
+      <description>静态网站的个人设计的个人思考 为什么要搭建自己的静态博客系统？ 写好的Markdown可以快速的发布到自己的博客网站上，不需要什么一键式多平台发</description>
+    </item>
+    
+    <item>
+      <title>运维知识体系-v3.1</title>
+      <link>https://www.devopsman.cn/2020/07/10/</link>
+      <pubDate>Fri, 10 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/10/</guid>
+      <description>前段时间，发现新运维社区的赵班长(赵舜东)更新了一版《运维知识体系 v3.1》其中新增了一些目前比较火的、成熟的运维解决方案，也包括容器编排，</description>
+    </item>
+    
+    <item>
+      <title>如何确定CPU消耗在哪些函数上</title>
+      <link>https://www.devopsman.cn/2020/07/04/</link>
+      <pubDate>Sat, 04 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/04/</guid>
+      <description>文章背景 日常的工作中，会收到一堆CPU使用率过高的告警邮件，遇到某台服务的CPU被占满了，这时候我们就要去查看是什么进程将服务器的CPU资源</description>
+    </item>
+    
+    <item>
+      <title>Docker容器命令行可视化工具-Lazydocker</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Lazydocker的使用背景 平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如Docker的各种</description>
+    </item>
+    
+    <item>
+      <title>ECS上手把手搭建个人博客系统wordpress</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
+    </item>
+    
+    <item>
+      <title>手把手带你打造骚气的命令行终端</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>最近有很多朋友看了我的文章之后，问我你终端是怎么设置的，为什么如此炫酷，这这这&amp;hellip;让我怎么说，难道我的文章不干吗？还是特干看不下</description>
+    </item>
+    
+    <item>
+      <title>P站风格Logo生成器</title>
+      <link>https://www.devopsman.cn/2020/06/07/</link>
+      <pubDate>Sun, 07 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/07/</guid>
+      <description>​ 最近发现很多的微信文章上出现了一种logo设计，跟P站的logo设计风格一样让人印象深刻，黑底白字，配上一小撮橙色，给人极强的冲击力。后来</description>
+    </item>
+    
+    <item>
+      <title>mkdocs自动化部署知识库</title>
+      <link>https://www.devopsman.cn/2020/06/04/</link>
+      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/04/</guid>
+      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
+    </item>
+    
+    <item>
+      <title>技术人员最常用的命令行工具</title>
+      <link>https://www.devopsman.cn/2020/05/30/</link>
+      <pubDate>Sat, 30 May 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/05/30/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown Syntax Guide</title>
+      <link>https://www.devopsman.cn/2019/03/11/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/2019/03/11/</guid>
+      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Placeholder Text</title>
+      <link>https://www.devopsman.cn/2019/03/09/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/2019/03/09/</guid>
+      <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de
+pectora summo.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Math Typesetting</title>
+      <link>https://www.devopsman.cn/2019/03/08/</link>
+      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/2019/03/08/</guid>
+      <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emoji Support</title>
+      <link>https://www.devopsman.cn/2019/03/05/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/2019/03/05/</guid>
+      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://www.devopsman.cn/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/about/</guid>
+      <description>关于页面</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>title: &amp;ldquo;Python脚本分析拉钩招聘网站职位&amp;rdquo; date: 2020-12-31T12:40:06+09:00 description: &amp;ldquo;学习xlwt和requests的模块爬取数据&amp;rdq</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>杏树林信息技术（北京）有限公司成立于2011年，是国内知名的互联网医疗企业。杏树林的初心是让医生行医更轻松，让医疗更高效，将“协和三宝”（图</description>
+    </item>
+    
+  </channel>
+</rss>

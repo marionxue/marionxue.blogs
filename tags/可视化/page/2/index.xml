@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>可视化 on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+    <description>Recent content in 可视化 on 云原生生态圈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Wed, 10 Jun 2020 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Yaml基础语法与技巧 字符支持：YAML支持Unicode字符集，可以使用UTF-8、UTF-16、UTF-32字符集 date: 2020-06-28 info: - name: Marionxue tags: - num: 1 -</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>2020年6月24日，BFE开源项目被CNCF （Cloud Native Computing Foundation，云原生计算基金会）正式接纳为Sandbox Project</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Etcd集群的部署实践 我们准备三台机器，分别在这三台机器上安装部署etcd wget https://github.com/etcd-io/etcd/releases/download/v3.4.9/etcd-v3.4.9-linux-amd64.tar.gz 在每个节点的机器上执行一下环境设定 TOKEN=token-01 CLUSTER_STATE=new NAME_1=machine-1 NAME_2=machine-2 NAME_3=machine-3 HOST_1=10.240.0.17 HOST_2=10.240.0.18 HOST_3=10.240.0.19 CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Kubernetes是容器编排的实际标准。Kubernetes作为首选的容器解决方案，已经迅速流行起来。我们来看看Kubernetes的10</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>介绍几种开源的网盘存储解决方案，可以在开源的网盘服务基础上，结合一些某云的存储服务，实现私人定制化个人网盘。 Nextcloud [NextCloud](&amp;ldquo;https://docs.nextcloud.com/&amp;quot; Nextcloud)是一个完</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>https://github.com/mgechev/revive https://github.com/TrueFurby/go-callvis https://github.com/gaia-pipeline/gaia https://github.com/oxequa/realize https://github.com/cweill/gotests  https://mp.weixin.qq.com/s/meiCpb9TNYNvbVWgm0-f5w</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Prometheus已成为cloud-native世界中的默认监控应用程序和系统。对于真是使用案例，Prometheus应该是高可用的，这是</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>创建同名的仓库 自定义卡片信息 GitHub 统计卡片 将这行代码复制到你的 markdown格式的readme.md文件中 ![marionxue&amp;#39;s github stats](https://github-readme-stats.vercel.app/api?username=marionxue&amp;amp;theme=radical) 隐藏个别统计项 如果你想要在卡片</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>前言 话说有一名意大利程序员，在 2004 年到 2006 年间主要做嵌入式工作，之后接触了 Web，2007 年和朋友共同创建了一个网站，并为了解决这个网站的负载问</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>wordpress简介 WordPress是一个免费的开源内容管理系统CMS建立在具有PHP处理功能的MYSQL数据库上。凭借其可扩展的插件体</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法</description>
+    </item>
+    
+    <item>
+      <title>Sonarqube 7.7社区版安装</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>配置MYSQL数据库 运行MySQL容器 docker container run -d --restart=always -v /data/mysql/my.cnf:/etc/mysql/conf.d/my.cnf \ -v /data/mysql/mysql:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=PASSWORD \ -p 33306:3306 mysql:5.7 SonarQube配置信息 mkdir -p /data/sonarqube docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:7.7-community docker cp sonarqube:/opt/sonarqube/conf /data/sonarqube/ docker cp sonarqube:/opt/sonarqube/extensions /data/sonarqube/</description>
+    </item>
+    
+    <item>
+      <title>云原生键值数据库TIKV毕业了</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>云原生键值数据库TIKV毕业了 云原生键值数据库项目现在在全球拥有近1,000个生产用户 旧金山，加利福尼亚- 2020年9月2日Cloud Native Computing F</description>
+    </item>
+    
+  </channel>
+</rss>

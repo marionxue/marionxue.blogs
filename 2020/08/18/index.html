@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>
+        Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
+    <meta name="generator" content="Hugo 0.73.0 with theme pure" />
+    <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈</title>
+    
+    
+    <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" />
+<meta property="og:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/2020/08/18/" />
+<meta property="article:published_time" content="2020-08-18T12:00:06+09:00" />
+<meta property="article:modified_time" content="2020-08-18T12:00:06+09:00" />
+<meta itemprop="name" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">
+<meta itemprop="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群">
+<meta itemprop="datePublished" content="2020-08-18T12:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2020-08-18T12:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="1244">
+
+
+
+<meta itemprop="keywords" content="Kubernetes,network,calico,压测测试," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群"/>
+<meta name="twitter:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/marionxue" target="_blank">
+            <img class="img-circle img-rotate" src="https://www.devopsman.cn/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">云原生生态圈</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">DevOps Enginer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">主页</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">归档</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">分类</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">标签</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">关于</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>云原生生态圈·网站改版了...~</p><br/><img src="https://image.devopsman.cn/wechat2020/image-20201231225654650.png" width="200px" height="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://www.devopsman.cn/tags/blog/" class="tag-list-link" rel="1">blog<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/calico/" class="tag-list-link" rel="2">calico<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/css/" class="tag-list-link" rel="1">css<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/emoji/" class="tag-list-link" rel="1">emoji<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/github/" class="tag-list-link" rel="1">github<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/html/" class="tag-list-link" rel="1">html<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/hugo/" class="tag-list-link" rel="1">hugo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/hugo-template/" class="tag-list-link" rel="1">hugo-template<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/iterm/" class="tag-list-link" rel="1">iterm<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link" rel="2">kubernetes<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/logo/" class="tag-list-link" rel="1">logo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/logoly/" class="tag-list-link" rel="1">logoly<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/markdown/" class="tag-list-link" rel="2">markdown<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/mkdocs/" class="tag-list-link" rel="1">mkdocs<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/mysql/" class="tag-list-link" rel="2">mysql<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/network/" class="tag-list-link" rel="2">network<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/termianl/" class="tag-list-link" rel="1">termianl<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/text/" class="tag-list-link" rel="1">text<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/themes/" class="tag-list-link" rel="1">themes<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/tive/" class="tag-list-link" rel="2">tive<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/travis/" class="tag-list-link" rel="1">travis<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/wordpress/" class="tag-list-link" rel="2">wordpress<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/zzo/" class="tag-list-link" rel="1">zzo<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link" rel="2">云原生<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link" rel="2">博客<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/" class="tag-list-link" rel="2">压测测试<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-list-link" rel="1">可视化<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link" rel="2">安全<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/" class="tag-list-link" rel="3">工具<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link" rel="1">年度文章<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="2">数据库<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="2">键值数据库<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link" rel="1">镜像优化<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://www.devopsman.cn/categories/syntax/" class="category-list-link">syntax</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://www.devopsman.cn/categories/themes/" class="category-list-link">themes</a><span class="category-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/blog/" class="tag-list-link">blog</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/calico/" class="tag-list-link">calico</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/css/" class="tag-list-link">css</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/emoji/" class="tag-list-link">emoji</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/github/" class="tag-list-link">github</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/html/" class="tag-list-link">html</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/hugo/" class="tag-list-link">hugo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/hugo-template/" class="tag-list-link">hugo-template</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/iterm/" class="tag-list-link">iterm</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link">kubernetes</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/logo/" class="tag-list-link">logo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/logoly/" class="tag-list-link">logoly</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/markdown/" class="tag-list-link">markdown</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/mkdocs/" class="tag-list-link">mkdocs</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/mysql/" class="tag-list-link">mysql</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/network/" class="tag-list-link">network</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/termianl/" class="tag-list-link">termianl</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/text/" class="tag-list-link">text</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/themes/" class="tag-list-link">themes</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/tive/" class="tag-list-link">tive</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/travis/" class="tag-list-link">travis</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/wordpress/" class="tag-list-link">wordpress</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/zzo/" class="tag-list-link">zzo</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link">云原生</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link">博客</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/" class="tag-list-link">压测测试</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-list-link">可视化</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link">安全</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/" class="tag-list-link">工具</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link">年度文章</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">数据库</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">键值数据库</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link">镜像优化</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/04/" class="title">我是如何将 Docker 镜像体积减小 90%</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-04 15:15:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-04</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/12/30/" class="title">Yearning目前最流行的开源数据库审核平台</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-12-30 12:40:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-12-30</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/12/29/" class="title">云原生生态圈·2020年微信公众号全年文章目录索引</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-12-29 12:40:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-12-29</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/08/18/" class="title">Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-08-18 12:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-08-18</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2020/07/20/" class="title">Hugo-部署静态网站设计的一些思考</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2020-07-20 19:49:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-07-20</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2020/08/18/"
+    >Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://www.devopsman.cn/2020/08/18/" class="article-date">
+  <time datetime="2020-08-18 12:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2020-08-18</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/kubernetes/"> Kubernetes </a>
+    <a class="article-tag-link" href="/tags/network/"> network </a>
+    <a class="article-tag-link" href="/tags/calico/"> calico </a>
+    <a class="article-tag-link" href="/tags/%E5%8E%8B%E6%B5%8B%E6%B5%8B%E8%AF%95/"> 压测测试 </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/2020/08/18/" class="leancloud_visitors"  data-flag-title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1244字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p><img src="/images/images.assets/1*-gAK0fG63XGl-4-rhmLfuw.png" alt="Image for post"></p>
+<p>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于<a href="https://www.rabbitmq.com/cluster-formation.html#peer-discovery-consul" title="RabbitMQ discovery consul">基于Consul的RabbitMQ集群</a>。我们还将添加<a href="http://www.haproxy.org/">HAProxy</a>服务器场以负载均衡AMQP请求，并提高群集的整体可用性。以下是最终的逻辑拓扑。</p>
+<p><img src="https://image.devopsman.cn/wechat2020/1*blfjK6gNwZKG3_EKZTd_Dg-20200818212351193.png" alt="Image for post"></p>
+<p>So, Let’s get started! 👊</p>
+<h2 id="安装docker-swarm集群">安装docker swarm集群</h2>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>192.168.99.128</td>
+</tr>
+<tr>
+<td>Node1</td>
+<td>192.168.99.133</td>
+</tr>
+<tr>
+<td>Node2</td>
+<td>192.168.99.134</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安装docker">安装docker</h3>
+<pre><code>curl -fsSL get.docker.com -o get-docker.sh
+CHANNEL=stable sh get-docker.sh --mirror Aliyun
+root@master:~# docker -v
+Docker version 19.03.12, build 48a66213fe
+</code></pre><h3 id="初始化docker-swarm集群">初始化docker swarm集群</h3>
+<ul>
+<li>在master上初始化集群</li>
+</ul>
+<pre><code>#Init Docker Swarm - run on master
+root@master:~# docker swarm init --advertise-addr 192.168.99.128
+Swarm initialized: current node (htu24tq7mhip4ca7a9uqnndef) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+</code></pre><ul>
+<li>node1加入集群</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+This node joined a swarm as a worker.
+
+root@master:~# docker node ls
+ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
+vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active                                  19.03.12
+root@master:~# docker node promote node1.devopsman.cn
+Node node1.devopsman.cn promoted to a manager in the swarm.
+</code></pre></div><ul>
+<li>node2加入集群</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node2:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+This node joined a swarm as a worker.
+root@master:~# docker node ls
+ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
+vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active              Reachable           19.03.12
+99f5xkfepct301n48tqqslz22     node2.devopsman.cn    Ready               Active                                  19.03.12
+root@master:~# docker node promote node2.devopsman.cn
+Node node2.devopsman.cn promoted to a manager in the swarm.
+
+root@master:~# docker network create --driver<span style="color:#f92672">=</span>overlay --attachable prod
+q5rzw0i1xdh9kovytjeg0sj9p
+
+root@master:~# docker network ls
+NETWORK ID          NAME                            DRIVER              SCOPE
+ba6f05d438cf        bridge                          bridge              local
+ee47cd6a4247        docker_gwbridge                 bridge              local
+8df9d4ecb5be        host                            host                local
+rl5o9jz6fxp8        ingress                         overlay             swarm
+25lk998untvk        local                           overlay             swarm
+3a66aac75dbf        none                            null                local
+q5rzw0i1xdh9        prod                            overlay             swarm
+</code></pre></div><h2 id="部署consul集群">部署consul集群</h2>
+<p><strong>注意点</strong></p>
+<ul>
+<li>持久化consul的数据，避免数据丢失</li>
+<li>在<code>global</code>模式下部署Consul服务，并通过节点标签管理服务调度</li>
+<li>使用两个单独的网络，一个用于内部consul的通信，另一个用于RabbitMQ与Consul服务之间的通信</li>
+</ul>
+<h2 id="consul部署清单">consul部署清单</h2>
+<pre><code>version: '3.6'
+services:
+  consul:
+    image: consul:1.4.0
+    hostname: &quot;{{.Node.Hostname}}&quot;
+    networks:
+      - consul
+      - prod
+    ports:
+      - 8400:8400
+      - 8500:8500
+      - 8600:53
+    volumes:
+      - consul-data:/consul/data
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.consul == true]
+    command: [ &quot;agent&quot;, &quot;-server&quot;, &quot;-bootstrap-expect=3&quot;, &quot;-retry-max=3&quot;, &quot;-retry-interval=10s&quot;, &quot;-datacenter=prod&quot;, &quot;-join=consul&quot;, &quot;-retry-join=consul&quot;, &quot;-bind={{ GetInterfaceIP \&quot;eth0\&quot; }}&quot;, &quot;-client=0.0.0.0&quot;, &quot;-ui&quot;]
+networks:
+  consul:
+  prod:
+    external: true
+volumes:
+  consul-data:
+</code></pre><h3 id="初始化consul集群">初始化consul集群</h3>
+<pre><code>docker node update --label-add consul=true node1.devopsman.cn
+node1.devopsman.cn
+docker stack deploy -c docker-compose_consul.yaml consul
+# 等待10s
+root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true master.devopsman.cn
+master.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true node1.devopsman.cn
+node1.devopsman.cn
+
+root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/leader
+&quot;10.0.3.5:8300&quot;
+root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/peers
+[&quot;10.0.3.5:8300&quot;,&quot;10.0.3.7:8300&quot;,&quot;10.0.3.9:8300&quot;]
+root@master:~/consul_rabbitmq_docker#
+</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818215926636.png" alt="image-20200818215926636"></p>
+<p>在浏览器打开http://192.168.99.128:8500访问consul的dashboard来验证安装是否成功。</p>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818220043988.png" alt="image-20200818220043988"></p>
+<h2 id="部署rabbitmq集群">部署RabbitMQ集群</h2>
+<p><strong>注意点</strong></p>
+<ul>
+<li>持久化数据防止数据丢失。</li>
+<li>在<code>global</code>模式下部署RabbitMQ服务，并通过节点标签管理服务调度</li>
+<li>使用Prod网络进行<code>内部/外部</code>RabbitMQ通信</li>
+<li>不要暴露 <code>RABBITMQ_ERLANG_COOKIE</code> and <code>RABBITMQ_DEFAULT_PASS</code></li>
+<li>主机名很重要，因为RabbitMQ使用主机名作为数据目录</li>
+</ul>
+<h3 id="rabbitmq部署清单">RabbitMQ部署清单</h3>
+<pre><code>version: &quot;3.6&quot;
+services:
+  rabbitmq-01:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-01
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-01-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq1 == true]rabbitmq-02:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-02
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-02-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq2 == true]rabbitmq-03:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-03
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-03-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq3 == true]networks:
+  prod:
+    external: true
+volumes:
+  rabbitmq-01-data:
+  rabbitmq-02-data:
+  rabbitmq-03-data:
+</code></pre><h3 id="configenabled_plugins">config/enabled_plugins</h3>
+<pre><code>[rabbitmq_management,
+rabbitmq_peer_discovery_consul,
+rabbitmq_federation,
+rabbitmq_federation_management,
+rabbitmq_shovel,
+rabbitmq_shovel_management].
+</code></pre><h3 id="configrabbitmqconf">config/rabbitmq.conf</h3>
+<pre><code>loopback_users.admin = false
+cluster_formation.peer_discovery_backend = rabbit_peer_discovery_consul
+cluster_formation.consul.host = consul
+cluster_formation.node_cleanup.only_log_warning = true
+cluster_formation.consul.svc_addr_auto = true
+cluster_partition_handling = autoheal#Flow Control is triggered if memory usage above %80.
+vm_memory_high_watermark.relative = 0.8#Flow Control is triggered if free disk size below 5GB.
+disk_free_limit.absolute = 5GB
+</code></pre><h3 id="rabbitmq集群初始化">RabbitMQ集群初始化</h3>
+<pre><code>root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq1=true master.devopsman.cn
+master.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq2=true node1.devopsman.cn
+node1.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq3=true node2.devopsman.cn
+node2.devopsman.cn
+
+root@master:~/consul_rabbitmq_docker# docker stack deploy -c docker-compose_rabbitmq.yml rabbitmq
+Creating service rabbitmq_rabbitmq-03
+Creating service rabbitmq_rabbitmq-01
+Creating service rabbitmq_rabbitmq-02
+root@master:~/consul_rabbitmq_docker#
+</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818221955073.png" alt="image-20200818221955073"></p>
+<h2 id="配置haproxy代理端口">配置haproxy代理端口</h2>
+<h3 id="haproxy部署清单">haproxy部署清单</h3>
+<pre><code>version: &quot;3.6&quot;
+services:
+  haproxy:
+    image: olgac/haproxy-for-rabbitmq:1.8.14-alpine
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 1936:1936
+    networks:
+      - prod
+    deploy:
+      mode: global
+networks:
+  prod:
+    external: true
+</code></pre><h3 id="confighaproxycfg">config/haproxy.cfg</h3>
+<pre><code>global
+    log 127.0.0.1   local0
+    log 127.0.0.1   local1 notice
+    maxconn 4096
+ 
+defaults
+    log     global
+    option  tcplog
+    option  dontlognull
+    timeout connect 6s
+    timeout client 60s
+    timeout server 60s
+ 
+listen  stats
+    bind *:1936
+    mode http
+    stats enable
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /listen rabbitmq
+    bind   *:5672
+    mode   tcp
+    server rabbitmq-01 rabbitmq-01:5672 check
+    server rabbitmq-02 rabbitmq-02:5672 check
+    server rabbitmq-03 rabbitmq-03:5672 checklisten rabbitmq-ui
+    bind   *:15672
+    mode   http
+    server rabbitmq-01 rabbitmq-01:15672 check
+    server rabbitmq-02 rabbitmq-02:15672 check
+    server rabbitmq-03 rabbitmq-03:15672 check
+</code></pre><h3 id="验证rabbitmq集群">验证RabbitMQ集群</h3>
+<p>访问 <a href="http://192.168.99.128:15672/">http://192.168.99.128:15672</a> RabbitMQ的控制后台，密码为:(admin/Passw0rd)</p>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818223017251.png" alt="image-20200818223017251"></p>
+<p>最后，查看一下haproxy的后台。</p>
+<ul>
+<li>Check <a href="http://192.168.99.128:1936/">http://192.168.99.128:1936</a></li>
+</ul>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818222844405.png" alt="image-20200818222844405"></p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/2020/08/18/" title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" target="_blank" rel="external">https://www.devopsman.cn/2020/08/18/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/2020/07/20/" title="Hugo-部署静态网站设计的一些思考"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://www.devopsman.cn/2020/12/29/"
+                    title="云原生生态圈·2020年微信公众号全年文章目录索引"><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
