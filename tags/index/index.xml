@@ -110,6 +110,15 @@
     </item>
     
     <item>
+      <title></title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Python脚本分析拉钩招聘网站职位 场景 最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革</description>
+    </item>
+    
+    <item>
       <title>Docker容器命令行可视化工具-Lazydocker</title>
       <link>https://www.devopsman.cn/2020/06/10/</link>
       <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
@@ -179,15 +188,6 @@
       
       <guid>https://www.devopsman.cn/links/</guid>
       <description>技术博客 飞翔沫沫情 其他</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.devopsman.cn/1/01/01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/1/01/01/</guid>
-      <description>场景 最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革新越来越快，对新的岗位的需求也是不断的</description>
     </item>
     
   </channel>
