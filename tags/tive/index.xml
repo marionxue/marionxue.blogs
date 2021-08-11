@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</title>
+      <link>https://www.devopsman.cn/2021/08/11/</link>
+      <pubDate>Wed, 11 Aug 2021 14:25:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/11/</guid>
+      <description>为了帮助系统管理员更好地保护开源容器编排工具Kubernetes，美国国家安全局(National Security Agency)和网络安全和基础设施安全局</description>
+    </item>
+    
+    <item>
       <title>我是如何将 Docker 镜像体积减小 90%</title>
       <link>https://www.devopsman.cn/2021/08/04/</link>
       <pubDate>Wed, 04 Aug 2021 15:15:06 +0900</pubDate>
@@ -180,15 +189,6 @@ pectora summo.&lt;/p&gt;</description>
       
       <guid>https://www.devopsman.cn/1/01/01/</guid>
       <description>title: &amp;ldquo;Python脚本分析拉钩招聘网站职位&amp;rdquo; date: 2020-12-31T12:40:06+09:00 description: &amp;ldquo;学习xlwt和requests的模块爬取数据&amp;rdq</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.devopsman.cn/1/01/01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.devopsman.cn/1/01/01/</guid>
-      <description>杏树林信息技术（北京）有限公司成立于2011年，是国内知名的互联网医疗企业。杏树林的初心是让医生行医更轻松，让医疗更高效，将“协和三宝”（图</description>
     </item>
     
   </channel>
