@@ -283,15 +283,8 @@
   </url>
   
   <url>
-    <loc>https://www.devopsman.cn/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
+    <loc>https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2020-06-10T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/logo/</loc>
-    <lastmod>2020-06-07T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -320,20 +313,6 @@
   <url>
     <loc>https://www.devopsman.cn/2020/06/04/</loc>
     <lastmod>2020-06-04T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/termianl/</loc>
-    <lastmod>2020-05-30T12:00:06+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-05-30T12:00:06+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
