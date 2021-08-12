@@ -2,7 +2,7 @@
 <html lang="zh">
   <head>
     <title>
-        Docker容器命令行可视化工具-Lazydocker - 云原生生态圈
+        ECS上手把手搭建个人博客系统wordpress - 云原生生态圈
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,32 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="Lazydocker-专为懒人设计的容器命令行可视化交互式工具" />
+    <meta name="description" content="wordpress博客网站搭建指南" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>Docker容器命令行可视化工具-Lazydocker - 云原生生态圈</title>
+    <title>ECS上手把手搭建个人博客系统wordpress - 云原生生态圈</title>
     
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="Docker容器命令行可视化工具-Lazydocker" />
-<meta property="og:description" content="Lazydocker-专为懒人设计的容器命令行可视化交互式工具" />
+    <meta property="og:title" content="ECS上手把手搭建个人博客系统wordpress" />
+<meta property="og:description" content="wordpress博客网站搭建指南" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devopsman.cn/2020/06/10/" />
 <meta property="article:published_time" content="2020-06-10T12:00:06+09:00" />
 <meta property="article:modified_time" content="2020-06-10T12:00:06+09:00" />
-<meta itemprop="name" content="Docker容器命令行可视化工具-Lazydocker">
-<meta itemprop="description" content="Lazydocker-专为懒人设计的容器命令行可视化交互式工具">
+<meta itemprop="name" content="ECS上手把手搭建个人博客系统wordpress">
+<meta itemprop="description" content="wordpress博客网站搭建指南">
 <meta itemprop="datePublished" content="2020-06-10T12:00:06&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-10T12:00:06&#43;09:00" />
-<meta itemprop="wordCount" content="1357">
+<meta itemprop="wordCount" content="1279">
 
 
 
-<meta itemprop="keywords" content="docker,容器,运维," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker容器命令行可视化工具-Lazydocker"/>
-<meta name="twitter:description" content="Lazydocker-专为懒人设计的容器命令行可视化交互式工具"/>
+<meta itemprop="keywords" content="博客,运维," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ECS上手把手搭建个人博客系统wordpress"/>
+<meta name="twitter:description" content="wordpress博客网站搭建指南"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -459,7 +459,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/2020/06/10/"
-    >Docker容器命令行可视化工具-Lazydocker</a
+    >ECS上手把手搭建个人博客系统wordpress</a
   >
 </h1>
 
@@ -474,8 +474,7 @@ function tagCloud(where, min, max) {
   
   <span class="article-tag">
     <i class="icon icon-tags"></i>&nbsp;
-    <a class="article-tag-link" href="/tags/docker/"> docker </a>
-    <a class="article-tag-link" href="/tags/%E5%AE%B9%E5%99%A8/"> 容器 </a>
+    <a class="article-tag-link" href="/tags/%E5%8D%9A%E5%AE%A2/"> 博客 </a>
     <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
   </span>
 
@@ -487,140 +486,135 @@ function tagCloud(where, min, max) {
 	</span>
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="Docker容器命令行可视化工具-Lazydocker">0</span>
+    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="ECS上手把手搭建个人博客系统wordpress">0</span>
     </span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1357字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1279字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h4 id="lazydockerhttpsgithubcomjesseduffieldlazydocker的使用背景"><a href="https://github.com/jesseduffield/lazydocker">Lazydocker</a>的使用背景</h4>
-<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/59972109-8e9c8480-95cc-11e9-8350-38f7f86ba76d.png" alt="img"></p>
-<p>平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如<code>Docker</code>的各种命令和选项其实都让人很头大，于是就有人做出来一款名为<code>Lazydocker</code>的专为<code>懒人</code>设计的<code>Docker</code>和<code>docker-compose</code>终端管理工具，该工具使用<code>Go</code>语言开发基于<code>gocui</code>实现。</p>
-<p>如果你发现自己的项目出了问题，或者是服务down掉了，那么<code>Lazydocker</code>就可以立刻给你提供帮助。<code>Lazydocker</code>可以帮助我们<code>DEBUG</code>自己的项目或者服务，并且在出现问题时立刻重启所有组件，然后给我们提供详细的日志流。其中，日志流还会进行细项分类，并允许我们了解特定服务中发生的所有事情。是<a href="https://github.com/jesseduffield/lazydocker" title="Github仓库">github</a>上一个比较🔥的开源工具。</p>
-<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/image-20200614233443621.png" alt=""></p>
-<p>除此之外，想要记住所有的Docker命令其实是很麻烦的，而且跨多个终端窗口跟踪容器也几乎是无法做到的。但是在<code>Lazydocker</code>的帮助下，我们就可以在一个终端窗口中查看到所有你所需要的信息，而且常用的命令仅需按下一个键即可实现。毫无疑问，<code>Lazydocker</code>绝对是懒人们的福音!我们先来看一下效果图：</p>
-<p><img src="..//images/images.assets/demo3.gif" alt="Gif"></p>
-<h4 id="lazydocker的功能">Lazydocker的功能</h4>
-<p>现在让我们先了解一下<code>Lazydocker</code>的功能</p>
+      <h2 id="安装-apache-http-服务">安装 Apache HTTP 服务</h2>
+<p>Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是最流行的Web服务器端软件之一。</p>
 <ol>
-<li>
-<p>清晰的查看所有的<code>Docker</code>和<code>Docker-compose</code>容器环境的状态</p>
-</li>
-<li>
-<p>实时查看容器/服务日志；</p>
-</li>
-<li>
-<p>查看容器指标的ascii图，这样您不仅可以感觉到而且看起来像开发人员</p>
-</li>
-<li>
-<p>自定义这些图形以测量您想要的几乎任何指标</p>
-</li>
-<li>
-<p>进入容器/服务；</p>
-</li>
-<li>
-<p>重启/移除/重建容器或服务；</p>
-</li>
-<li>
-<p>查看给定镜像的历史层信息</p>
-</li>
-<li>
-<p>修改占用磁盘空间的容器、镜像或卷；</p>
-</li>
+<li>执行如下命令，安装Apache服务及其扩展包。</li>
 </ol>
-<h4 id="lazydocker安装配置">Lazydocker安装配置</h4>
-<p>你可以直接在<code>Github</code>上下载<a href="https://github.com/jesseduffield/lazydocker/releases" title="下载地址">二进制文件</a>，也可以通过容器运行该命令，此处我直接使用二进制命令</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://github.com/jesseduffield/lazydocker/releases/download/v0.9/lazydocker_0.9_Darwin_x86_64.tar.gz
-tar xf lazydocker_0.9_Darwin_x86_64.tar.gz
-cp lazydocker /usr/local/bin/ <span style="color:#f92672">&amp;&amp;</span> chmod +x /usr/local/bin/lazydocker
-</code></pre></div><p>因为该命令太长了，所以建议配置一个命令别名，方便我们使用:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;alias lzd=&#39;lazydocker&#39;&#34;</span> &gt;&gt; ~/.zshrc
-source ~/.zshrc
-</code></pre></div><p>此时，直接执行<code>lzd</code>即可在终端上显示容器的各种指标状态图</p>
-<h4 id="lazydocker的配置">Lazydocker的配置</h4>
-<p><code>Lazydocker</code>支持用户自定义配置，对于不同的操作系统其配置文件存在不同的位置上</p>
+<pre><code>yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql
+</code></pre><p>返回类似如下图结果则表示安装成功。</p>
+<p><img src="/images/images.assets/TB1l7DUHpY7gK0jSZKzXXaikpXa-1050-137.png" alt="img"></p>
+<ol start="2">
+<li>执行如下命令，启动Apache服务。</li>
+</ol>
+<pre><code>systemctl start httpd.service
+</code></pre><ol start="3">
+<li>测试Apache服务是否安装并启动成功。</li>
+</ol>
+<p>Apache默认监听80端口，所以只需在浏览器访问ECS分配的IP地址http://&lt;ECS公网地址&gt;，如下图：</p>
+<p><img src="/images/images.assets/TB1HmVpaepyVu4jSZFhXXbBpVXa-1920-937.png" alt="img"></p>
+<h2 id="安装-mysql-数据库">安装 MySQL 数据库</h2>
+<p>由于使用wordpress搭建云上博客，需要使用MySQL数据库存储数据，所以这一步我们安装一下MySQL。</p>
+<ol>
+<li>执行如下命令，下载并安装MySQL官方的<code>Yum Repository</code>。</li>
+</ol>
+<pre><code>wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql-community-server
+</code></pre><p><img src="/images/images.assets/TB1BRnVHxz1gK0jSZSgXXavwpXa-958-431.png" alt="img"></p>
+<ol start="2">
+<li>执行如下命令，启动 MySQL 数据库。</li>
+</ol>
+<pre><code>systemctl start mysqld.service
+</code></pre><ol start="3">
+<li>执行如下命令，查看MySQL运行状态。</li>
+</ol>
+<pre><code>systemctl status mysqld.service
+</code></pre><p><img src="/images/images.assets/TB1gszWHuT2gK0jSZFvXXXnFXXa-945-229.png" alt="img"></p>
+<ol start="4">
+<li>执行如下命令，查看MySQL初始密码。</li>
+</ol>
+<pre><code>grep &quot;password&quot; /var/log/mysqld.log
+</code></pre><p><img src="/images/images.assets/TB1FmNpaepyVu4jSZFhXXbBpVXa-834-36.png" alt="img"></p>
+<ol start="5">
+<li>执行如下命令，登录数据库。</li>
+</ol>
+<pre><code>mysql -uroot -p
+</code></pre><p><img src="/images/images.assets/TB1Wz6UHvb2gK0jSZK9XXaEgFXa-675-226.png" alt="img"></p>
+<ol start="6">
+<li>执行如下命令，修改MySQL默认密码。</li>
+</ol>
+<blockquote>
+<p><strong>说明</strong> 新密码设置的时候如果设置的过于简单会报错，必须同时包含大小写英文字母、数字和特殊符号中的三类字符。</p>
+</blockquote>
+<pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassWord1.';
+</code></pre><ol start="7">
+<li>执行如下命令，创建wordpress库。</li>
+</ol>
+<pre><code>create database wordpress; 
+</code></pre><ol start="8">
+<li>执行如下命令，创建wordpress库。 执行如下命令，查看是否创建成功。</li>
+</ol>
+<pre><code>show databases;
+</code></pre><ol start="9">
+<li>输入<code>exit</code>退出数据库。</li>
+</ol>
+<p><img src="/images/images.assets/TB14Bj0HxD1gK0jSZFKXXcJrVXa-836-664.png" alt="img"></p>
+<h2 id="安装-php-语言环境">安装 PHP 语言环境</h2>
+<p>WordPress是使用PHP语言开发的博客平台，用户可以在支持PHP和MySQL数据库的服务器上架设属于自己的网站。也可以把WordPress当作一个内容管理系统（CMS）来使用。</p>
+<ol>
+<li>执行如下命令，安装PHP环境。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install php php-mysql gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap
+</code></pre></div><ol start="2">
+<li>执行如下命令创建PHP测试页面。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;&lt;?php phpinfo(); ?&gt;&#34;</span> &gt; /var/www/html/phpinfo.php
+</code></pre></div><ol start="3">
+<li>执行如下命令，重启Apache服务。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
+</code></pre></div><ol start="4">
+<li>打开浏览器，访问<code>http://&lt;ECS公网地址&gt;/phpinfo.php</code>，显示如下页面表示PHP语言环境安装成功。</li>
+</ol>
+<p><img src="/images/images.assets/TB1oCVpaepyVu4jSZFhXXbBpVXa-601-840-20200609121710332.png" alt="img"></p>
+<h2 id="wordpress安装和配置">Wordpress安装和配置</h2>
+<p>本小节将在已搭建好的LAMP 环境中，安装部署 WordPress</p>
+<ol>
+<li>执行如下命令，安装wordpress。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install wordpress
+</code></pre></div><p>显示如下信息表示安装成功。</p>
+<p><img src="/images/images.assets/TB1b02VHEz1gK0jSZLeXXb9kVXa-1042-156.png" alt="img"></p>
+<ol start="2">
+<li>修改WordPress配置文件。</li>
+</ol>
+<p>1）执行如下命令，修改wp-config.php指向路径为绝对路径。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 进入/usr/share/wordpress目录。</span>
+cd /usr/share/wordpress
+<span style="color:#75715e"># 修改路径。</span>
+ln -snf /etc/wordpress/wp-config.php wp-config.php
+<span style="color:#75715e"># 查看修改后的目录结构。</span>
+ll
+</code></pre></div><p>2）执行如下命令，移动wordpress到Apache根目录。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 在Apache的根目录/var/www/html下，创建一个wp-blog文件夹。</span>
+mkdir /var/www/html/wp-blog
+mv * /var/www/html/wp-blog/
+</code></pre></div><p>3）执行以下命令修改wp-config.php配置文件。</p>
+<p>在执行命令前，请先替换以下三个参数值。</p>
 <ul>
-<li>OSX: <code>~/Library/Application Support/jesseduffield/lazydocker/config.yml</code></li>
-<li>Linux: <code>~/.config/jesseduffield/lazydocker/config.yml</code></li>
-<li>Windows: <code>C:\\Users\\&lt;User&gt;\\AppData\\Roaming\\jesseduffield\\lazydocker\\config.yml</code></li>
+<li>database_name_here为之前步骤中创建的数据库名称，本示例为wordpress。</li>
+<li>username_here为数据库的用户名，本示例为root。</li>
+<li>password_here为数据库的登录密码，本示例为NewPassWord1.。</li>
 </ul>
-<p>不过你可以在打开<code>Lazydocker</code>之后，鼠标移到左上方，使用快捷键<code>o</code>即可打开配置文件进入编辑状态，此时直接编辑即可，想要知道每个配置文件选项的含义，可以参考<a href="https://godoc.org/github.com/jesseduffield/lazydocker/pkg/config" title="开发配置含义">开发配置参数</a>查看，下面是一个配置的案例：</p>
-<p><img src="..//images/images.assets/demo3-20200615001139282.gif" alt="demo3.gif"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gui:
-  scrollHeight: <span style="color:#ae81ff">2</span>
-  theme:
-    activeBorderColor:
-    - green
-    - bold
-    inactiveBorderColor:
-    - white
-    optionsTextColor:
-    - blue
-  returnImmediately: false
-  wrapMainPanel: false
-reporting: undetermined
-commandTemplates:
-  dockerCompose: docker-compose
-  restartService: <span style="color:#e6db74">&#39;{{ .DockerCompose }} restart {{ .Service.Name }}&#39;</span>
-  stopService: <span style="color:#e6db74">&#39;{{ .DockerCompose }} stop {{ .Service.Name }}&#39;</span>
-  serviceLogs: <span style="color:#e6db74">&#39;{{ .DockerCompose }} logs --since=60m --follow {{ .Service.Name }}&#39;</span>
-  viewServiceLogs: <span style="color:#e6db74">&#39;{{ .DockerCompose }} logs --follow {{ .Service.Name }}&#39;</span>
-  rebuildService: <span style="color:#e6db74">&#39;{{ .DockerCompose }} up -d --build {{ .Service.Name }}&#39;</span>
-  recreateService: <span style="color:#e6db74">&#39;{{ .DockerCompose }} up -d --force-recreate {{ .Service.Name }}&#39;</span>
-  viewContainerLogs: docker logs --timestamps --follow --since<span style="color:#f92672">=</span>60m <span style="color:#f92672">{{</span> .Container.ID
-    <span style="color:#f92672">}}</span>
-  containerLogs: docker logs --timestamps --follow --since<span style="color:#f92672">=</span>60m <span style="color:#f92672">{{</span> .Container.ID <span style="color:#f92672">}}</span>
-  allLogs: <span style="color:#e6db74">&#39;{{ .DockerCompose }} logs --tail=300 --follow&#39;</span>
-  viewAlLogs: <span style="color:#e6db74">&#39;{{ .DockerCompose }} logs&#39;</span>
-  dockerComposeConfig: <span style="color:#e6db74">&#39;{{ .DockerCompose }} config&#39;</span>
-  checkDockerComposeConfig: <span style="color:#e6db74">&#39;{{ .DockerCompose }} config --quiet&#39;</span>
-  serviceTop: <span style="color:#e6db74">&#39;{{ .DockerCompose }} top {{ .Service.Name }}&#39;</span>
-customCommands:
-  containers:
-  - name: bash
-    attach: true
-    command: docker exec -it <span style="color:#f92672">{{</span> .Container.ID <span style="color:#f92672">}}</span> /bin/sh
-    serviceNames: <span style="color:#f92672">[]</span>
-oS:
-  openCommand: open <span style="color:#f92672">{{</span>filename<span style="color:#f92672">}}</span>
-  openLinkCommand: open <span style="color:#f92672">{{</span>link<span style="color:#f92672">}}</span>
-update:
-  dockerRefreshInterval: 100ms
-stats:
-  graphs:
-  - caption: CPU <span style="color:#f92672">(</span>%<span style="color:#f92672">)</span>
-    statPath: DerivedStats.CPUPercentage
-    color: blue
-  - caption: Memory <span style="color:#f92672">(</span>%<span style="color:#f92672">)</span>
-    statPath: DerivedStats.MemoryPercentage
-    color: green
-</code></pre></div><h4 id="lazydocker的快捷键">Lazydocker的快捷键</h4>
-<p>在<code>lazydocker</code>的交互式界面中，还提供了多种快捷键，大家可以通过快捷键快速的在多种功能之间切换。</p>
-<h5 id="project">Project</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="containers">Containers</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="services">Services</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="images">Images</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="volumes">Volumes</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="main">Main</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="更多精彩专辑">更多精彩专辑</h4>
-<ul>
-<li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI2MTQzNjQ5Ng==&amp;action=getalbum&amp;album_id=1369187505597235200&amp;subscene=0&amp;scenenote=https%3A%2F%2Fmp.weixin.qq.com%2Fs%3F__biz%3DMzI2MTQzNjQ5Ng%3D%3D%26mid%3D2247484958%26idx%3D1%26sn%3D11f8e92c043bd9c3b8e90e065f115db2%26chksm%3Dea5b2321dd2caa377348a8fbab891c8ec36b1293cca97e859419ac452dde49ed8d2d3a1eca2d%26scene%3D0%26xtrack%3D1%26key%3D0f1187fb9cce3ad0f417b07d2cde6d6d7ecc728843b564a2884c93e6fdd5488ea9896347ee71bd92791bce84307e9858e828625d17e0aef3fcabbb7e777d0e9994e9364f9eaf266cad935e9146faaae6%26ascene%3D1%26uin%3DMjc5ODA5OTc2NA%253D%253D%26devicetype%3DiMac%2BMacBookPro15%252C1%2BOSX%2BOSX%2B10.15.5%2Bbuild(19F101)%26version%3D12040112%26nettype%3DWIFI%26lang%3Dzh_CN%26fontScale%3D100%26exportkey%3DAeB4wIawnx%252BKYpH9VsF12aQ%253D%26pass_ticket%3D3pf2gDXXsByxalM6lrUpxq1Wr%252BHc8vU07vVNbNzYexRtUYujsv7o3xFwckkFiR%252B6%26winzoom%3D1.000000&amp;uin=&amp;key=&amp;devicetype=iMac+MacBookPro15%2C1+OSX+OSX+10.15.5+build(19F101)&amp;version=12040112&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=1&amp;fontScale=100&amp;winzoom=1.000000">运维架构专辑</a>: 包含一些运维技术的使用<code>经验分享</code>、<code>技术架构案例</code>、<code>学习交流</code>等</li>
-<li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI2MTQzNjQ5Ng==&amp;action=getalbum&amp;album_id=1336873749727068161&amp;subscene=0&amp;scenenote=https%3A%2F%2Fmp.weixin.qq.com%2Fs%3F__biz%3DMzI2MTQzNjQ5Ng%3D%3D%26mid%3D2247484922%26idx%3D1%26sn%3Dea6b573671df0dfe22fd39b0461afb09%26chksm%3Dea5b20c5dd2ca9d33e28b6f943360d1828cb77b5316abbda18eb35783cf498d4c292b3dbfb01%26scene%3D0%26xtrack%3D1%26key%3Dedcf9a611ec4e1b716fffa506181563e03e7d2454d1b981a39fc0e7050a31a198551033b5580e28e75603d29eea7fd2bc75c0bdad27dcb7e8554f01f4fecae3f89e5bd06c174e07257a5b64cb932d5f4%26ascene%3D1%26uin%3DMjc5ODA5OTc2NA%253D%253D%26devicetype%3DiMac%2BMacBookPro15%252C1%2BOSX%2BOSX%2B10.15.5%2Bbuild(19F101)%26version%3D12040112%26nettype%3DWIFI%26lang%3Dzh_CN%26fontScale%3D100%26exportkey%3DAdxiFAXoCLD49JSs84qW9GE%253D%26pass_ticket%3D3pf2gDXXsByxalM6lrUpxq1Wr%252BHc8vU07vVNbNzYexRtUYujsv7o3xFwckkFiR%252B6%26winzoom%3D1.000000&amp;uin=&amp;key=&amp;devicetype=iMac+MacBookPro15%2C1+OSX+OSX+10.15.5+build(19F101)&amp;version=12040112&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=1&amp;fontScale=100&amp;winzoom=1.000000">kubernetes实践案例</a>:都是<code>kubernetes</code>相关的实践案例，毫无套路，大家都说好!</li>
-<li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI2MTQzNjQ5Ng==&amp;action=getalbum&amp;album_id=1336890052449845249&amp;subscene=27&amp;scenenote=https%3A%2F%2Fmp.weixin.qq.com%2Fs%3F__biz%3DMzI2MTQzNjQ5Ng%3D%3D%26mid%3D2247484720%26idx%3D1%26sn%3D959a5374e432db8f7a664ff064294a04%26chksm%3Dea5b200fdd2ca919d0ad98952f3daa3344c32becea6c708af00ad9cb1eee7cc0c042d824b270%26scene%3D27%26key%3Dedcf9a611ec4e1b7b9852f0731726bc0e69dd6c5339949af11ce0e66ef2a699c66396aa8683a31c0ae0a78aecd47c3e0947dfb812cf50dd45a30a7c224ea09b94f6dc97d30f6913ce7c3fe5e9204e594%26ascene%3D1%26uin%3DMjc5ODA5OTc2NA%253D%253D%26devicetype%3DiMac%2BMacBookPro15%252C1%2BOSX%2BOSX%2B10.15.5%2Bbuild(19F101)%26version%3D12040112%26nettype%3DWIFI%26lang%3Dzh_CN%26fontScale%3D100%26exportkey%3DAWAx4LL9ZK784Gv2BuoOEdw%253D%26pass_ticket%3D3pf2gDXXsByxalM6lrUpxq1Wr%252BHc8vU07vVNbNzYexRtUYujsv7o3xFwckkFiR%252B6%26winzoom%3D1.000000&amp;uin=&amp;key=&amp;devicetype=iMac+MacBookPro15%2C1+OSX+OSX+10.15.5+build(19F101)&amp;version=12040112&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=1&amp;fontScale=100&amp;winzoom=1.000000">DevOps实践案例</a>: 专辑内包括<code>Jenkins</code>和<code>Gitlab</code>各自<code>持续集成</code>、<code>持续发布</code>的实践案例，以及各种<code>模板库的最佳实践</code>。</li>
-</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/database_name_here/wordpress/&#39;</span> /var/www/html/wp-blog/wp-config.php
+sed -i <span style="color:#e6db74">&#39;s/username_here/root/&#39;</span> /var/www/html/wp-blog/wp-config.php
+sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</span> /var/www/html/wp-blog/wp-config.php
+</code></pre></div><p>4）执行以下命令，查看配置文件信息是否修改成功。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat -n /var/www/html/wp-blog/wp-config.php
+</code></pre></div><p><img src="/images/images.assets/TB1j02VHEz1gK0jSZLeXXb9kVXa-913-631.png" alt="img"></p>
+<ol start="3">
+<li>执行如下命令，重启Apache服务。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
+</code></pre></div><p><img src="/images/images.assets/wordpress-installing-1-1140x570.jpg" alt=""></p>
 
     </div>
     <div class="article-footer">
@@ -628,7 +622,7 @@ stats:
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://www.devopsman.cn/2020/06/10/" title="Docker容器命令行可视化工具-Lazydocker" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
+      <a href="https://www.devopsman.cn/2020/06/10/" title="ECS上手把手搭建个人博客系统wordpress" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License: </strong>
@@ -659,13 +653,13 @@ stats:
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/2020/06/10/" title="ECS上手把手搭建个人博客系统wordpress"><i
+                <a href="https://www.devopsman.cn/2020/06/10/" title="Mac下手把手带你打造骚气的命令行终端"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             <li class="next">
-                <a href="https://www.devopsman.cn/2020/07/04/"
-                    title="如何确定CPU消耗在哪些函数上"><span>上一篇&nbsp;&nbsp;</span><i
+                <a href="https://www.devopsman.cn/2020/06/10/"
+                    title="Docker容器命令行可视化工具-Lazydocker"><span>上一篇&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
@@ -771,7 +765,72 @@ stats:
 
   </body>
 </html>
-({
+"true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://www.devopsman.cn/2020/06/10/"
+                    title="Mac下手把手带你打造骚气的命令行终端"><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
         tabReplace: '    ', 
         classPrefix: ''     
         
@@ -779,6 +838,44 @@ stats:
     hljs.initHighlightingOnLoad();
 </script>
 <script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
+ps://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
 <script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
 
 <script>
