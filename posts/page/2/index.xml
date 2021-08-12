@@ -6,10 +6,28 @@
     <description>Recent content in Posts on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Wed, 11 Aug 2021 14:25:06 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 12 Aug 2021 09:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mkdocs自动化部署知识库</title>
+      <link>https://www.devopsman.cn/2020/06/04/</link>
+      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/04/</guid>
+      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
+    </item>
+    
+    <item>
+      <title>技术人员最常用的命令行工具</title>
+      <link>https://www.devopsman.cn/2020/05/30/</link>
+      <pubDate>Sat, 30 May 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/05/30/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>关于</title>

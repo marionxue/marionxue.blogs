@@ -6,10 +6,28 @@
     <description>Recent content in Posts on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Wed, 11 Aug 2021 14:25:06 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 12 Aug 2021 09:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>18个分析Linux系统占用网络带宽的程序</title>
+      <link>https://www.devopsman.cn/2021/08/12/</link>
+      <pubDate>Thu, 12 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/12/</guid>
+      <description>导读 本文介绍了一些可以用来监控网络使用情况的Linux命令行工具。这些工具可以监控通过网络接口传输的数据，并测量目前哪些数据所传输的速度。入</description>
+    </item>
+    
+    <item>
+      <title>好家伙！原来Redis是这样用的（16个电商应用场景）</title>
+      <link>https://www.devopsman.cn/2021/08/12/</link>
+      <pubDate>Thu, 12 Aug 2021 08:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/12/</guid>
+      <description>Redis 用的好，加薪少不了，面试被问redis是个大概率事件，与其等着面试官问你在哪场景用过，不如给他雷霆一击，有理有据一口气说出16 个常见使用场</description>
+    </item>
     
     <item>
       <title>美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</title>
@@ -171,24 +189,6 @@
       
       <guid>https://www.devopsman.cn/2020/06/07/</guid>
       <description>​ 最近发现很多的微信文章上出现了一种logo设计，跟P站的logo设计风格一样让人印象深刻，黑底白字，配上一小撮橙色，给人极强的冲击力。后来</description>
-    </item>
-    
-    <item>
-      <title>mkdocs自动化部署知识库</title>
-      <link>https://www.devopsman.cn/2020/06/04/</link>
-      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/06/04/</guid>
-      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
-    </item>
-    
-    <item>
-      <title>技术人员最常用的命令行工具</title>
-      <link>https://www.devopsman.cn/2020/05/30/</link>
-      <pubDate>Sat, 30 May 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/05/30/</guid>
-      <description></description>
     </item>
     
   </channel>
