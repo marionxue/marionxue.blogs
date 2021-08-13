@@ -6,10 +6,19 @@
     <description>Recent content in 云原生 on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Wed, 04 Aug 2021 15:15:06 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 13 May 2021 15:15:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>18个分析Linux系统占用网络带宽的程序</title>
+      <link>https://www.devopsman.cn/2021/08/13/</link>
+      <pubDate>Fri, 13 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/13/</guid>
+      <description>导读 本文介绍了一些可以用来监控网络使用情况的Linux命令行工具。这些工具可以监控通过网络接口传输的数据，并测量目前哪些数据所传输的速度。入</description>
+    </item>
     
     <item>
       <title>好家伙！原来Redis是这样用的（16个电商应用场景）</title>
@@ -40,10 +49,10 @@
     
     <item>
       <title>高可用监控方案Cortex探险</title>
-      <link>https://www.devopsman.cn/2021/08/04/</link>
-      <pubDate>Wed, 04 Aug 2021 15:15:06 +0900</pubDate>
+      <link>https://www.devopsman.cn/2021/05/13/</link>
+      <pubDate>Thu, 13 May 2021 15:15:06 +0900</pubDate>
       
-      <guid>https://www.devopsman.cn/2021/08/04/</guid>
+      <guid>https://www.devopsman.cn/2021/05/13/</guid>
       <description>Prometheus已成为cloud-native世界中的默认监控应用程序和系统。对于真是使用案例，Prometheus应该是高可用的，这是</description>
     </item>
     
@@ -180,15 +189,6 @@
       
       <guid>https://www.devopsman.cn/2020/06/07/</guid>
       <description>​ 最近发现很多的微信文章上出现了一种logo设计，跟P站的logo设计风格一样让人印象深刻，黑底白字，配上一小撮橙色，给人极强的冲击力。后来</description>
-    </item>
-    
-    <item>
-      <title>mkdocs自动化部署知识库</title>
-      <link>https://www.devopsman.cn/2020/06/04/</link>
-      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/06/04/</guid>
-      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
     </item>
     
   </channel>

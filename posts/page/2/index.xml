@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Thu, 12 Aug 2021 08:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 13 Aug 2021 09:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mkdocs自动化部署知识库</title>
+      <link>https://www.devopsman.cn/2020/06/04/</link>
+      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/04/</guid>
+      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
+    </item>
     
     <item>
       <title>技术人员最常用的命令行工具</title>
@@ -36,6 +45,24 @@
       
       <guid>https://www.devopsman.cn/links/</guid>
       <description>技术博客 飞翔沫沫情 其他</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>一般情况下Kubernetes可以通过ReplicaSet以一个Pod模板创建多个Pod副本，但是它们都是无状态的，任何时候它们都可以被一个</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>常用的 ping，tracert，nslookup 一般用来判断主机的网络连通性，其实 Linux 下有一个更好用的网络联通性判断工具，它可以结合ping nslookup</description>
     </item>
     
     <item>
