@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>
+        Kubernetes下搭建MySQL主从架构集群 - 云原生生态圈
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Kubernetes资源对象Statefulset的深入实践" />
+    <meta name="generator" content="Hugo 0.73.0 with theme pure" />
+    <title>Kubernetes下搭建MySQL主从架构集群 - 云原生生态圈</title>
+    
+    
+    <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Kubernetes下搭建MySQL主从架构集群" />
+<meta property="og:description" content="Kubernetes资源对象Statefulset的深入实践" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/2021/08/10/" />
+<meta property="article:published_time" content="2021-08-10T09:00:06+09:00" />
+<meta property="article:modified_time" content="2021-08-10T09:00:06+09:00" />
+<meta itemprop="name" content="Kubernetes下搭建MySQL主从架构集群">
+<meta itemprop="description" content="Kubernetes资源对象Statefulset的深入实践">
+<meta itemprop="datePublished" content="2021-08-10T09:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-08-10T09:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="4408">
+
+
+
+<meta itemprop="keywords" content="运维,kubernetes,数据库," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes下搭建MySQL主从架构集群"/>
+<meta name="twitter:description" content="Kubernetes资源对象Statefulset的深入实践"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/marionxue" target="_blank">
+            <img class="img-circle img-rotate" src="https://www.devopsman.cn/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">云原生生态圈</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">DevOps Enginer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">主页</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">归档</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">分类</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">标签</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-links">
+                <a href="/links/">
+                    <i class="icon icon-friendship"></i>
+                  <span class="menu-title">友链</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">关于</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>云原生生态圈·网站改版了...~</p><br/><img src="https://image.devopsman.cn/wechat2020/image-20201231225654650.png" width="200px" height="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link" rel="1">devops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link" rel="3">kubernetes<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/python/" class="tag-list-link" rel="1">python<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link" rel="1">redis<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link" rel="1">sql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link" rel="1">yaml<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link" rel="6">云原生<span
+               class="tag-list-count">6</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link" rel="1">内核调优<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link" rel="2">博客<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link" rel="2">安全<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link" rel="3">容器<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link" rel="1">工具类<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link" rel="1">年度文章<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="1">数据库<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link" rel="2">消息队列<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link" rel="1">监控<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link" rel="1">编程<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link" rel="1">网络<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link" rel="12">运维<span
+               class="tag-list-count">12</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link" rel="1">运维技术<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link" rel="1">镜像优化<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link">devops</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link">kubernetes</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link">redis</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link">sql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link">yaml</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link">云原生</a><span
+                    class="tag-list-count">6</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link">内核调优</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link">博客</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link">安全</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link">容器</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link">工具类</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link">年度文章</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">数据库</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link">消息队列</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link">监控</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link">编程</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link">网络</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link">运维</a><span
+                    class="tag-list-count">12</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link">运维技术</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link">镜像优化</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/13/" class="title">18个分析Linux系统占用网络带宽的程序</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-13 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-13</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/12/" class="title">好家伙！原来Redis是这样用的（16个电商应用场景）</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-12 08:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-12</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/11/" class="title">美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-11 14:25:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-11</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/10/" class="title">Kubernetes下搭建MySQL主从架构集群</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-10 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-10</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/04/" class="title">我是如何将 Docker 镜像体积减小 90%</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-04 15:15:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-04</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2021/08/10/"
+    >Kubernetes下搭建MySQL主从架构集群</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://www.devopsman.cn/2021/08/10/" class="article-date">
+  <time datetime="2021-08-10 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-10</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
+    <a class="article-tag-link" href="/tags/kubernetes/"> kubernetes </a>
+    <a class="article-tag-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/2021/08/10/" class="leancloud_visitors"  data-flag-title="Kubernetes下搭建MySQL主从架构集群">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 4408字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 9分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>一般情况下Kubernetes可以通过<code>ReplicaSet</code>以一个Pod模板创建多个Pod副本，但是它们都是<code>无状态</code>的，任何时候它们都可以被一个全新的Pod替换。然而有状态的Pod需要另外的方案确保当一个有状态的Pod挂掉后，这个Pod实例需要在别的节点上重建，但是新的实例必须与被替换的实例拥有<code>相同的名称</code>、<code>网络标识</code>和<code>状态</code>。<strong>这就是<code>StatefulSet</code>管理Pod的手段</strong>。</p>
+<p>对于容器集群，有状态服务的挑战在于，通常集群中的任何节点都并非100%可靠的，服务所需的资源也会动态地更新改变。当节点由于故障或服务由于需要更多的资源而无法继续运行在原有节点上时，集群管理系统会为该服务重新分配一个新的运行位置，从而确保从整体上看，集群对外的服务不会中断。若采用本地存储，当服务漂移后数据并不会随着服务转移到新的节点，重启服务就会出现数据丢失的困境。</p>
+<p>本文目的是通过一个MySQL的主从集群搭建，深入了解Kubernetes的StatfulSet管理。为了降低实验的外部依赖，存储层面上，我采用的是本地存储，当然生产上不建议这样做，生产环境的存储推荐官方介绍到的的<code>GCE</code>、<code>NFS</code>、<code>Ceph</code>等存储方案，因为这些方案<code>支持动态供给</code>的特性，允许开发人员通过PVC的定义，快速实现数据有效存储，所以你绝不应该把一个宿主机上的目录当作PV使用，只是<strong>本文用于实验需要，采用<code>Local Persistent Volume</code>的手段，目的只是为了验证StatefulSet的状态管理功能</strong>。</p>
+<ul>
+<li>Kubernetes Master</li>
+<li>Kubernetes Node （测试演示，所有的副本都会在其上运行）</li>
+<li>Kubernetes DNS服务已开启</li>
+</ul>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813224516952.png" alt=""></p>
+<h2 id="实验目的">实验目的</h2>
+<ul>
+<li>搭建一个<code>主从复制</code>（Master-Slave）的MySQL集群</li>
+<li>从节点可以水平扩展</li>
+<li>所有的<code>写</code>操作只能在MySQL主节点上执行</li>
+<li>读操作可以在MySQL主从节点上执行</li>
+<li>从节点能同步主节点的数据</li>
+</ul>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/640-20210813224702736.png" alt=""></p>
+<h2 id="本地存储原理">本地存储原理</h2>
+<p>为了快速搭建测试环境，我们这里使用了本地存储，也就是说，用户希望Kubernetes能够直接使用宿主机上的本地磁盘目录，而不依赖于远程存储服务，来提供持久化的容器Volume。不过这里有个难点：</p>
+<ol>
+<li>我们把存储固定在一个节点上，但是Pod在调度的时候，是飘来飘去的，怎么能让Pod通过PVC也能固定在PVC上？</li>
+<li>给这个Pod加上一个nodeAffinity行不行？</li>
+</ol>
+<p>当然行，但是这变相破坏了开发人员对资源对象的定义规范了，开发人员应该不需要时刻考虑调度的细节。调度的改动应该交给运维就行。所以我们为了实现本地存储，我们采用了<strong><code>延迟绑定</code></strong>的方法。方法很简单，我们都知道<code>StorageClass</code>一般由运维人员设计，我们只需要在StorageClass指定<code>no-provisioner</code>。这是因为<code>Local Persistent Volume</code>目前尚不支持<code>Dynamic Provisioning</code>，所以它没办法在用户创建PVC的时候，就自动创建出对应的PV。与此同时，这个StorageClass还定义了一个<code>volumeBindingMode=WaitForFirstConsumer</code>的属性。它是Local Persistent Volume里一个非常重要的特性，即：<code>延迟绑定</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">kind</span>: StorageClass
+<span style="color:#66d9ef">apiVersion</span>: storage.k8s.io/v1
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: local-storage
+<span style="color:#66d9ef">provisioner</span>: kubernetes.io/no-provisioner
+<span style="color:#66d9ef">volumeBindingMode</span>: WaitForFirstConsumer
+</code></pre></div><h2 id="实验步骤">实验步骤</h2>
+<h3 id="创建pv">创建PV</h3>
+<p>先在Node （实验用的Node节点IP是node1）节点上，预先分配几个PV（不建议在生产上这样操作），要保证在node1上有对应的目录</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh root@node1
+mkdir -pv /data/svr/projects/<span style="color:#f92672">{</span>mysql,mysql2,mysql3<span style="color:#f92672">}</span>
+</code></pre></div><p><code>01-persistentVolume-1.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolume
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-mysql-pv
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">capacity</span>:
+    <span style="color:#66d9ef">storage</span>: 15Gi
+  <span style="color:#66d9ef">volumeMode</span>: Filesystem
+  <span style="color:#66d9ef">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color:#66d9ef">persistentVolumeReclaimPolicy</span>: Delete
+  <span style="color:#66d9ef">storageClassName</span>: local-storage
+  <span style="color:#66d9ef">local</span>:
+    <span style="color:#66d9ef">path</span>: /data/svr/projects/mysql
+  <span style="color:#66d9ef">nodeAffinity</span>:
+    <span style="color:#66d9ef">required</span>:
+      <span style="color:#66d9ef">nodeSelectorTerms</span>:
+      - <span style="color:#66d9ef">matchExpressions</span>:
+        - <span style="color:#66d9ef">key</span>: kubernetes.io/hostname
+          <span style="color:#66d9ef">operator</span>: In
+          <span style="color:#66d9ef">values</span>:
+          - node1
+</code></pre></div><p><code>01-persistentVolume-2.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolume
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-mysql-pv<span style="color:#ae81ff">-2</span>
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">capacity</span>:
+    <span style="color:#66d9ef">storage</span>: 15Gi
+  <span style="color:#66d9ef">volumeMode</span>: Filesystem
+  <span style="color:#66d9ef">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color:#66d9ef">persistentVolumeReclaimPolicy</span>: Delete
+  <span style="color:#66d9ef">storageClassName</span>: local-storage
+  <span style="color:#66d9ef">local</span>:
+    <span style="color:#66d9ef">path</span>: /data/svr/projects/mysql2
+  <span style="color:#66d9ef">nodeAffinity</span>:
+    <span style="color:#66d9ef">required</span>:
+      <span style="color:#66d9ef">nodeSelectorTerms</span>:
+      - <span style="color:#66d9ef">matchExpressions</span>:
+        - <span style="color:#66d9ef">key</span>: kubernetes.io/hostname
+          <span style="color:#66d9ef">operator</span>: In
+          <span style="color:#66d9ef">values</span>:
+          - node1
+</code></pre></div><p><code>01-persistentVolume-3.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: PersistentVolume
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-mysql-pv<span style="color:#ae81ff">-3</span>
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">capacity</span>:
+    <span style="color:#66d9ef">storage</span>: 15Gi
+  <span style="color:#66d9ef">volumeMode</span>: Filesystem
+  <span style="color:#66d9ef">accessModes</span>:
+  - ReadWriteOnce
+  <span style="color:#66d9ef">persistentVolumeReclaimPolicy</span>: Delete
+  <span style="color:#66d9ef">storageClassName</span>: local-storage
+  <span style="color:#66d9ef">local</span>:
+    <span style="color:#66d9ef">path</span>: /data/svr/projects/mysql3
+  <span style="color:#66d9ef">nodeAffinity</span>:
+    <span style="color:#66d9ef">required</span>:
+      <span style="color:#66d9ef">nodeSelectorTerms</span>:
+      - <span style="color:#66d9ef">matchExpressions</span>:
+        - <span style="color:#66d9ef">key</span>: kubernetes.io/hostname
+          <span style="color:#66d9ef">operator</span>: In
+          <span style="color:#66d9ef">values</span>:
+          - node1
+</code></pre></div><p>记住，<strong>这是在生产上不推荐的做法</strong>，我只是实验用途才这样手动预先创建，**正规的做法应该通过<code>StorageClass</code>采用<code>Dynamic Provisioning</code>， 而不是<code>Static Provisioning</code>机制生产PV。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 01-persistentVolume-<span style="color:#f92672">{</span>1..3<span style="color:#f92672">}</span>.yaml
+
+persistentvolume/example-mysql-pv1 created
+persistentvolume/example-mysql-pv2 created
+persistentvolume/example-mysql-pv3 created
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230212137.png" alt=""></p>
+<h3 id="创建storageclass">创建StorageClass</h3>
+<p><code>02-storageclass.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">kind</span>: StorageClass
+<span style="color:#66d9ef">apiVersion</span>: storage.k8s.io/v1
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: local-storage
+<span style="color:#66d9ef">provisioner</span>: kubernetes.io/no-provisioner
+<span style="color:#66d9ef">volumeBindingMode</span>: WaitForFirstConsumer
+</code></pre></div><p>执行创建：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 02-storageclass.yaml
+
+storageclass.storage.k8s.io/local-storage created
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230319870.png" alt=""></p>
+<h3 id="创建namespace">创建Namespace</h3>
+<p><code>03-mysql-namespace.yaml</code></p>
+<pre><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+</code></pre><p>执行创建：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 03-mysql-namespace.yaml
+
+namespace/mysql created
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230410846.png" alt=""></p>
+<h3 id="创建数据库的配置文件configmap">创建数据库的配置文件configmap</h3>
+<p>使用ConfigMap为Master/Slave节点分配不同的配置文件</p>
+<p><code>04-mysql-configmap.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: mysql
+  <span style="color:#66d9ef">namespace</span>: mysql
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: mysql
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">master.cnf</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">    # Master配置</span>
+    [mysqld]
+    log-bin=mysqllog
+    skip-name-resolve
+  <span style="color:#66d9ef">slave.cnf</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">    # Slave配置</span>
+    [mysqld]
+    super-read-only
+    skip-name-resolve
+    log-bin=mysql-bin
+    replicate-ignore-db=mysql
+</code></pre></div><p>创建执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 04-mysql-configmap.yaml
+
+configmap/mysql created
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230601588.png" alt=""></p>
+<h3 id="创建mysql密码secret">创建MySQL密码Secret</h3>
+<p><code>05-mysql-secret.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Secret
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: mysql-secret
+  <span style="color:#66d9ef">namespace</span>: mysql
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: mysql
+<span style="color:#66d9ef">type</span>: Opaque
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">password</span>: MTIzNDU2 <span style="color:#75715e"># echo -n &#34;123456&#34; | base64</span>
+</code></pre></div><p>创建执行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 05-mysql-secret.yaml
+
+secret/mysql-secret created
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230700316.png" alt=""></p>
+<h3 id="使用service为mysql提供读写分离">使用Service为MySQL提供读写分离</h3>
+<p><code>06-mysql-services.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+  - name: mysql
+    port: <span style="color:#ae81ff">3306</span>
+  clusterIP: None
+  selector:
+    app: mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-read
+  namespace: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+  - name: mysql
+    port: <span style="color:#ae81ff">3306</span>
+  selector:
+    app: mysql
+</code></pre></div><ul>
+<li>
+<p>用户所有写请求，必须以DNS记录的方式直接访问到Master节点，也就是mysql-0.mysql这条DNS记录。</p>
+</li>
+<li>
+<p>用户所有读请求，必须访问自动分配的DNS记录可以被转发到任意一个Master或Slave节点上，也就是mysql-read这条DNS记录。</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 06-mysql-services.yaml
+
+$ kubectl get svc -n mysql
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+mysql        ClusterIP   None         &lt;none&gt;        3306/TCP   20s
+mysql-read   ClusterIP   10.0.0.63    &lt;none&gt;        3306/TCP   20s
+</code></pre></div><p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813230814369.png" alt=""></p>
+<h3 id="创建mysql集群实例">创建MySQL集群实例</h3>
+<p>使用StatefulSet搭建MySQL主从集群</p>
+<p><code>07-mysql-statefulset.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: StatefulSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: mysql
+  <span style="color:#66d9ef">namespace</span>: mysql
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: mysql
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>:
+      <span style="color:#66d9ef">app</span>: mysql
+  <span style="color:#66d9ef">serviceName</span>: mysql
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>:
+        <span style="color:#66d9ef">app</span>: mysql
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">initContainers</span>:
+      - <span style="color:#66d9ef">name</span>: init-mysql
+        <span style="color:#66d9ef">image</span>: mysql:<span style="color:#ae81ff">5.7</span>
+        <span style="color:#66d9ef">env</span>:
+        - <span style="color:#66d9ef">name</span>: MYSQL_ROOT_PASSWORD
+          <span style="color:#66d9ef">valueFrom</span>:
+            <span style="color:#66d9ef">secretKeyRef</span>:
+              <span style="color:#66d9ef">name</span>: mysql-secret
+              <span style="color:#66d9ef">key</span>: password
+        <span style="color:#66d9ef">command</span>:
+        - bash
+        - <span style="color:#e6db74">&#34;-c&#34;</span>
+        - <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          set -ex</span>
+          <span style="color:#75715e"># 从Pod的序号，生成server-id</span>
+          [[ $(hostname) =~ -([<span style="color:#ae81ff">0-9</span>]+)$ ]] || exit <span style="color:#ae81ff">1</span>
+          ordinal=${BASH_REMATCH[<span style="color:#ae81ff">1</span>]}
+          echo [mysqld] &gt; /mnt/conf.d/server-id.cnf
+          <span style="color:#75715e"># 由于server-id不能为0，因此给ID加100来避开它</span>
+          echo server-id=$((<span style="color:#ae81ff">100</span> + $ordinal)) &gt;&gt; /mnt/conf.d/server-id.cnf
+          <span style="color:#75715e"># 如果Pod的序号为0，说明它是Master节点，从ConfigMap里把Master的配置文件拷贝到/mnt/conf.d目录下</span>
+          <span style="color:#75715e"># 否则，拷贝ConfigMap里的Slave的配置文件</span>
+          if [[ ${ordinal} -eq <span style="color:#ae81ff">0</span> ]]; then
+            cp /mnt/config-map/master.cnf /mnt/conf.d
+          else
+            cp /mnt/config-map/slave.cnf /mnt/conf.d
+          fi
+        <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: conf
+          <span style="color:#66d9ef">mountPath</span>: /mnt/conf.d
+        - <span style="color:#66d9ef">name</span>: config-map
+          <span style="color:#66d9ef">mountPath</span>: /mnt/config-map
+      - <span style="color:#66d9ef">name</span>: clone-mysql
+        <span style="color:#66d9ef">image</span>: gcr.io/google-samples/xtrabackup:<span style="color:#ae81ff">1.0</span>
+        <span style="color:#66d9ef">env</span>:
+        - <span style="color:#66d9ef">name</span>: MYSQL_ROOT_PASSWORD
+          <span style="color:#66d9ef">valueFrom</span>:
+            <span style="color:#66d9ef">secretKeyRef</span>:
+              <span style="color:#66d9ef">name</span>: mysql-secret
+              <span style="color:#66d9ef">key</span>: password
+        <span style="color:#66d9ef">command</span>:
+        - bash
+        - <span style="color:#e6db74">&#34;-c&#34;</span>
+        - <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          set -ex</span>
+          <span style="color:#75715e"># 拷贝操作只需要在第一次启动时进行，所以数据已经存在则跳过</span>
+          [[ -d /var/lib/mysql/mysql ]] <span style="color:#75715e">&amp;&amp;</span> exit <span style="color:#ae81ff">0</span>
+          <span style="color:#75715e"># Master 节点（序号为 0）不需要这个操作</span>
+          [[ $(hostname) =~ -([<span style="color:#ae81ff">0-9</span>]+)$ ]] || exit <span style="color:#ae81ff">1</span>
+          ordinal=${BASH_REMATCH[<span style="color:#ae81ff">1</span>]}
+          [[ $ordinal == <span style="color:#ae81ff">0</span> ]] <span style="color:#75715e">&amp;&amp;</span> exit <span style="color:#ae81ff">0</span>
+          <span style="color:#75715e"># 使用ncat指令，远程地从前一个节点拷贝数据到本地</span>
+          ncat --recv-only mysql-$(($ordinal<span style="color:#ae81ff">-1</span>)).mysql <span style="color:#ae81ff">3307</span> | xbstream -x -C /var/lib/mysql
+          <span style="color:#75715e"># 执行 --prepare，这样拷贝来的数据就可以用作恢复了</span>
+          xtrabackup --prepare --target-dir=/var/lib/mysql
+        <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: data
+          <span style="color:#66d9ef">mountPath</span>: /var/lib/mysql
+          <span style="color:#66d9ef">subPath</span>: mysql
+        - <span style="color:#66d9ef">name</span>: conf
+          <span style="color:#66d9ef">mountPath</span>: /etc/mysql/conf.d
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: mysql
+        <span style="color:#66d9ef">image</span>: mysql:<span style="color:#ae81ff">5.7</span>
+        <span style="color:#66d9ef">env</span>:
+ <span style="color:#75715e">#        - name: MYSQL_ALLOW_EMPTY_PASSWORD</span>
+ <span style="color:#75715e">#          value: &#34;1&#34;</span>
+        - <span style="color:#66d9ef">name</span>: MYSQL_ROOT_PASSWORD
+          <span style="color:#66d9ef">valueFrom</span>:
+            <span style="color:#66d9ef">secretKeyRef</span>:
+              <span style="color:#66d9ef">name</span>: mysql-secret
+              <span style="color:#66d9ef">key</span>: password
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">name</span>: mysql
+          <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">3306</span>
+        <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: data
+          <span style="color:#66d9ef">mountPath</span>: /var/lib/mysql
+          <span style="color:#66d9ef">subPath</span>: mysql
+        - <span style="color:#66d9ef">name</span>: conf
+          <span style="color:#66d9ef">mountPath</span>: /etc/mysql/conf.d
+        <span style="color:#66d9ef">resources</span>:
+          <span style="color:#66d9ef">requests</span>:
+            <span style="color:#66d9ef">cpu</span>: 500m
+            <span style="color:#66d9ef">memory</span>: 1Gi
+        <span style="color:#66d9ef">livenessProbe</span>:
+          <span style="color:#66d9ef">exec</span>:
+            <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;mysqladmin&#34;</span>, <span style="color:#e6db74">&#34;ping&#34;</span>, <span style="color:#e6db74">&#34;-uroot&#34;</span>, <span style="color:#e6db74">&#34;-p${MYSQL_ROOT_PASSWORD}&#34;</span>]
+          <span style="color:#66d9ef">initialDelaySeconds</span>: <span style="color:#ae81ff">30</span>
+          <span style="color:#66d9ef">periodSeconds</span>: <span style="color:#ae81ff">10</span>
+          <span style="color:#66d9ef">timeoutSeconds</span>: <span style="color:#ae81ff">5</span>
+        <span style="color:#66d9ef">readinessProbe</span>:
+          <span style="color:#66d9ef">exec</span>:
+            <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;mysqladmin&#34;</span>, <span style="color:#e6db74">&#34;ping&#34;</span>, <span style="color:#e6db74">&#34;-uroot&#34;</span>, <span style="color:#e6db74">&#34;-p${MYSQL_ROOT_PASSWORD}&#34;</span>]
+          <span style="color:#66d9ef">initialDelaySeconds</span>: <span style="color:#ae81ff">5</span>
+          <span style="color:#66d9ef">periodSeconds</span>: <span style="color:#ae81ff">2</span>
+          <span style="color:#66d9ef">timeoutSeconds</span>: <span style="color:#ae81ff">1</span>
+      - <span style="color:#66d9ef">name</span>: xtrabackup
+        <span style="color:#66d9ef">image</span>: gcr.io/google-samples/xtrabackup:<span style="color:#ae81ff">1.0</span>
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">name</span>: xtrabackup
+          <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">3307</span>
+        <span style="color:#66d9ef">env</span>:
+        - <span style="color:#66d9ef">name</span>: MYSQL_ROOT_PASSWORD
+          <span style="color:#66d9ef">valueFrom</span>:
+            <span style="color:#66d9ef">secretKeyRef</span>:
+              <span style="color:#66d9ef">name</span>: mysql-secret
+              <span style="color:#66d9ef">key</span>: password
+        <span style="color:#66d9ef">command</span>:
+        - bash
+        - <span style="color:#e6db74">&#34;-c&#34;</span>
+        - <span style="color:#e6db74">|
+</span><span style="color:#e6db74">          set -ex</span>
+          cd /var/lib/mysql
+          <span style="color:#75715e"># 从备份信息文件里读取MASTER_LOG_FILE和MASTER_LOG_POS这2个字段的值，用来拼装集群初始化SQL</span>
+          if [[ -f xtrabackup_slave_info ]]; then
+            <span style="color:#75715e"># 如果xtrabackup_slave_info文件存在，说明这个备份数据来自于另一个Slave节点</span>
+            <span style="color:#75715e"># 这种情况下，XtraBackup工具在备份的时候，就已经在这个文件里自动生成了“CHANGE MASTER TO”SQL语句</span>
+            <span style="color:#75715e"># 所以，只需要把这个文件重命名为change_master_to.sql.in，后面直接使用即可</span>
+            mv xtrabackup_slave_info change_master_to.sql.in
+            <span style="color:#75715e"># 所以，也就用不着xtrabackup_binlog_info了</span>
+            rm -f xtrabackup_binlog_info
+          elif [[ -f xtrabackup_binlog_info ]]; then
+            <span style="color:#75715e"># 如果只是存在xtrabackup_binlog_info文件，说明备份来自于Master节点，就需要解析这个备份信息文件，读取所需的两个字段的值</span>
+            [[ $(cat xtrabackup_binlog_info) =~ ^(.<span style="color:#75715e">*?)[[:space:]]+(.*?)$</span> ]] || exit <span style="color:#ae81ff">1</span>
+            rm xtrabackup_binlog_info
+            <span style="color:#75715e"># 把两个字段的值拼装成SQL，写入change_master_to.sql.in文件</span>
+            echo <span style="color:#e6db74">&#34;CHANGE MASTER TO MASTER_LOG_FILE=&#39;${BASH_REMATCH[1]}&#39;,\
+</span><span style="color:#e6db74">                  MASTER_LOG_POS=${BASH_REMATCH[2]}&#34;</span> &gt; change_master_to.sql.in
+          fi
+          <span style="color:#75715e"># 如果存在change_master_to.sql.in，就意味着需要做集群初始化工作</span>
+          if [[ -f change_master_to.sql.in ]]; then
+            <span style="color:#75715e"># 但一定要先等MySQL容器启动之后才能进行下一步连接MySQL的操作</span>
+            echo <span style="color:#e6db74">&#34;Waiting for mysqld to be ready（accepting connections）&#34;</span>
+            until mysql -h <span style="color:#ae81ff">127.0.0.1</span> -uroot -p${MYSQL_ROOT_PASSWORD} -e <span style="color:#e6db74">&#34;SELECT 1&#34;</span>; do sleep <span style="color:#ae81ff">1</span>; done
+            echo <span style="color:#e6db74">&#34;Initializing replication from clone position&#34;</span>
+            <span style="color:#75715e"># 将文件change_master_to.sql.in改个名字</span>
+            <span style="color:#75715e"># 防止这个Container重启的时候，因为又找到了change_master_to.sql.in，从而重复执行一遍初始化流程</span>
+            mv change_master_to.sql.in change_master_to.sql.orig
+            <span style="color:#75715e"># 使用change_master_to.sql.orig的内容，也就是前面拼装的SQL，组成一个完整的初始化和启动Slave的SQL语句</span>
+            mysql -h <span style="color:#ae81ff">127.0.0.1</span> -uroot -p${MYSQL_ROOT_PASSWORD} &lt;&lt; EOF
+          $(&lt; change_master_to.sql.orig),
+            MASTER_HOST=<span style="color:#e6db74">&#39;mysql-0.mysql.mysql&#39;</span>,
+            MASTER_USER=<span style="color:#e6db74">&#39;root&#39;</span>,
+            MASTER_PASSWORD=<span style="color:#e6db74">&#39;${MYSQL_ROOT_PASSWORD}&#39;</span>,
+            MASTER_CONNECT_RETRY=<span style="color:#ae81ff">10</span>;
+          START SLAVE;
+          EOF
+          fi
+          <span style="color:#75715e"># 使用ncat监听3307端口。</span>
+          <span style="color:#75715e"># 它的作用是，在收到传输请求的时候，直接执行xtrabackup --backup命令，备份MySQL的数据并发送给请求者</span>
+          exec ncat --listen --keep-open --send-only --max-conns=<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3307</span> -c \
+            <span style="color:#e6db74">&#34;xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=root --password=${MYSQL_ROOT_PASSWORD}&#34;</span>
+        <span style="color:#66d9ef">volumeMounts</span>:
+        - <span style="color:#66d9ef">name</span>: data
+          <span style="color:#66d9ef">mountPath</span>: /var/lib/mysql
+          <span style="color:#66d9ef">subPath</span>: mysql
+        - <span style="color:#66d9ef">name</span>: conf
+          <span style="color:#66d9ef">mountPath</span>: /etc/mysql/conf.d
+      <span style="color:#66d9ef">volumes</span>:
+      - <span style="color:#66d9ef">name</span>: conf
+        <span style="color:#66d9ef">emptyDir</span>: {}
+      - <span style="color:#66d9ef">name</span>: config-map
+        <span style="color:#66d9ef">configMap</span>:
+          <span style="color:#66d9ef">name</span>: mysql
+  <span style="color:#66d9ef">volumeClaimTemplates</span>:
+  - <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">name</span>: data
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">accessModes</span>:
+      - <span style="color:#e6db74">&#34;ReadWriteOnce&#34;</span>
+      <span style="color:#66d9ef">storageClassName</span>: local-storage
+      <span style="color:#66d9ef">resources</span>:
+        <span style="color:#66d9ef">requests</span>:
+          <span style="color:#66d9ef">storage</span>: 3Gi
+</code></pre></div><p>整体的StatefulSet有两个Replicas，一个Master，一个Slave，然后使用<code>init-mysql</code>这个<code>initContainers</code>进行<code>配置文件的初始化</code>。接着使用<code>clone-mysql</code>这个<code>initContainers</code>进行<code>数据的传输</code>；同时使用<code>xtrabackup</code>这个<strong><code>sidecar</code>容器</strong>进行<code>SQL初始化和数据传输功能</code>。</p>
+<p>创建 StatefulSet：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f 07-mysql-statefulset.yaml
+</code></pre></div><p>可以看到，StatefulSet启动成功后，会有两个Pod运行。接下来，我们可以尝试向这个MySQL集群发起请求，执行一些SQL操作来验证它是否正常。整个过程因为拉取mysql和一个<code>gcr.io/google-samples/xtrabackup:1.0</code>国外的镜像会很慢,但是在创建mysql-0拉取一次之后，后续创建mysql-1就相对很快了。</p>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813232448401.png" alt=""></p>
+<p>最后，容器检查pod的运行状态</p>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210813232905298.png" alt=""></p>
+<h3 id="服务验证">服务验证</h3>
+<ol>
+<li>验证主从状态：</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n mysql exec mysql-1 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;show slave status \G&#39;&#34;</span>
+
+
+mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting <span style="color:#66d9ef">for</span> master to send event
+                  Master_Host: mysql-0.mysql.mysql
+                  Master_User: root
+                  Master_Port: <span style="color:#ae81ff">3306</span>
+                Connect_Retry: <span style="color:#ae81ff">10</span>
+              Master_Log_File: mysqllog.000003
+          Read_Master_Log_Pos: <span style="color:#ae81ff">154</span>
+               Relay_Log_File: mysql-1-relay-bin.000002
+                Relay_Log_Pos: <span style="color:#ae81ff">319</span>
+        Relay_Master_Log_File: mysqllog.000003
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: mysql
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: <span style="color:#ae81ff">0</span>
+                   Last_Error: 
+                 Skip_Counter: <span style="color:#ae81ff">0</span>
+          Exec_Master_Log_Pos: <span style="color:#ae81ff">154</span>
+              Relay_Log_Space: <span style="color:#ae81ff">528</span>
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: <span style="color:#ae81ff">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: <span style="color:#ae81ff">0</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span style="color:#ae81ff">0</span>
+                Last_IO_Error: 
+               Last_SQL_Errno: <span style="color:#ae81ff">0</span>
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: <span style="color:#ae81ff">100</span>
+                  Master_UUID: 1bad4d64-6290-11ea-8376-0242ac113802
+             Master_Info_File: /var/lib/mysql/master.info
+                    SQL_Delay: <span style="color:#ae81ff">0</span>
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has read all relay log; waiting <span style="color:#66d9ef">for</span> more updates
+           Master_Retry_Count: <span style="color:#ae81ff">86400</span>
+                  Master_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Master_SSL_Crl: 
+           Master_SSL_Crlpath: 
+           Retrieved_Gtid_Set: 
+            Executed_Gtid_Set: 
+                Auto_Position: <span style="color:#ae81ff">0</span>
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Master_TLS_Version:
+</code></pre></div><ol start="2">
+<li>接下来，我们通过Master容器创建数据库和表、插入数据库。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n mysql exec mysql-0 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;create database test’&#34;</span>
+kubectl -n mysql exec mysql-0 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;use test;create table counter(c int);’&#34;</span>
+kubectl -n mysql exec mysql-0 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;use test;insert into counter values(123)’&#34;</span>
+</code></pre></div><ol start="3">
+<li>然后，我们观察Slave节点是否都同步到数据了。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n mysql exec mysql-1 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;use test;select * from counter’&#34;</span>  
+c
+<span style="color:#ae81ff">123</span>
+</code></pre></div><p>当看到输出结果，主从同步正常了。</p>
+<h3 id="扩展从节点">扩展从节点</h3>
+<p>在有了StatefulSet以后，你就可以像Deployment那样，非常方便地扩展这个MySQL集群，比如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n mysql scale statefulset mysql -—replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+
+$ kubectl get po -n mysql
+NAME      READY   STATUS    RESTARTS   AGE
+mysql-0   2/2     Running   <span style="color:#ae81ff">0</span>          22m
+mysql-1   2/2     Running   <span style="color:#ae81ff">0</span>          22m
+mysql-2   2/2     Running   <span style="color:#ae81ff">0</span>          20s
+</code></pre></div><p>这时候，一个新的mysql-2就创建出来了，我们继续验证新扩容的节点是否都同步到主节点的数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n mysql exec mysql-2 -c mysql -- bash -c <span style="color:#e6db74">&#34;mysql -uroot -p123456 -e &#39;use test;select * from counter’&#34;</span>  
+c
+<span style="color:#ae81ff">123</span>
+</code></pre></div><p>当看到输出结果，主从同步正常了。也就是说从StatefulSet为我们新创建的mysql-2上，同样可以读取到之前插入的记录。也就是说，我们的数据备份和恢复，都是有效的。</p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/2021/08/10/" title="Kubernetes下搭建MySQL主从架构集群" target="_blank" rel="external">https://www.devopsman.cn/2021/08/10/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/2021/08/04/" title="我是如何将 Docker 镜像体积减小 90%"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            <li class="next">
+                <a href="https://www.devopsman.cn/2021/08/11/"
+                    title="美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南"><span>上一篇&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
