@@ -2,7 +2,7 @@
 <html lang="zh">
   <head>
     <title>
-        Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈
+        2020年10个最佳的Kubernetes工具 - 云原生生态圈
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,32 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
+    <meta name="description" content="Kubernetes生态工具整理" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈</title>
+    <title>2020年10个最佳的Kubernetes工具 - 云原生生态圈</title>
     
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" />
-<meta property="og:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
+    <meta property="og:title" content="2020年10个最佳的Kubernetes工具" />
+<meta property="og:description" content="Kubernetes生态工具整理" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devopsman.cn/2020/08/18/" />
 <meta property="article:published_time" content="2020-08-18T12:00:06+09:00" />
 <meta property="article:modified_time" content="2020-08-18T12:00:06+09:00" />
-<meta itemprop="name" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">
-<meta itemprop="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群">
+<meta itemprop="name" content="2020年10个最佳的Kubernetes工具">
+<meta itemprop="description" content="Kubernetes生态工具整理">
 <meta itemprop="datePublished" content="2020-08-18T12:00:06&#43;09:00" />
 <meta itemprop="dateModified" content="2020-08-18T12:00:06&#43;09:00" />
-<meta itemprop="wordCount" content="1244">
+<meta itemprop="wordCount" content="2016">
 
 
 
-<meta itemprop="keywords" content="容器,消息队列,运维," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群"/>
-<meta name="twitter:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群"/>
+<meta itemprop="keywords" content="容器,消息队列," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2020年10个最佳的Kubernetes工具"/>
+<meta name="twitter:description" content="Kubernetes生态工具整理"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -467,7 +467,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/2020/08/18/"
-    >Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</a
+    >2020年10个最佳的Kubernetes工具</a
   >
 </h1>
 
@@ -484,7 +484,6 @@ function tagCloud(where, min, max) {
     <i class="icon icon-tags"></i>&nbsp;
     <a class="article-tag-link" href="/tags/%E5%AE%B9%E5%99%A8/"> 容器 </a>
     <a class="article-tag-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"> 消息队列 </a>
-    <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -495,293 +494,43 @@ function tagCloud(where, min, max) {
 	</span>
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="https://www.devopsman.cn/2020/08/18/" class="leancloud_visitors"  data-flag-title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">0</span>
+    	<span id="https://www.devopsman.cn/2020/08/18/" class="leancloud_visitors"  data-flag-title="2020年10个最佳的Kubernetes工具">0</span>
     </span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1244字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2016字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p><img src="/images/images.assets/1*-gAK0fG63XGl-4-rhmLfuw.png" alt="Image for post"></p>
-<p>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于<a href="https://www.rabbitmq.com/cluster-formation.html#peer-discovery-consul" title="RabbitMQ discovery consul">基于Consul的RabbitMQ集群</a>。我们还将添加<a href="http://www.haproxy.org/">HAProxy</a>服务器场以负载均衡AMQP请求，并提高群集的整体可用性。以下是最终的逻辑拓扑。</p>
-<p><img src="https://image.devopsman.cn/wechat2020/1*blfjK6gNwZKG3_EKZTd_Dg-20200818212351193.png" alt="Image for post"></p>
-<p>So, Let’s get started! 👊</p>
-<h2 id="安装docker-swarm集群">安装docker swarm集群</h2>
-<table>
-<thead>
-<tr>
-<th>主机名</th>
-<th>IP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>master</td>
-<td>192.168.99.128</td>
-</tr>
-<tr>
-<td>Node1</td>
-<td>192.168.99.133</td>
-</tr>
-<tr>
-<td>Node2</td>
-<td>192.168.99.134</td>
-</tr>
-</tbody>
-</table>
-<h3 id="安装docker">安装docker</h3>
-<pre><code>curl -fsSL get.docker.com -o get-docker.sh
-CHANNEL=stable sh get-docker.sh --mirror Aliyun
-root@master:~# docker -v
-Docker version 19.03.12, build 48a66213fe
-</code></pre><h3 id="初始化docker-swarm集群">初始化docker swarm集群</h3>
-<ul>
-<li>在master上初始化集群</li>
-</ul>
-<pre><code>#Init Docker Swarm - run on master
-root@master:~# docker swarm init --advertise-addr 192.168.99.128
-Swarm initialized: current node (htu24tq7mhip4ca7a9uqnndef) is now a manager.
-
-To add a worker to this swarm, run the following command:
-
-    docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
-
-To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
-</code></pre><ul>
-<li>node1加入集群</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
-This node joined a swarm as a worker.
-
-root@master:~# docker node ls
-ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
-htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
-vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active                                  19.03.12
-root@master:~# docker node promote node1.devopsman.cn
-Node node1.devopsman.cn promoted to a manager in the swarm.
-</code></pre></div><ul>
-<li>node2加入集群</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node2:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
-This node joined a swarm as a worker.
-root@master:~# docker node ls
-ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
-htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
-vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active              Reachable           19.03.12
-99f5xkfepct301n48tqqslz22     node2.devopsman.cn    Ready               Active                                  19.03.12
-root@master:~# docker node promote node2.devopsman.cn
-Node node2.devopsman.cn promoted to a manager in the swarm.
-
-root@master:~# docker network create --driver<span style="color:#f92672">=</span>overlay --attachable prod
-q5rzw0i1xdh9kovytjeg0sj9p
-
-root@master:~# docker network ls
-NETWORK ID          NAME                            DRIVER              SCOPE
-ba6f05d438cf        bridge                          bridge              local
-ee47cd6a4247        docker_gwbridge                 bridge              local
-8df9d4ecb5be        host                            host                local
-rl5o9jz6fxp8        ingress                         overlay             swarm
-25lk998untvk        local                           overlay             swarm
-3a66aac75dbf        none                            null                local
-q5rzw0i1xdh9        prod                            overlay             swarm
-</code></pre></div><h2 id="部署consul集群">部署consul集群</h2>
-<p><strong>注意点</strong></p>
-<ul>
-<li>持久化consul的数据，避免数据丢失</li>
-<li>在<code>global</code>模式下部署Consul服务，并通过节点标签管理服务调度</li>
-<li>使用两个单独的网络，一个用于内部consul的通信，另一个用于RabbitMQ与Consul服务之间的通信</li>
-</ul>
-<h2 id="consul部署清单">consul部署清单</h2>
-<pre><code>version: '3.6'
-services:
-  consul:
-    image: consul:1.4.0
-    hostname: &quot;{{.Node.Hostname}}&quot;
-    networks:
-      - consul
-      - prod
-    ports:
-      - 8400:8400
-      - 8500:8500
-      - 8600:53
-    volumes:
-      - consul-data:/consul/data
-    deploy:
-      mode: global
-      placement:
-        constraints: [node.labels.consul == true]
-    command: [ &quot;agent&quot;, &quot;-server&quot;, &quot;-bootstrap-expect=3&quot;, &quot;-retry-max=3&quot;, &quot;-retry-interval=10s&quot;, &quot;-datacenter=prod&quot;, &quot;-join=consul&quot;, &quot;-retry-join=consul&quot;, &quot;-bind={{ GetInterfaceIP \&quot;eth0\&quot; }}&quot;, &quot;-client=0.0.0.0&quot;, &quot;-ui&quot;]
-networks:
-  consul:
-  prod:
-    external: true
-volumes:
-  consul-data:
-</code></pre><h3 id="初始化consul集群">初始化consul集群</h3>
-<pre><code>docker node update --label-add consul=true node1.devopsman.cn
-node1.devopsman.cn
-docker stack deploy -c docker-compose_consul.yaml consul
-# 等待10s
-root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true master.devopsman.cn
-master.devopsman.cn
-root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true node1.devopsman.cn
-node1.devopsman.cn
-
-root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/leader
-&quot;10.0.3.5:8300&quot;
-root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/peers
-[&quot;10.0.3.5:8300&quot;,&quot;10.0.3.7:8300&quot;,&quot;10.0.3.9:8300&quot;]
-root@master:~/consul_rabbitmq_docker#
-</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818215926636.png" alt="image-20200818215926636"></p>
-<p>在浏览器打开http://192.168.99.128:8500访问consul的dashboard来验证安装是否成功。</p>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200818220043988.png" alt="image-20200818220043988"></p>
-<h2 id="部署rabbitmq集群">部署RabbitMQ集群</h2>
-<p><strong>注意点</strong></p>
-<ul>
-<li>持久化数据防止数据丢失。</li>
-<li>在<code>global</code>模式下部署RabbitMQ服务，并通过节点标签管理服务调度</li>
-<li>使用Prod网络进行<code>内部/外部</code>RabbitMQ通信</li>
-<li>不要暴露 <code>RABBITMQ_ERLANG_COOKIE</code> and <code>RABBITMQ_DEFAULT_PASS</code></li>
-<li>主机名很重要，因为RabbitMQ使用主机名作为数据目录</li>
-</ul>
-<h3 id="rabbitmq部署清单">RabbitMQ部署清单</h3>
-<pre><code>version: &quot;3.6&quot;
-services:
-  rabbitmq-01:
-    image: olgac/rabbitmq:3.7.8-management
-    hostname: rabbitmq-01
-    environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=Passw0rd
-      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
-    networks:
-      - prod
-    volumes:
-      - rabbitmq-01-data:/var/lib/rabbitmq
-    deploy:
-      mode: global
-      placement:
-        constraints: [node.labels.rabbitmq1 == true]rabbitmq-02:
-    image: olgac/rabbitmq:3.7.8-management
-    hostname: rabbitmq-02
-    environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=Passw0rd
-      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
-    networks:
-      - prod
-    volumes:
-      - rabbitmq-02-data:/var/lib/rabbitmq
-    deploy:
-      mode: global
-      placement:
-        constraints: [node.labels.rabbitmq2 == true]rabbitmq-03:
-    image: olgac/rabbitmq:3.7.8-management
-    hostname: rabbitmq-03
-    environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=Passw0rd
-      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
-    networks:
-      - prod
-    volumes:
-      - rabbitmq-03-data:/var/lib/rabbitmq
-    deploy:
-      mode: global
-      placement:
-        constraints: [node.labels.rabbitmq3 == true]networks:
-  prod:
-    external: true
-volumes:
-  rabbitmq-01-data:
-  rabbitmq-02-data:
-  rabbitmq-03-data:
-</code></pre><h3 id="configenabled_plugins">config/enabled_plugins</h3>
-<pre><code>[rabbitmq_management,
-rabbitmq_peer_discovery_consul,
-rabbitmq_federation,
-rabbitmq_federation_management,
-rabbitmq_shovel,
-rabbitmq_shovel_management].
-</code></pre><h3 id="configrabbitmqconf">config/rabbitmq.conf</h3>
-<pre><code>loopback_users.admin = false
-cluster_formation.peer_discovery_backend = rabbit_peer_discovery_consul
-cluster_formation.consul.host = consul
-cluster_formation.node_cleanup.only_log_warning = true
-cluster_formation.consul.svc_addr_auto = true
-cluster_partition_handling = autoheal#Flow Control is triggered if memory usage above %80.
-vm_memory_high_watermark.relative = 0.8#Flow Control is triggered if free disk size below 5GB.
-disk_free_limit.absolute = 5GB
-</code></pre><h3 id="rabbitmq集群初始化">RabbitMQ集群初始化</h3>
-<pre><code>root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq1=true master.devopsman.cn
-master.devopsman.cn
-root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq2=true node1.devopsman.cn
-node1.devopsman.cn
-root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq3=true node2.devopsman.cn
-node2.devopsman.cn
-
-root@master:~/consul_rabbitmq_docker# docker stack deploy -c docker-compose_rabbitmq.yml rabbitmq
-Creating service rabbitmq_rabbitmq-03
-Creating service rabbitmq_rabbitmq-01
-Creating service rabbitmq_rabbitmq-02
-root@master:~/consul_rabbitmq_docker#
-</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818221955073.png" alt="image-20200818221955073"></p>
-<h2 id="配置haproxy代理端口">配置haproxy代理端口</h2>
-<h3 id="haproxy部署清单">haproxy部署清单</h3>
-<pre><code>version: &quot;3.6&quot;
-services:
-  haproxy:
-    image: olgac/haproxy-for-rabbitmq:1.8.14-alpine
-    ports:
-      - 15672:15672
-      - 5672:5672
-      - 1936:1936
-    networks:
-      - prod
-    deploy:
-      mode: global
-networks:
-  prod:
-    external: true
-</code></pre><h3 id="confighaproxycfg">config/haproxy.cfg</h3>
-<pre><code>global
-    log 127.0.0.1   local0
-    log 127.0.0.1   local1 notice
-    maxconn 4096
- 
-defaults
-    log     global
-    option  tcplog
-    option  dontlognull
-    timeout connect 6s
-    timeout client 60s
-    timeout server 60s
- 
-listen  stats
-    bind *:1936
-    mode http
-    stats enable
-    stats hide-version
-    stats realm Haproxy\ Statistics
-    stats uri /listen rabbitmq
-    bind   *:5672
-    mode   tcp
-    server rabbitmq-01 rabbitmq-01:5672 check
-    server rabbitmq-02 rabbitmq-02:5672 check
-    server rabbitmq-03 rabbitmq-03:5672 checklisten rabbitmq-ui
-    bind   *:15672
-    mode   http
-    server rabbitmq-01 rabbitmq-01:15672 check
-    server rabbitmq-02 rabbitmq-02:15672 check
-    server rabbitmq-03 rabbitmq-03:15672 check
-</code></pre><h3 id="验证rabbitmq集群">验证RabbitMQ集群</h3>
-<p>访问 <a href="http://192.168.99.128:15672/">http://192.168.99.128:15672</a> RabbitMQ的控制后台，密码为:(admin/Passw0rd)</p>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200818223017251.png" alt="image-20200818223017251"></p>
-<p>最后，查看一下haproxy的后台。</p>
-<ul>
-<li>Check <a href="http://192.168.99.128:1936/">http://192.168.99.128:1936</a></li>
-</ul>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200818222844405.png" alt="image-20200818222844405"></p>
+      <p><a href="https://kubernetes.io/zh/" title="kubernetes">Kubernetes</a>是容器编排的实际标准。Kubernetes作为首选的容器解决方案，已经迅速流行起来。我们来看看Kubernetes的<strong>10</strong>个最好的工具。这些应用程序将补充K8s并增强您的开发工作，以便您可以从您的Kubernetes获得更多。利用这些Kubernetes的小&quot;伙伴&quot;来简化应用程序定义、迁移集群、简化云部署等等</p>
+<h3 id="kubernetes-dashboard">Kubernetes Dashboard</h3>
+<p><code>Kubernetes Dashboard</code>是一种基于web的Kubernetes监视工具，它更适合于较小的集群。它提供了一个UI来管理k8s。这些任务包括<code>发现</code>、<code>负载平衡</code>和<code>监控</code>。有许多选项可用于故障排除。仪表板允许监视聚集的CPU和内存使用情况。它可以监控工作负载的运行状况。安装很简单，因为有现成的<code>YAML</code>模板可用。<code>Cabin</code>是移动版的kubernetes dashboard，它也为Android和iOS提供了类似的功能。</p>
+<h3 id="kubelet">Kubelet</h3>
+<p>这些是运行在Kubernetes集群的每个节点上的<code>Node Agents</code>。他们可以向中心API服务器注册节点。一个<code>PodSpec</code>. 它是一个用来描述每个pod的YAML或JSON对象。因此，Kubelet能够通过其PodSpecs监视这些节点。</p>
+<h3 id="helm">Helm</h3>
+<p><a href="https://helm.sh/" title="helm">Kubernetes Helm</a>是一个管理预配置Kubernetes资源包的工具，又名Kubernetes图表。使用<code>Helm</code>可以用来：</p>
+<ol>
+<li>查找并使用打包成<code>Kubernetes chart</code>的流行软件</li>
+<li>以Kubernetes图表的形式<code>共享</code>您自己的应用程序</li>
+<li>创建Kubernetes应用程序的<code>可重复构建部署</code></li>
+<li>智能地管理您的Kubernetes清单文件</li>
+<li>管理Helm包的发布</li>
+</ol>
+<h3 id="gravity">Gravity</h3>
+<p>如果您希望将应用程序部署到Kubernetes中，许多应用程序都有<code>helm charts</code>来指导和自动化该过程。但是，如果您希望按原样使用Kubernetes集群并将其部署到其他地方，该怎么办呢?</p>
+<p>Gravity为Kubernetes集群、它们的容器仓库、它们正在运行的应用程序(称为<code>捆绑的应用程序</code>)拍摄快照。这个包(<code>只是一个.tar文件</code>)可以在Kubernetes运行的任何地方复制集群。</p>
+<p>Gravity还确保目标基础设施能够支持与源集群相同的行为需求，并且目标上的Kubernetes运行时符合要求。</p>
+<h3 id="minikube">Minikube</h3>
+<p><code>Minikube</code>允许您在本地安装和试用Kubernetes。该工具是Kubernetes探索的一个很好的起点。在您的笔记本上的虚拟机(VM)中轻松地启动单节点Kubernetes集群。Minikube可以在Windows、Linux和OSX上使用。在短短<code>5</code>分钟内，您将能够探索Kubernetes的主要功能。只需一个命令就可以直接启动Minikube仪表板。</p>
+<h3 id="kubespray">Kubespray</h3>
+<p>Kubespray为Kubernetes的部署和配置提供了一组可操作的<code>Ansible</code>角色。Kubespray可以使用AWS、GCE、Azure、OpenStack或裸金属基础设施作为服务(IaaS)平台。Kubespray是一个具有开放开发模型的开源项目。对于已经了解Ansible的用户来说，这个工具是一个很好的选择，因为不需要使用其他工具来进行配置和编排。</p>
+<h3 id="twistlock">Twistlock</h3>
+<p><code>Twistlock</code>是一个全生命周期的容器安全解决方案。它有一个<a href="%22%22" title="Vulnerability Management Service (VMS)">VMS</a>，可以扫描任何易受攻击的区域。它可以在一定的基础上持续的扫描Kubernetes,还有一个自动防火墙。扫描容器图像是Twistlock的另一个重要特性。支持Node.js组件和Docker图像。Twistlock专注于容器安全性的两个基本方面，首先，它会持续扫描容器图像，原因是每天都有新的威胁数据出现;另一个重点是容器运行的安全性。首先必须设置正常行为的基线。之后，就可以很容易地进行监测。</p>
+<h3 id="kubectl">Kubectl</h3>
+<p><code>Kubectl</code>是Kubernetes的默认CLI工具。它支持与Kubernetes相关的所有操作。通过<code>$HOME</code>目录中的配置文件发现节点。kubectl也接受其他<code>kubeconfig</code>文件。只需要设置相关的环境变量。这也可以用kubeconfig <code>flag</code>来完成。Docker用户可以使用kubectl与API服务器交互。kubectl命令与Docker命令类似。只有一些小的差别。</p>
+<h3 id="alcide-kaudit">Alcide kAudit</h3>
+<p><code>Alicide kAudit</code>，通过扫描Kubernetes的审计日志，通过扫描Kubernetes审核日志来实时自动分析多集群部署中的<code>违规，滥用和异常行为</code>。该解决方案向客户提供检测到的异常的摘要以及访问，使用和性能趋势。</p>
+<h3 id="kubeless">Kubeless</h3>
+<p><code>Kubeless</code>该工具是本地Kubernetes工具，用于部署小型应用程序。它使用Kubernetes资源来启用许多任务。这些有助于自动扩展，路由API，进行监视和故障排除。Kubeless脱颖而出，因为它支持自定义资源定义。该功能允许Kubeless创建自定义的Kubernetes资源。然后，您可以使用集群内控制器对其进行监视。它允许您根据需要启动运行时。然后，这些运行时可以通过HTTP使用。此外，还可以使用<code>PubSub机制</code>。</p>
 
     </div>
     <div class="article-footer">
@@ -789,7 +538,7 @@ listen  stats
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://www.devopsman.cn/2020/08/18/" title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" target="_blank" rel="external">https://www.devopsman.cn/2020/08/18/</a>
+      <a href="https://www.devopsman.cn/2020/08/18/" title="2020年10个最佳的Kubernetes工具" target="_blank" rel="external">https://www.devopsman.cn/2020/08/18/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License: </strong>
@@ -820,13 +569,13 @@ listen  stats
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/2020/08/18/" title="如何搭建适合自己的个人网盘"><i
+                <a href="https://www.devopsman.cn/2020/08/18/" title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             <li class="next">
-                <a href="https://www.devopsman.cn/2020/08/18/"
-                    title="2020年10个最佳的Kubernetes工具"><span>上一篇&nbsp;&nbsp;</span><i
+                <a href="https://www.devopsman.cn/2020/12/29/"
+                    title="云原生生态圈·2020年微信公众号全年文章目录索引"><span>上一篇&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
