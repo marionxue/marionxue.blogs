@@ -2,7 +2,8 @@
 <html lang="zh">
   <head>
     <title>
-        云原生生态圈</title>
+        K8s内功心法之3步排除Kubernetes故障 - 云原生生态圈
+      </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -19,25 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    
+    <meta name="description" content="安装是扎马步，排故调优才是" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>云原生生态圈</title>
+    <title>K8s内功心法之3步排除Kubernetes故障 - 云原生生态圈</title>
     
-    <link rel="alternate" type="application/rss+xml" href="https://www.devopsman.cn/tags/index/index.xml" title="云原生生态圈" />
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="index" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.devopsman.cn/tags/index/" />
+    <meta property="og:title" content="K8s内功心法之3步排除Kubernetes故障" />
+<meta property="og:description" content="安装是扎马步，排故调优才是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/2021/08/20/" />
+<meta property="article:published_time" content="2021-08-20T09:00:06+09:00" />
+<meta property="article:modified_time" content="2021-08-20T09:00:06+09:00" />
+<meta itemprop="name" content="K8s内功心法之3步排除Kubernetes故障">
+<meta itemprop="description" content="安装是扎马步，排故调优才是">
+<meta itemprop="datePublished" content="2021-08-20T09:00:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-08-20T09:00:06&#43;09:00" />
+<meta itemprop="wordCount" content="2154">
 
-<meta itemprop="name" content="index">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="index"/>
-<meta name="twitter:description" content=""/>
+
+
+<meta itemprop="keywords" content="运维,kubernetes," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="K8s内功心法之3步排除Kubernetes故障"/>
+<meta name="twitter:description" content="安装是扎马步，排故调优才是"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -442,59 +450,183 @@ function tagCloud(where, min, max) {
 
     
     
-<main class="main" role="main">
-    <article class="content article article-tags post-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">index</h1>
-            <p class="text-muted hidden-xs">共 23 个标签</p>
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-                    <li><a href="https://www.devopsman.cn/tags">All</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/devops/">devops</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/docker/">docker</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/index/">index</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/kubernetes/">Kubernetes</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/python/">Python</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/redis/">Redis</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/sql/">SQL</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/yaml/">YAML</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/">内核调优</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/">博客</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/">安全</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/">容器</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/">工具类</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/">年度文章</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/">监控</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/">编程</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/">网络</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/">运维</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/">运维技术</a></li>
-                    <li><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/">镜像优化</a></li>
-                </ul>
-            </nav>
-        </header>
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2021/08/20/"
+    >K8s内功心法之3步排除Kubernetes故障</a
+  >
+</h1>
+
+      <div class="article-meta">
         
-        <div class="article-body">
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2021-08-20 09:00:06 &#43;0900 &#43;0900"
-                itemprop="datePublished">2021-08-20</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://www.devopsman.cn/posts/">Posts</a>
-        </h3>
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://www.devopsman.cn/2021/08/20/" class="article-date">
+  <time datetime="2021-08-20 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-20</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
+    <a class="article-tag-link" href="/tags/kubernetes/"> kubernetes </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/2021/08/20/" class="leancloud_visitors"  data-flag-title="K8s内功心法之3步排除Kubernetes故障">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2154字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5分 </span>
+      </div>
     </div>
-    <div class="panel-footer">
-        <a href="https://www.devopsman.cn/tags/index" class="label label-default mb">index</a>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>Kubernetes 生态系统充斥着各种工具，例如监控、可观察性、跟踪、日志记录等，但一般很难真正理解故障排除与这些工具有何联系。</p>
+<p>当故障发生时，我们要掌握是从哪里发生，了解所面临的问题，解决眼前的问题，然后修复根本原因。随着系统规模的扩大，这一切会变得越来越复杂。</p>
+<p>一名从事现代、复杂、分布式系统工作的软件工程师，会经常发现，每次出现问题或故障时，都需要了解引发问题的原因以及是谁造成的，但是，这并不是一件容易的事。更难的，是弄清楚幕后发生了什么，以及如何防止它再次发生。</p>
+<p>一般，我们会这样思考：</p>
+<blockquote>
+<ul>
+<li>究竟发生了什么？</li>
+<li>哪些事情是相关的？</li>
+<li>什么与我们试图排除故障的特定症状相关？</li>
+<li>我们如何确定根本原因？</li>
+<li>最终，我们还要确保将来不再发生此问题或类似问题？</li>
+</ul>
+</blockquote>
+<p>本文中，我们将之简化为3个步骤：</p>
+<blockquote>
+<ul>
+<li>理解</li>
+<li>管理</li>
+<li>预防</li>
+</ul>
+</blockquote>
+<p>我将深入探讨如何实施好这三个步，以及它们如何帮助我们对Kubernetes 进行故障排除。我还将回顾哪些生态系统工具适合哪个步，以更好地掌握或使用那些工具。</p>
+<h2 id="第一步理解">第一步：理解</h2>
+<p>毫不奇怪，这是重要的一步。理解系统资源，通常使你能够了解发生了什么、出了什么问题以及我们接下来应该做什么。</p>
+<p>为了尝试了解故障原因，开发人员将首先分析系统最近的修改以及可能导致此故障发生的更改。</p>
+<p>当然，这说起来容易做起来难。在复杂的分布式系统，尤其是基于 Kubernetes 的系统中，这意味着大量使用 kubectl 来对部署日志、跟踪和指标进行故障排除，验证 pod 健康状况和资源上限，以及服务连接，以及其他常见的 pod 错误，检查 YAML 配置文件，验证第三方工具和集成等等。这可能是一行代码、一行配置的更改，触发了故障。</p>
+<p>下图一张图，可以帮助我们在排除 K8s 系统进行故障时，缩小问题的范围。</p>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/15029686-image-1-20210820082133027.png" alt=""></p>
+<p>图片来源🔗：<a href="https://learnk8s.io/troubleshooting-deployments" title="Kubernetes部署故障排除指南"> 有关 Kubernetes 部署故障排除的指南</a></p>
+<p>网上的也有一份国人中文版的Kubernetes故障排除指南，供参考</p>
+<blockquote>
+<p>可以<strong>公众号</strong>内回复<strong>内功心法</strong>获取原图</p>
+</blockquote>
+<p>接下来，我们将查看事件：系统中实际发生了什么 – 系统是否过载？是否丢失了数据？是否存在服务中断？这与系统的初始变化有何关系？</p>
+<p>然后，我们查看一下我们创建的指标、仪表板和数据，以基于数据源对问题进行某种理解。是否不止一个系统表现相同？影响两个系统的服务之一是否存在依赖性？最后，我们能否从看似相似的先前事件中学到一些东西，让我们对我们现在正在经历的事情有所了解？</p>
+<p>仅就某些情况而言，下面是你需要使用的一些工具的列表，以便对系统中发生的事情有一个基本的了解。</p>
+<p>监控工具： <code>Datadog</code>、<code>Dynatrace</code>、<code>Grafana Labs</code>、<code>New Relic</code></p>
+<p>可观察性工具： <code>Lightstep</code>、<code>Honeycomb</code></p>
+<p>实时调试工具：<code> OzCode</code>、<code>Rookout</code></p>
+<p>日志工具： <code>Splunk</code>、<code>LogDNA</code>、<code>Logz.io</code></p>
+<h2 id="第二步管理">第二步：管理</h2>
+<p>在当今的微服务架构中，很多时候相互依赖的服务由不同的团队管理。发生故障时，解决问题的关键之一是团队之间的沟通与协作。</p>
+<p>根据潜在问题的类型，你可能想要采取的操作，包括像重启系统这样简单的操作，或者更’严厉’的措施，例如版本回滚或恢复最近的配置，直到更清楚地了解潜在问题。最终，你可能需要采取主动措施，如增加内存上限或机器数量的形式增加容量。但是，所有这些都不应该是你实时尝试和弄清楚的。今天有很多工具，从 Jenkins 到 ArgoCD，云提供商的专有工具，甚至更多的 kubectl 来采取这些行动和措施。</p>
+<p>一旦更好地理解了潜在问题，补救就不应该是主要是反复试验的临时操作，或者存在于当前团队和实践中的记录。根据公司的技术堆栈和可能的根本原因，应使用定制的运行手册来管理任何给定的事件，并针对每种警报提供具体的任务和操作。</p>
+<p>团队中的每一位工程师，无论是高级还是初级，都可以利用这一份友好的运行手册来实时排除故障。</p>
+<p>此阶段的工具包将包括以下一些内容：</p>
+<p>事件管理： <code>PagerDuty</code>，<code>Kintaba</code></p>
+<p>项目管理： <code>Jira</code>、<code>Monday</code>、<code>Trello</code></p>
+<p>CI/CD 管理：<code> ArgoCD</code>、<code>Jenkins</code></p>
+<h2 id="最后一个步预防">最后一个步：预防</h2>
+<p>预防可能是最重要的步，以确保类似事件不再发生。防止类似问题的方法是根据每个事件创建定义明确的策略和规则。在“理解”阶段要采取哪些行动，我们如何最快速地识别问题并将问题上报给相关团队？</p>
+<p>我们如何委派责任，确保团队之间无摩擦的沟通和协作？这包括手头任务和操作的完全透明度，以及进度的实时更新。每种警报和事件的任务的规范顺序是什么？</p>
+<p>一旦我们弄清楚了上述所有内容，我们就可以开始考虑如何自动化和协调这些事件，并尽可能接近传说中的“自我修复”系统。</p>
+<p>这一步的特点是通过不断将系统推向极限，从而创建更具弹性和适应变化的系统的工具。例如：</p>
+<p>Chaos Engineering: <code>Gremlin</code>、<code>Chaos Monkey</code>、<code>ChaosIQ</code></p>
+<p>Auto Remediation： <code>Shoreline</code>、<code>OpsGenie</code></p>
+<h2 id="一步都不能少">一步都不能少</h2>
+<p>我们相信，通过以上三步的结合，可以将故障排除与监控、可观察性、跟踪等区别开来。然而，可能最重要的是深入到系统和流程中，以防止它们再次发生。</p>
+<p>我们都见过这个表情包：
+<img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/15029685-image-2-20210820082317219.jpg" alt=""></p>
+<p>或者这个：
+<img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/15029684-this-is-fine-min-20210820083253661.jpg" alt=""></p>
+<p>它们仍然被广泛使用并如此受欢迎的原因是，即使我们在“DevOps 工具”方面取得了巨大进步后，对于实时的问题或故障，很多时候依然捉襟见肘。</p>
+<p>因此，我建议将应用程序和运维数据集中到一个平台中，使团队成员能够真正了解他们的系统，并最终了解对复杂系统出现的警报如何采取行动。当我们将最好的开发人员和运维人员结合在一起时，我们可以通过更好地合作来更快地解决故障。</p>
+<p>译文链接🔗: <a href="https://dzone.com/articles/the-three-pillars-of-kubernetes-troubleshooting" title="译文链接🔗">https://dzone.com/articles/the-three-pillars-of-kubernetes-troubleshooting</a></p>
+
     </div>
-</article>
-            </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/2021/08/20/" title="K8s内功心法之3步排除Kubernetes故障" target="_blank" rel="external">https://www.devopsman.cn/2021/08/20/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/2021/08/13/" title="18个分析Linux系统占用网络带宽的程序"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
         </div>
-    </article>
+    </div>
+</nav>
+
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
@@ -574,6 +706,8 @@ function tagCloud(where, min, max) {
         hasInnerContainers: true,
     });
 </script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   </body>
 </html>

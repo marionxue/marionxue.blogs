@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Fri, 13 Aug 2021 09:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 20 Aug 2021 09:00:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python脚本分析拉钩网站招聘信息</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Python脚本分析拉钩招聘网站职位 场景 最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革</description>
+    </item>
     
     <item>
       <title>P站风格Logo生成器</title>
