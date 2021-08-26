@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/git/</link>
+    <description>Recent content in git on 云原生生态圈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Fri, 20 Aug 2021 09:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.devopsman.cn/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K8s内功心法之3步排除Kubernetes故障</title>
+      <link>https://www.devopsman.cn/2021/08/20/</link>
+      <pubDate>Fri, 20 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/20/</guid>
+      <description>Kubernetes 生态系统充斥着各种工具，例如监控、可观察性、跟踪、日志记录等，但一般很难真正理解故障排除与这些工具有何联系。 当故障发生时，我们要掌握是从哪</description>
+    </item>
+    
+    <item>
+      <title>解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</title>
+      <link>https://www.devopsman.cn/2021/08/20/</link>
+      <pubDate>Fri, 20 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/20/</guid>
+      <description>程序员的笔记软件，应该满足下面几个条件。 （1）跨平台，同时支持桌面电脑（Windows，Mac，Linux）和手机（Android，iOS）</description>
+    </item>
+    
+    <item>
+      <title>18个分析Linux系统占用网络带宽的程序</title>
+      <link>https://www.devopsman.cn/2021/08/13/</link>
+      <pubDate>Fri, 13 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/13/</guid>
+      <description>导读 本文介绍了一些可以用来监控网络使用情况的Linux命令行工具。这些工具可以监控通过网络接口传输的数据，并测量目前哪些数据所传输的速度。入</description>
+    </item>
+    
+    <item>
+      <title>好家伙！原来Redis是这样用的（16个电商应用场景）</title>
+      <link>https://www.devopsman.cn/2021/08/12/</link>
+      <pubDate>Thu, 12 Aug 2021 08:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/12/</guid>
+      <description>Redis 用的好，加薪少不了，面试被问redis是个大概率事件，与其等着面试官问你在哪场景用过，不如给他雷霆一击，有理有据一口气说出16 个常见使用场</description>
+    </item>
+    
+    <item>
+      <title>美国安全局 NSA、CISA 发布 Kubernetes 安全加固指南</title>
+      <link>https://www.devopsman.cn/2021/08/11/</link>
+      <pubDate>Wed, 11 Aug 2021 14:25:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/11/</guid>
+      <description>为了帮助系统管理员更好地保护开源容器编排工具Kubernetes，美国国家安全局(National Security Agency)和网络安全和基础设施安全局</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes下搭建MySQL主从架构集群</title>
+      <link>https://www.devopsman.cn/2021/08/10/</link>
+      <pubDate>Tue, 10 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/10/</guid>
+      <description>一般情况下Kubernetes可以通过ReplicaSet以一个Pod模板创建多个Pod副本，但是它们都是无状态的，任何时候它们都可以被一个</description>
+    </item>
+    
+    <item>
+      <title>我是如何将 Docker 镜像体积减小 90%</title>
+      <link>https://www.devopsman.cn/2021/08/04/</link>
+      <pubDate>Wed, 04 Aug 2021 15:15:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/04/</guid>
+      <description>对于刚接触容器的人来说，他们很容易被自己构建的 Docker 镜像体积吓到，我只需要一个几 MB 的可执行文件而已，为何镜像的体积会达到 1 GB 以上？本文将会介绍几</description>
+    </item>
+    
+    <item>
+      <title>高可用监控方案Cortex探险</title>
+      <link>https://www.devopsman.cn/2021/05/13/</link>
+      <pubDate>Thu, 13 May 2021 15:15:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/05/13/</guid>
+      <description>Prometheus已成为cloud-native世界中的默认监控应用程序和系统。对于真是使用案例，Prometheus应该是高可用的，这是</description>
+    </item>
+    
+    <item>
+      <title>YAML工程师是怎么炼成的？</title>
+      <link>https://www.devopsman.cn/2020/12/31/</link>
+      <pubDate>Thu, 31 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/31/</guid>
+      <description>Yaml基础语法与技巧 字符支持：YAML支持Unicode字符集，可以使用UTF-8、UTF-16、UTF-32字符集 date: 2020-06-28 info: - name: Marionxue tags: - num: 1 -</description>
+    </item>
+    
+    <item>
+      <title>百度BFE成为CNCF接纳网络方向上的第一个开源项目</title>
+      <link>https://www.devopsman.cn/2020/12/31/</link>
+      <pubDate>Thu, 31 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/31/</guid>
+      <description>2020年6月24日，BFE开源项目被CNCF （Cloud Native Computing Foundation，云原生计算基金会）正式接纳为Sandbox Project</description>
+    </item>
+    
+    <item>
+      <title>Yearning目前最流行的开源数据库审核平台</title>
+      <link>https://www.devopsman.cn/2020/12/30/</link>
+      <pubDate>Wed, 30 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/30/</guid>
+      <description>今天给大家分享目前最popular的MySQL SQL审计平台Yearning，这个平台可以帮助开发者快速的完成SQL语句的语法的审核、检测、</description>
+    </item>
+    
+    <item>
+      <title>云原生生态圈·2020年微信公众号全年文章目录索引</title>
+      <link>https://www.devopsman.cn/2020/12/29/</link>
+      <pubDate>Tue, 29 Dec 2020 12:40:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/12/29/</guid>
+      <description>文章索引 在2020年即将过去的的最后几个小时，趁着大家都在看跨年晚会的时候，我整理了2020年云原生生态圈一整年写过的所有文章，一共147篇</description>
+    </item>
+    
+    <item>
+      <title>2020年10个最佳的Kubernetes工具</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>Kubernetes是容器编排的实际标准。Kubernetes作为首选的容器解决方案，已经迅速流行起来。我们来看看Kubernetes的10</description>
+    </item>
+    
+    <item>
+      <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于基于Consul的RabbitMQ集群。我们还将添加HAProxy</description>
+    </item>
+    
+    <item>
+      <title>如何搭建适合自己的个人网盘</title>
+      <link>https://www.devopsman.cn/2020/08/18/</link>
+      <pubDate>Tue, 18 Aug 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/08/18/</guid>
+      <description>介绍几种开源的网盘存储解决方案，可以在开源的网盘服务基础上，结合一些某云的存储服务，实现私人定制化个人网盘。 Nextcloud [NextCloud](&amp;ldquo;https://docs.nextcloud.com/&amp;quot; Nextcloud)是一个完</description>
+    </item>
+    
+    <item>
+      <title>Hugo-部署静态网站设计的一些思考</title>
+      <link>https://www.devopsman.cn/2020/07/20/</link>
+      <pubDate>Mon, 20 Jul 2020 19:49:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/20/</guid>
+      <description>静态网站的个人设计的个人思考 为什么要搭建自己的静态博客系统？ 写好的Markdown可以快速的发布到自己的博客网站上，不需要什么一键式多平台发</description>
+    </item>
+    
+    <item>
+      <title>运维知识体系-v3.1</title>
+      <link>https://www.devopsman.cn/2020/07/10/</link>
+      <pubDate>Fri, 10 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/10/</guid>
+      <description>前段时间，发现新运维社区的赵班长(赵舜东)更新了一版《运维知识体系 v3.1》其中新增了一些目前比较火的、成熟的运维解决方案，也包括容器编排，</description>
+    </item>
+    
+    <item>
+      <title>如何确定CPU消耗在哪些函数上</title>
+      <link>https://www.devopsman.cn/2020/07/04/</link>
+      <pubDate>Sat, 04 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/04/</guid>
+      <description>文章背景 日常的工作中，会收到一堆CPU使用率过高的告警邮件，遇到某台服务的CPU被占满了，这时候我们就要去查看是什么进程将服务器的CPU资源</description>
+    </item>
+    
+    <item>
+      <title>Docker容器命令行可视化工具-Lazydocker</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Lazydocker的使用背景 平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如Docker的各种</description>
+    </item>
+    
+    <item>
+      <title>ECS上手把手搭建个人博客系统wordpress</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
+    </item>
+    
+  </channel>
+</rss>

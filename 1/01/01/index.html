@@ -169,6 +169,10 @@
                class="tag-list-count">2</span></a>
             
             
+            <a href="https://www.devopsman.cn/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
             <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
                class="tag-list-count">1</span></a>
             
@@ -186,6 +190,10 @@
             
             
             <a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link" rel="1">sql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link" rel="1">vscode<span
                class="tag-list-count">1</span></a>
             
             
@@ -298,6 +306,10 @@ function tagCloud(where, min, max) {
                     class="tag-list-count">2</span></li>
             
             
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/git/" class="tag-list-link">git</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
                     class="tag-list-count">1</span></li>
             
@@ -315,6 +327,10 @@ function tagCloud(where, min, max) {
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link">sql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link">vscode</a><span
                     class="tag-list-count">1</span></li>
             
             
@@ -403,6 +419,16 @@ function tagCloud(where, min, max) {
             <li>
                 <div class="item-inner">
                     <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/20/" class="title">解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-20 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-20</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
                         <a href="https://www.devopsman.cn/2021/08/13/" class="title">18个分析Linux系统占用网络带宽的程序</a>
                     </p>
                     <p class="item-date">
@@ -427,16 +453,6 @@ function tagCloud(where, min, max) {
                     </p>
                     <p class="item-date">
                         <time datetime="2021-08-11 14:25:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-11</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://www.devopsman.cn/2021/08/10/" class="title">Kubernetes下搭建MySQL主从架构集群</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-10 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-10</time>
                     </p>
                 </div>
             </li>
@@ -489,7 +505,7 @@ function tagCloud(where, min, max) {
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
       <p>常用的 ping，tracert，nslookup 一般用来判断主机的网络连通性，其实 Linux 下有一个更好用的网络联通性判断工具，它可以结合ping nslookup tracert 来判断网络的相关特性，这个命令就是 mtr。mtr 全称 my traceroute，是一个把 ping 和 traceroute 合并到一个程序的网络诊断工具。</p>
 <p>traceroute默认使用UDP数据包探测，而mtr默认使用ICMP报文探测，ICMP在某些路由节点的优先级要比其他数据包低，所以测试得到的数据可能低于实际情况。</p>
-<h1 id="安装方法">安装方法</h1>
+<h2 id="安装方法">安装方法</h2>
 <p>1.Windows系统可以直接在https://cdn.ipip.net/17mon/besttrace.exe下载BestTrace工具并安装。也可以在https://github.com/oott123/WinMTR/releases GitHub上下载MTR专用工具，该工具为免安装，下载后可以直接使用。</p>
 <p>2.Linux可以直接运行命令进行安装。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">Debian</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Ubuntu</span> <span style="color:#a6e22e">系统</span>
@@ -498,7 +514,7 @@ function tagCloud(where, min, max) {
 <span style="color:#a6e22e">sudo</span> <span style="color:#a6e22e">yum</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">mtr</span> 
 </code></pre></div><p>3.Apple客户端可以在App store搜索Best NetTools下载安装</p>
 <p>4.Android客户端：可以在Google Play上下载TracePing，但是由于国内Google Play无法访问，笔者自行下载下来，可以直接访问 <a href="https://dwz.cn/KCdNPH4c">https://dwz.cn/KCdNPH4c</a> 下载TracePing。</p>
-<h1 id="使用">使用</h1>
+<h2 id="使用">使用</h2>
 <p>MTR使用非常简单，查看本机到 qq.com 的路由以及连接情况直接运行如下命令：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">mtr</span> <span style="color:#a6e22e">qq</span>.<span style="color:#a6e22e">com</span>
 </code></pre></div><p><img src="https://ask.qcloudimg.com/draft/1919442/lyv2bkxtql.png?imageView2/2/w/1620" alt="img">MTR qq.com 测试界面</p>
@@ -550,7 +566,7 @@ function tagCloud(where, min, max) {
 <p>从上面的MTR报告截图中，我们可以看到从第11跳到12跳的延迟猛增，直接导致了后面的延迟也很大，一般有可能是11跳到12跳属于不通地域，物理距离导致时延猛增，也有可能是第12条的路由器配置不当，或者是线路拥塞。需要具体问题进行具体的分析。</p>
 <p>然而，高延迟并不一定意味着当前路由器有问题。延迟很大的原因也有可能是在返回过程中引发的。从这份报告的截图看不到返回的路径，返回的路径可能是完全不同的线路，所以一般需要进行双向MTR测试。</p>
 <p>注：ICMP 速率限制也可能会增加延迟，但是一般可以查看最后一条的时间延迟来判断是否是上述情况。</p>
-<h1 id="根据mtr结果解决网络问题">根据MTR结果解决网络问题</h1>
+<h2 id="根据mtr结果解决网络问题">根据MTR结果解决网络问题</h2>
 <p>MTR 报告显示的路由问题大都是暂时性的。很多问题在24小时内都被解决了。大多数情况下，如果您发现了路由问题，ISP 提供商已经监视到并且正在解决中了。当您经历网络问题后，可以选择提醒您的 ISP 提供商。当联系您的提供商时，需要发送一下 MTR 报告和相关的数据。没有有用的数据，提供商是没有办法去解决问题的。</p>
 <p>然而大多数情况下，路由问题是比较少见的。比较常见的是因为物理距离太长，或者上网高峰，导致网络变的很慢。尤其是跨越大西洋和太平洋的时候，网络有时候会变的很慢。这种情况下，建议就近接入客户的节点。</p>
 <p>如果在腾讯云上有网络的问题，且不能解读MTR的报告，可以直接联系腾讯云相关售后人员进行处理。</p>
@@ -592,7 +608,7 @@ function tagCloud(where, min, max) {
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/1/01/01/" title="wordPress原来还可以这么用"><i
+                <a href="https://www.devopsman.cn/1/01/01/" title=""><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>

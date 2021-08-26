@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</title>
+      <link>https://www.devopsman.cn/2021/08/20/</link>
+      <pubDate>Fri, 20 Aug 2021 09:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/20/</guid>
+      <description>程序员的笔记软件，应该满足下面几个条件。 （1）跨平台，同时支持桌面电脑（Windows，Mac，Linux）和手机（Android，iOS）</description>
+    </item>
+    
+    <item>
       <title>18个分析Linux系统占用网络带宽的程序</title>
       <link>https://www.devopsman.cn/2021/08/13/</link>
       <pubDate>Fri, 13 Aug 2021 09:00:06 +0900</pubDate>
@@ -179,15 +188,6 @@
       
       <guid>https://www.devopsman.cn/2020/06/10/</guid>
       <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
-    </item>
-    
-    <item>
-      <title>Mac下手把手带你打造骚气的命令行终端</title>
-      <link>https://www.devopsman.cn/2020/06/10/</link>
-      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/06/10/</guid>
-      <description>最近有很多朋友看了我的文章之后，问我你终端是怎么设置的，为什么如此炫酷，这这这&amp;hellip;让我怎么说，难道我的文章不干吗？还是特干看不下</description>
     </item>
     
   </channel>

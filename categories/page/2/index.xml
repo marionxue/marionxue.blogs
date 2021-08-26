@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Mac下手把手带你打造骚气的命令行终端</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>最近有很多朋友看了我的文章之后，问我你终端是怎么设置的，为什么如此炫酷，这这这&amp;hellip;让我怎么说，难道我的文章不干吗？还是特干看不下</description>
+    </item>
+    
+    <item>
       <title>python脚本分析拉钩网站招聘信息</title>
       <link>https://www.devopsman.cn/2020/06/10/</link>
       <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
@@ -71,6 +80,33 @@
       
       <guid>https://www.devopsman.cn/1/01/01/</guid>
       <description>常用的 ping，tracert，nslookup 一般用来判断主机的网络连通性，其实 Linux 下有一个更好用的网络联通性判断工具，它可以结合ping nslookup</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>MySQLTuner MySQLTuner是perl编写的脚本程序，可以快速的你的MySQL的安装，并且对你MySQL的配置、提高稳定性给出建议，检索当前MyS</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Docker Docker国内源加速 cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/docker/daemon.json { &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;https://registry.docker-cn.com&amp;#34;, &amp;#34;https://dockerhub.azk8s.cn&amp;#34;, &amp;#34;https://reg-mirror.qiniu.com&amp;#34;, &amp;#34;http://hub-mirror.c.163.com&amp;#34;, &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34; ] } ```</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description></description>
     </item>
     
     <item>
