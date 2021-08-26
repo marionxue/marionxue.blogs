@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>年度文章 on 云原生生态圈</title>
-    <link>https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/</link>
-    <description>Recent content in 年度文章 on 云原生生态圈</description>
+    <title>linux on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/linux/</link>
+    <description>Recent content in linux on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Tue, 29 Dec 2020 12:40:06 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 26 Aug 2021 10:58:06 +0900</lastBuildDate>
     
-        <atom:link href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.devopsman.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
