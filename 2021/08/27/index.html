@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>
+        Linux虚拟网络设备bridge你真的搞懂了吗？ - 云原生生态圈
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="学好容器，掌握基础网络设备原理必不可少" />
+    <meta name="generator" content="Hugo 0.73.0 with theme pure" />
+    <title>Linux虚拟网络设备bridge你真的搞懂了吗？ - 云原生生态圈</title>
+    
+    
+    <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Linux虚拟网络设备bridge你真的搞懂了吗？" />
+<meta property="og:description" content="学好容器，掌握基础网络设备原理必不可少" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/2021/08/27/" />
+<meta property="article:published_time" content="2021-08-27T08:30:06+09:00" />
+<meta property="article:modified_time" content="2021-08-27T08:30:06+09:00" />
+<meta itemprop="name" content="Linux虚拟网络设备bridge你真的搞懂了吗？">
+<meta itemprop="description" content="学好容器，掌握基础网络设备原理必不可少">
+<meta itemprop="datePublished" content="2021-08-27T08:30:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-08-27T08:30:06&#43;09:00" />
+<meta itemprop="wordCount" content="4826">
+
+
+
+<meta itemprop="keywords" content="linux,容器,网络," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux虚拟网络设备bridge你真的搞懂了吗？"/>
+<meta name="twitter:description" content="学好容器，掌握基础网络设备原理必不可少"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/marionxue" target="_blank">
+            <img class="img-circle img-rotate" src="https://www.devopsman.cn/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">云原生生态圈</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">DevOps Enginer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">主页</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">归档</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">分类</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">标签</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-links">
+                <a href="/links/">
+                    <i class="icon icon-friendship"></i>
+                  <span class="menu-title">友链</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">关于</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>云原生生态圈·网站改版了...~</p><br/><img src="https://image.devopsman.cn/wechat2020/image-20201231225654650.png" width="200px" height="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link" rel="1">devops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="2">docker<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link" rel="4">kubernetes<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link" rel="1">linux<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/python/" class="tag-list-link" rel="1">python<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link" rel="1">redis<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link" rel="1">sql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link" rel="1">vscode<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link" rel="1">yaml<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link" rel="6">云原生<span
+               class="tag-list-count">6</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link" rel="1">内核调优<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link" rel="2">博客<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link" rel="2">安全<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link" rel="4">容器<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link" rel="1">工具类<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link" rel="1">年度文章<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="1">数据库<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link" rel="2">消息队列<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link" rel="1">监控<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link" rel="1">编程<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link" rel="2">网络<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link" rel="13">运维<span
+               class="tag-list-count">13</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link" rel="1">运维技术<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link" rel="1">镜像优化<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link">devops</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/git/" class="tag-list-link">git</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link">kubernetes</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link">redis</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link">sql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link">vscode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link">yaml</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link">云原生</a><span
+                    class="tag-list-count">6</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link">内核调优</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link">博客</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link">安全</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link">容器</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link">工具类</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link">年度文章</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">数据库</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link">消息队列</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link">监控</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link">编程</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link">网络</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link">运维</a><span
+                    class="tag-list-count">13</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link">运维技术</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link">镜像优化</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/27/" class="title">Linux虚拟网络设备bridge你真的搞懂了吗？</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-27 08:30:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-27</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/26/" class="title">解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-26 10:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/20/" class="title">K8s内功心法之3步排除Kubernetes故障</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-20 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-20</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/13/" class="title">18个分析Linux系统占用网络带宽的程序</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-13 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-13</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/12/" class="title">好家伙！原来Redis是这样用的（16个电商应用场景）</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-12 08:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-12</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2021/08/27/"
+    >Linux虚拟网络设备bridge你真的搞懂了吗？</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://www.devopsman.cn/2021/08/27/" class="article-date">
+  <time datetime="2021-08-27 08:30:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-27</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/linux/"> linux </a>
+    <a class="article-tag-link" href="/tags/%E5%AE%B9%E5%99%A8/"> 容器 </a>
+    <a class="article-tag-link" href="/tags/%E7%BD%91%E7%BB%9C/"> 网络 </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/2021/08/27/" class="leancloud_visitors"  data-flag-title="Linux虚拟网络设备bridge你真的搞懂了吗？">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 4826字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 10分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="什么是bridge">什么是bridge？</h2>
+<p>首先，bridge是一个虚拟网络设备，所以具有网络设备的特征，可以配置IP、MAC地址等；其次，bridge是一个虚拟交换机，和物理交换机有类似的功能。</p>
+<p>对于普通的网络设备来说，只有两端，从一端进来的数据会从另一端出去，如物理网卡从外面网络中收到的数据会转发给内核协议栈，而从协议栈过来的数据会转发到外面的物理网络中。</p>
+<p>而bridge不同，bridge有多个端口，数据可以从任何端口进来，进来之后从哪个口出去和物理交换机的原理差不多，要看mac地址。</p>
+<h2 id="创建bridge">创建bridge</h2>
+<p>我们先用iproute2创建一个bridge：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip link add name br0 type bridge
+dev@debian:~$ sudo ip link set br0 up
+</code></pre></div><p>当刚创建一个bridge时，它是一个独立的网络设备，只有一个端口连着协议栈，其它的端口啥都没连，这样的bridge没有任何实际功能，如下图所示：</p>
+<p><!-- raw HTML omitted --></p>
+<blockquote>
+<p>这里假设eth0是我们的物理网卡，IP地址是192.168.3.21，网关是192.168.3.1</p>
+</blockquote>
+<h2 id="将bridge和veth设备相连">将bridge和veth设备相连</h2>
+<p>创建一对veth设备，并配置上IP</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip link add veth0 type veth peer name veth1
+dev@debian:~$ sudo ip addr add 192.168.3.101/24 dev veth0
+dev@debian:~$ sudo ip addr add 192.168.3.102/24 dev veth1
+dev@debian:~$ sudo ip link set veth0 up
+dev@debian:~$ sudo ip link set veth1 up
+</code></pre></div><p>将veth0连上br0</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip link set dev veth0 master br0
+<span style="color:#75715e">#通过bridge link命令可以看到br0上连接了哪些设备</span>
+dev@debian:~$ sudo bridge link
+6: veth0 state UP : &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> master br0 state forwarding priority <span style="color:#ae81ff">32</span> cost <span style="color:#ae81ff">2</span>
+</code></pre></div><p>这时候，网络就变成了这个样子:</p>
+<p><!-- raw HTML omitted --></p>
+<blockquote>
+<p>这里为了画图方便，省略了IP地址前面的192.168，比如.3.21就表示192.168.3.21</p>
+</blockquote>
+<p>br0和veth0相连之后，发生了几个变化：</p>
+<ul>
+<li>br0和veth0之间连接起来了，并且是双向的通道</li>
+<li>协议栈和veth0之间变成了单通道，协议栈能发数据给veth0，但veth0从外面收到的数据不会转发给协议栈</li>
+<li>br0的mac地址变成了veth0的mac地址</li>
+</ul>
+<p>相当于bridge在veth0和协议栈之间插了一脚，在veth0上面做了点小动作，将veth0本来要转发给协议栈的数据给拦截了，全部转发给bridge了，同时bridge也可以向veth0发数据。</p>
+<p>下面来检验一下是不是这样的：</p>
+<p>通过veth0 ping veth1失败：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I veth0 192.168.3.102
+PING 192.168.2.1 <span style="color:#f92672">(</span>192.168.2.1<span style="color:#f92672">)</span> from 192.168.2.11 veth0: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+From 192.168.2.11 icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> Destination Host Unreachable
+
+--- 192.168.2.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">0</span> received, +1 errors, 100% packet loss, time 0ms
+</code></pre></div><p>为什么veth0加入了bridge之后，就ping不通veth2了呢？ 先抓包看看：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#由于veth0的arp缓存里面没有veth1的mac地址，所以ping之前先发arp请求</span>
+<span style="color:#75715e">#从veth1上抓包来看，veth1收到了arp请求，并且返回了应答</span>
+dev@debian:~$ sudo tcpdump -n -i veth1
+tcpdump: verbose output suppressed, use -v or -vv <span style="color:#66d9ef">for</span> full protocol decode
+listening on veth1, link-type EN10MB <span style="color:#f92672">(</span>Ethernet<span style="color:#f92672">)</span>, capture size <span style="color:#ae81ff">262144</span> bytes
+21:43:48.353509 ARP, Request who-has 192.168.3.102 tell 192.168.3.101, length <span style="color:#ae81ff">28</span>
+21:43:48.353518 ARP, Reply 192.168.3.102 is-at 26:58:a2:57:37:e9, length <span style="color:#ae81ff">28</span>
+
+<span style="color:#75715e">#从veth0上抓包来看，数据包也发出去了，并且也收到了返回</span>
+dev@debian:~$ sudo tcpdump -n -i veth0
+tcpdump: verbose output suppressed, use -v or -vv <span style="color:#66d9ef">for</span> full protocol decode
+listening on veth0, link-type EN10MB <span style="color:#f92672">(</span>Ethernet<span style="color:#f92672">)</span>, capture size <span style="color:#ae81ff">262144</span> bytes
+21:44:09.775392 ARP, Request who-has 192.168.3.102 tell 192.168.3.101, length <span style="color:#ae81ff">28</span>
+21:44:09.775400 ARP, Reply 192.168.3.102 is-at 26:58:a2:57:37:e9, length <span style="color:#ae81ff">28</span>
+
+<span style="color:#75715e">#再看br0上的数据包，发现只有应答</span>
+dev@debian:~$ sudo tcpdump -n -i br0
+tcpdump: verbose output suppressed, use -v or -vv <span style="color:#66d9ef">for</span> full protocol decode
+listening on br0, link-type EN10MB <span style="color:#f92672">(</span>Ethernet<span style="color:#f92672">)</span>, capture size <span style="color:#ae81ff">262144</span> bytes
+21:45:48.225459 ARP, Reply 192.168.3.102 is-at 26:58:a2:57:37:e9, length <span style="color:#ae81ff">28</span>
+</code></pre></div><p>从上面的抓包可以看出，去和回来的流程都没有问题，问题就出在veth0收到应答包后没有给协议栈，而是给了br0，于是协议栈得不到veth1的mac地址，从而通信失败。</p>
+<h2 id="给bridge配上ip">给bridge配上IP</h2>
+<p>通过上面的分析可以看出，给veth0配置IP没有意义，因为就算协议栈传数据包给veth0，应答包也回不来。这里我们就将veth0的IP让给bridge。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip addr del 192.168.3.101/24 dev veth0
+dev@debian:~$ sudo ip addr add 192.168.3.101/24 dev br0
+</code></pre></div><p>于是网络变成了这样子：</p>
+<p><!-- raw HTML omitted --></p>
+<blockquote>
+<p>其实veth0和协议栈之间还是有联系的，但由于veth0没有配置IP，所以协议栈在路由的时候不会将数据包发给veth0，就算强制要求数据包通过veth0发送出去，但由于veth0从另一端收到的数据包只会给br0，所以协议栈还是没法收到相应的arp应答包，导致通信失败。
+这里为了表达更直观，将协议栈和veth0之间的联系去掉了，veth0相当于一根网线。</p>
+</blockquote>
+<p>再通过br0 ping一下veth1，结果成功</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I br0 192.168.3.102
+PING 192.168.3.102 <span style="color:#f92672">(</span>192.168.3.102<span style="color:#f92672">)</span> from 192.168.3.101 br0: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.3.102: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>0.121 ms
+
+--- 192.168.3.102 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 0.121/0.121/0.121/0.000 ms
+</code></pre></div><p>但ping网关还是失败，因为这个bridge上只有两个网络设备，分别是192.168.3.101和192.168.3.102，br0不知道192.168.3.1在哪。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I br0 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> from 192.168.3.101 br0: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+From 192.168.3.101 icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> Destination Host Unreachable
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">0</span> received, +1 errors, 100% packet loss, time 0ms
+</code></pre></div><h2 id="将物理网卡添加到bridge">将物理网卡添加到bridge</h2>
+<p>将eth0添加到br0上：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip link set dev eth0 master br0
+dev@debian:~$ sudo bridge link
+2: eth0 state UP : &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> master br0 state forwarding priority <span style="color:#ae81ff">32</span> cost <span style="color:#ae81ff">4</span>
+6: veth0 state UP : &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> master br0 state forwarding priority <span style="color:#ae81ff">32</span> cost <span style="color:#ae81ff">2</span>
+</code></pre></div><p>br0根本不区分接入进来的是物理设备还是虚拟设备，对它来说都一样的，都是网络设备，所以当eth0加入br0之后，落得和上面veth0一样的下场，从外面网络收到的数据包将无条件的转发给br0，自己变成了一根网线。</p>
+<p>这时通过eth0来ping网关失败，但由于br0通过eth0这根网线连上了外面的物理交换机，所以连在br0上的设备都能ping通网关，这里连上的设备就是veth1和br0自己，veth1是通过veth0这根网线连上去的，而br0可以理解为自己有一块自带的网卡。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#通过eth0来ping网关失败</span>
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I eth0 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> from 192.168.3.21 eth0: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+From 192.168.3.21 icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> Destination Host Unreachable
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">0</span> received, +1 errors, 100% packet loss, time 0ms
+
+<span style="color:#75715e">#通过br0来ping网关成功</span>
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I br0 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> from 192.168.3.101 br0: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.3.1: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>27.5 ms
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 27.518/27.518/27.518/0.000 ms
+
+<span style="color:#75715e">#通过veth1来ping网关成功</span>
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> -I veth1 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> from 192.168.3.102 veth1: 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.3.1: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>68.8 ms
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 68.806/68.806/68.806/0.000 ms
+</code></pre></div><p>由于eth0已经变成了和网线差不多的功能，所以在eth0上配置IP已经没有什么意义了，并且还会影响协议栈的路由选择，比如如果上面ping的时候不指定网卡的话，协议栈有可能优先选择eth0，导致ping不通，所以这里需要将eth0上的IP去掉。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#在本人的测试机器上，由于eth0上有IP，</span>
+<span style="color:#75715e">#访问192.168.3.0/24网段时，会优先选择eth0</span>
+dev@debian:~$ sudo route -v
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.3.1     0.0.0.0         UG    <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> eth0
+link-local      *               255.255.0.0     U     <span style="color:#ae81ff">1000</span>   <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> eth0
+192.168.3.0     *               255.255.255.0   U     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> eth0
+192.168.3.0     *               255.255.255.0   U     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> veth1
+192.168.3.0     *               255.255.255.0   U     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> br0
+
+<span style="color:#75715e">#由于eth0已结接入了br0，所有它收到的数据包都会转发给br0，</span>
+<span style="color:#75715e">#于是协议栈收不到arp应答包，导致ping失败</span>
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+From 192.168.3.21 icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> Destination Host Unreachable
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">0</span> received, +1 errors, 100% packet loss, time 0ms
+
+<span style="color:#75715e">#将eth0上的IP删除掉</span>
+dev@debian:~$ sudo ip addr del 192.168.3.21/24 dev eth0
+
+<span style="color:#75715e">#再ping一次，成功</span>
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.3.1: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>3.91 ms
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 3.916/3.916/3.916/0.000 ms
+
+<span style="color:#75715e">#这是因为eth0没有IP之后，路由表里面就没有它了，于是数据包会从veth1出去</span>
+dev@debian:~$ sudo route -v
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.3.0     *               255.255.255.0   U     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> veth1
+192.168.3.0     *               255.255.255.0   U     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> br0
+<span style="color:#75715e">#从这里也可以看出，由于原来的默认路由走的是eth0，所以当eth0的IP被删除之后，</span>
+<span style="color:#75715e">#默认路由不见了，想要连接192.168.3.0/24以外的网段的话，需要手动将默认网关加回来</span>
+
+<span style="color:#75715e">#添加默认网关，然后再ping外网成功</span>
+dev@debian:~$ sudo ip route add default via 192.168.3.1
+dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> baidu.com
+PING baidu.com <span style="color:#f92672">(</span>111.13.101.208<span style="color:#f92672">)</span> 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 111.13.101.208: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">51</span> time<span style="color:#f92672">=</span>30.6 ms
+
+--- baidu.com ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 30.690/30.690/30.690/0.000 ms
+</code></pre></div><p>经过上面一系列的操作后，网络变成了这个样子：</p>
+<p><!-- raw HTML omitted --></p>
+<p>上面的操作中有几点需要注意：</p>
+<ul>
+<li>
+<p>如果是在虚拟机上做上述操作，记得打开网卡的混杂模式（不是在Linux里面，而是在虚拟机的配置上面，如VirtualBox上相应虚拟机的网卡配置项里面），不然veth1的网络会不通，因为eth0不在混杂模式的话，会丢掉目的mac地址是veth1的数据包</p>
+</li>
+<li>
+<p>上面虽然通了，但由于<a href="https://link.segmentfault.com/?url=https%3A%2F%2Flwn.net%2FArticles%2F45373%2F">Linux下arp的特性</a>，当协议栈收到外面的arp请求时，不管是问101还是102，都会回复两个arp应答，分别包含br0和veth1的mac地址，也即Linux觉得外面发给101和102的数据包从br0和veth1进协议栈都一样，没有区别。由于回复了两个arp应答，而外面的设备只会用其中的一个，并且具体用哪个会随着时间发生变化，于是导致一个问题，就是外面回复给102的数据包可能从101的br0上进来，即通过102 ping外面时，可能在veth1抓不到回复包，而在br0上能抓到回复包。说明数据流在交换机那层没有完全的隔离开，br0和veth1会收到对方的IP应答包。为了解决上述问题，可以配置rp_filter, arp_filter, arp_ignore, arp_announce等参数，但不建议这么做，容易出错，调试比较麻烦。</p>
+</li>
+<li>
+<p>在无线网络环境中，情况会变得比较复杂，因为无线网络需要登录，登陆后无线路由器只认一个mac地址，所有从这台机器出去的mac地址都必须是那一个，于是通过无线网卡上网的机器上的所有虚拟机想要上网的话，都必须依赖虚拟机管理软件（如VirtualBox）将每个虚拟机的网卡mac地址转成出口的mac地址（即无线网卡的mac地址），数据包回来的时候还要转回来，所以如果一个IP有两个ARP应答包的话，有可能导致mac地址的转换有问题，导致网络不通，或者有时通有时不通。解决办法就是将连接进br0的所有设备的mac地址都改成和eth0一样的mac地址，因为eth0的mac地址会被虚拟机正常的做转换。在上面的例子中，执行下面的命令即可：</p>
+<pre><code class="language-routeros" data-lang="routeros">dev@debian:~$ sudo ip link set dev veth1 down
+#08:00:27:3b:0d:b9是eth0的mac地址
+dev@debian:~$ sudo ip link set dev veth1 address 08:00:27:3b:0d:b9
+dev@debian:~$ sudo ip link set dev veth1 up
+</code></pre></li>
+</ul>
+<h2 id="bridge必须要配置ip吗">bridge必须要配置IP吗？</h2>
+<p>在我们常见的物理交换机中，有可以配置IP和不能配置IP两种，不能配置IP的交换机一般通过com口连上去做配置（更简单的交换机连com口的没有，不支持任何配置），而能配置IP的交换机可以在配置好IP之后，通过该IP远程连接上去做配置，从而更方便。</p>
+<p>bridge就属于后一种交换机，自带虚拟网卡，可以配置IP，该虚拟网卡一端连在bridge上，另一端跟协议栈相连。和物理交换机一样，bridge的工作不依赖于该虚拟网卡，但bridge工作不代表机器能连上网，要看组网方式。</p>
+<p>删除br0上的IP:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ sudo ip addr del 192.168.3.101/24 dev br0
+</code></pre></div><p>于是网络变成了这样子，相当于br0的一个端口通过eth0连着交换机，另一个端口通过veth0连着veth1：</p>
+<p><!-- raw HTML omitted --></p>
+<p>ping网关成功，说明这种情况下br0不配置IP对通信没有影响，数据包还能从veth1出去：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dev@debian:~$ ping -c <span style="color:#ae81ff">1</span> 192.168.3.1
+PING 192.168.3.1 <span style="color:#f92672">(</span>192.168.3.1<span style="color:#f92672">)</span> 56<span style="color:#f92672">(</span>84<span style="color:#f92672">)</span> bytes of data.
+<span style="color:#ae81ff">64</span> bytes from 192.168.3.1: icmp_seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> time<span style="color:#f92672">=</span>1.24 ms
+
+--- 192.168.3.1 ping statistics ---
+<span style="color:#ae81ff">1</span> packets transmitted, <span style="color:#ae81ff">1</span> received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev <span style="color:#f92672">=</span> 1.242/1.242/1.242/0.000 ms
+</code></pre></div><blockquote>
+<p>上面如果没有veth0和veth1的话，删除br0上的IP后，网络将会不通，因为没有设备和协议栈完全相连</p>
+</blockquote>
+<h3 id="bridge常用场景">bridge常用场景</h3>
+<p>上面通过例子展示了bridge的功能，但例子中的那种部署方式没有什么实际用途，还不如在一个网卡上配置多个IP地址来的直接。这里来介绍两种常见的部署方式。</p>
+<h4 id="虚拟机">虚拟机</h4>
+<p>虚拟机通过tun/tap或者其它类似的虚拟网络设备，将虚拟机内的网卡同br0连接起来，这样就达到和真实交换机一样的效果，虚拟机发出去的数据包先到达br0，然后由br0交给eth0发送出去，数据包都不需要经过host机器的协议栈，效率高。</p>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210826230024237.png" alt=""></p>
+<h4 id="docker">docker</h4>
+<p>由于容器运行在自己单独的network namespace里面，所以都有自己单独的协议栈，情况和上面的虚拟机差不多，但它采用了另一种方式来和外界通信：</p>
+<p><img src="https://gitee.com/cloudnative/website-images/raw/master/devopsman.cn/2021/0701/image-20210826230044400.png" alt=""></p>
+<p>容器中配置网关为.9.1，发出去的数据包先到达br0，然后交给host机器的协议栈，由于目的IP是外网IP，且host机器开启了IP forward功能，于是数据包会通过eth0发送出去，由于.9.1是内网IP，所以一般发出去之前会先做NAT转换（NAT转换和IP forward功能都需要自己配置）。由于要经过host机器的协议栈，并且还要做NAT转换，所以性能没有上面虚拟机那种方案好，优点是容器处于内网中，安全性相对要高点。（由于数据包统一由IP层从eth0转发出去，所以不存在mac地址的问题，在无线网络环境下也工作良好）</p>
+<blockquote>
+<p>上面两种部署方案中，同一网段的每个网卡都有自己单独的协议栈，所以不存在上面说的多个ARP的问题</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://link.segmentfault.com/?url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Flinux%2F1310_xiawc_networkdevice%2F">Linux 上的基础网络设备详解</a></li>
+<li><a href="https://link.segmentfault.com/?url=https%3A%2F%2Flwn.net%2FArticles%2F45373%2F">Harping on ARP</a></li>
+<li><a href="https://link.segmentfault.com/?url=https%3A%2F%2Fwiki.archlinux.org%2Findex.php%2FMAC_address_spoofing">MAC address spoofing</a></li>
+<li><a href="https://link.segmentfault.com/?url=https%3A%2F%2Fwiki.linuxfoundation.org%2Fnetworking%2Fbridge%23it-doesn-t-work-with-my-wireless-card">It doesn&rsquo;t work with my Wireless card!</a></li>
+</ul>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/2021/08/27/" title="Linux虚拟网络设备bridge你真的搞懂了吗？" target="_blank" rel="external">https://www.devopsman.cn/2021/08/27/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/2021/08/26/" title="解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

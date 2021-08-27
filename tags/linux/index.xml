@@ -6,17 +6,17 @@
     <description>Recent content in linux on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Thu, 26 Aug 2021 10:58:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 27 Aug 2021 08:30:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Linux虚拟网络设备bridge你真的搞懂了吗？</title>
-      <link>https://www.devopsman.cn/2021/08/26/</link>
-      <pubDate>Thu, 26 Aug 2021 10:58:06 +0900</pubDate>
+      <link>https://www.devopsman.cn/2021/08/27/</link>
+      <pubDate>Fri, 27 Aug 2021 08:30:06 +0900</pubDate>
       
-      <guid>https://www.devopsman.cn/2021/08/26/</guid>
+      <guid>https://www.devopsman.cn/2021/08/27/</guid>
       <description>什么是bridge？ 首先，bridge是一个虚拟网络设备，所以具有网络设备的特征，可以配置IP、MAC地址等；其次，bridge是一个虚拟交</description>
     </item>
     

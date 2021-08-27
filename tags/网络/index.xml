@@ -6,10 +6,19 @@
     <description>Recent content in 网络 on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Fri, 10 Jul 2020 12:00:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 27 Aug 2021 08:30:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux虚拟网络设备bridge你真的搞懂了吗？</title>
+      <link>https://www.devopsman.cn/2021/08/27/</link>
+      <pubDate>Fri, 27 Aug 2021 08:30:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/27/</guid>
+      <description>什么是bridge？ 首先，bridge是一个虚拟网络设备，所以具有网络设备的特征，可以配置IP、MAC地址等；其次，bridge是一个虚拟交</description>
+    </item>
     
     <item>
       <title>解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</title>
@@ -180,15 +189,6 @@
       
       <guid>https://www.devopsman.cn/2020/06/10/</guid>
       <description>Lazydocker的使用背景 平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如Docker的各种</description>
-    </item>
-    
-    <item>
-      <title>ECS上手把手搭建个人博客系统wordpress</title>
-      <link>https://www.devopsman.cn/2020/06/10/</link>
-      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/06/10/</guid>
-      <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
     </item>
     
   </channel>

@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Thu, 26 Aug 2021 10:58:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 27 Aug 2021 08:30:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ECS上手把手搭建个人博客系统wordpress</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
+    </item>
     
     <item>
       <title>Mac下手把手带你打造骚气的命令行终端</title>
