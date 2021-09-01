@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>
+        基于阿里云最佳安全实践的Docker基线标准 - 云原生生态圈
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Docker安全基线标准" />
+    <meta name="generator" content="Hugo 0.73.0 with theme pure" />
+    <title>基于阿里云最佳安全实践的Docker基线标准 - 云原生生态圈</title>
+    
+    
+    <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="基于阿里云最佳安全实践的Docker基线标准" />
+<meta property="og:description" content="Docker安全基线标准" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.devopsman.cn/2021/09/01/" />
+<meta property="article:published_time" content="2021-09-01T21:58:06+09:00" />
+<meta property="article:modified_time" content="2021-09-01T21:58:06+09:00" />
+<meta itemprop="name" content="基于阿里云最佳安全实践的Docker基线标准">
+<meta itemprop="description" content="Docker安全基线标准">
+<meta itemprop="datePublished" content="2021-09-01T21:58:06&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-01T21:58:06&#43;09:00" />
+<meta itemprop="wordCount" content="3545">
+
+
+
+<meta itemprop="keywords" content="运维,docker," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于阿里云最佳安全实践的Docker基线标准"/>
+<meta name="twitter:description" content="Docker安全基线标准"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/marionxue" target="_blank">
+            <img class="img-circle img-rotate" src="https://www.devopsman.cn/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">云原生生态圈</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">DevOps Enginer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="想要查找什么..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">主页</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">归档</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">分类</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">标签</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-links">
+                <a href="/links/">
+                    <i class="icon icon-friendship"></i>
+                  <span class="menu-title">友链</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">关于</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>云原生生态圈·网站改版了...~</p><br/><img src="https://image.devopsman.cn/wechat2020/image-20201231225654650.png" width="200px" height="200px" />
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://www.devopsman.cn/tags/alertmanager/" class="tag-list-link" rel="1">alertmanager<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link" rel="1">devops<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="3">docker<span
+               class="tag-list-count">3</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link" rel="4">kubernetes<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link" rel="1">linux<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/prometheus/" class="tag-list-link" rel="1">prometheus<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/python/" class="tag-list-link" rel="1">python<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link" rel="1">redis<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link" rel="1">sql<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link" rel="1">vscode<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link" rel="1">yaml<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link" rel="6">云原生<span
+               class="tag-list-count">6</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link" rel="1">内核调优<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link" rel="2">博客<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link" rel="2">安全<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link" rel="4">容器<span
+               class="tag-list-count">4</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link" rel="1">工具类<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link" rel="1">年度文章<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link" rel="1">数据库<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link" rel="2">消息队列<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link" rel="1">监控<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link" rel="1">编程<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link" rel="2">网络<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link" rel="14">运维<span
+               class="tag-list-count">14</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link" rel="1">运维技术<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link" rel="1">镜像优化<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> 分类</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> 标签</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/alertmanager/" class="tag-list-link">alertmanager</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link">devops</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
+                    class="tag-list-count">3</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/git/" class="tag-list-link">git</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/kubernetes/" class="tag-list-link">kubernetes</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/prometheus/" class="tag-list-link">prometheus</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/python/" class="tag-list-link">python</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/redis/" class="tag-list-link">redis</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/sql/" class="tag-list-link">sql</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/vscode/" class="tag-list-link">vscode</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/yaml/" class="tag-list-link">yaml</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="tag-list-link">云原生</a><span
+                    class="tag-list-count">6</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%86%85%E6%A0%B8%E8%B0%83%E4%BC%98/" class="tag-list-link">内核调优</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%8D%9A%E5%AE%A2/" class="tag-list-link">博客</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/" class="tag-list-link">安全</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%AE%B9%E5%99%A8/" class="tag-list-link">容器</a><span
+                    class="tag-list-count">4</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="tag-list-link">工具类</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E5%B9%B4%E5%BA%A6%E6%96%87%E7%AB%A0/" class="tag-list-link">年度文章</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="tag-list-link">数据库</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="tag-list-link">消息队列</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%9B%91%E6%8E%A7/" class="tag-list-link">监控</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BC%96%E7%A8%8B/" class="tag-list-link">编程</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E7%BD%91%E7%BB%9C/" class="tag-list-link">网络</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link">运维</a><span
+                    class="tag-list-count">14</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link">运维技术</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E9%95%9C%E5%83%8F%E4%BC%98%E5%8C%96/" class="tag-list-link">镜像优化</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/09/01/" class="title">基于阿里云最佳安全实践的Docker基线标准</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-09-01 21:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-09-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/31/" class="title">prometheus钉钉告警通知实现</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-31 10:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-31</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/27/" class="title">Linux虚拟网络设备bridge你真的搞懂了吗？</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-27 08:30:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-27</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/26/" class="title">解锁GitHub新姿势·只需一个.打开Vscode在线编辑代码</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-26 10:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-26</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/20/" class="title">K8s内功心法之3步排除Kubernetes故障</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-20 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-20</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">文章目录</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2021/09/01/"
+    >基于阿里云最佳安全实践的Docker基线标准</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://www.devopsman.cn/2021/09/01/" class="article-date">
+  <time datetime="2021-09-01 21:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-09-01</time>
+</a>
+</span>
+  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
+    <a class="article-tag-link" href="/tags/docker/"> docker </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://www.devopsman.cn/2021/09/01/" class="leancloud_visitors"  data-flag-title="基于阿里云最佳安全实践的Docker基线标准">0</span>
+    </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 3545字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 8分 </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <h2 id="审核docker文件和目录">审核Docker文件和目录</h2>
+<h3 id="描述">描述</h3>
+<p>除了审核常规的Linux文件系统和系统调用之外，还审核所有与Docker相关的文件和目录。 Docker守护程序以“ root”特权运行。 其行为取决于某些关键文件和目录。如 /var/lib/docker、/etc/docker、docker.service、 docker.socket、/usr/bin/docker-containerd、/usr/bin/docker-runc等文件和目录</p>
+<h3 id="加固建议">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">在/etc/audit/audit.rules与/etc/audit/rules.d/audit.rules文件中添加以下行：
+<span style="color:#e6db74">```</span>
+-w /var/lib/docker -k docker
+-w /etc/docker -k docker
+-w /usr/lib/systemd/system/docker.service -k docker
+-w /usr/lib/systemd/system/docker.socket -k docker
+-w /usr/bin/docker-containerd -k docker
+-w /usr/bin/docker-runc -k docker
+<span style="color:#e6db74">```</span>
+然后，重新启动audit程序。 例如
+<span style="color:#e6db74">```</span>
+service auditd restart
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="限制容器之间的网络流量">限制容器之间的网络流量</h2>
+<h3 id="描述-1">描述</h3>
+<p>默认情况下，同一主机上的容器之间允许所有网络通信。 如果不需要，请限制所有容器间的通信。 将需要相互通信的特定容器链接在一起。默认情况下，同一主机上所有容器之间都启用了不受限制的网络流量。 因此，每个容器都有可能读取同一主机上整个容器网络上的所有数据包。 这可能会导致意外和不必要的信息泄露给其他容器。 因此，限制容器间的通信。</p>
+<h3 id="加固建议-1">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">在守护程序模式下运行docker并传递<span style="color:#e6db74">&#39;--icc = false&#39;</span>作为参数。
+例如，
+<span style="color:#e6db74">```</span>
+/usr/bin/dockerd --icc<span style="color:#f92672">=</span>false
+<span style="color:#e6db74">```</span>
+若使用systemctl管理docker服务则需要编辑
+<span style="color:#e6db74">```</span>
+/usr/lib/systemd/system/docker.service
+<span style="color:#e6db74">```</span>
+文件中的<span style="color:#e6db74">`</span>ExecStart<span style="color:#e6db74">`</span>参数添加 <span style="color:#e6db74">`</span>--icc<span style="color:#f92672">=</span>false<span style="color:#e6db74">`</span>选项
+然后重启docker服务
+<span style="color:#e6db74">```</span>
+systemctl daemon-reload
+systemctl restart docker
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="不要使用特权容器">不要使用特权容器</h2>
+<h3 id="描述-2">描述</h3>
+<p>使用&ndash;privileged标志将所有Linux内核功能赋予容器，从而覆盖&ndash;cap-add和&ndash;cap-drop标志。 确保不使用它。 &ndash;privileged标志为容器提供了所有功能，并且还解除了设备cgroup控制器强制执行的所有限制。 换句话说，容器可以完成主机可以做的几乎所有事情。 存在此标志是为了允许特殊用例，例如在Docker中运行Docker</p>
+<h3 id="加固建议-2">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">不要使用<span style="color:#e6db74">`</span>--privileged<span style="color:#e6db74">`</span>标志运行容器
+</code></pre></div><h2 id="不要在容器上挂载敏感的主机系统目录">不要在容器上挂载敏感的主机系统目录</h2>
+<h3 id="描述-3">描述</h3>
+<p>不允许将以下敏感的主机系统目录作为容器卷挂载，尤其是在读写模式下。 <code>/boot /dev /etc /lib /proc /sys /usr</code> 如果敏感目录以读写模式挂载，则可以对那些敏感目录中的文件进行更改。 这些更改可能会降低安全隐患或不必要的更改，这些更改可能会使Docker主机处于受损状态。 如果您是k8s或其他容器编排软件编排的容器，请依照相应的安全策略配置或忽略。</p>
+<h3 id="加固建议-3">加固建议</h3>
+<pre><code>不要在容器上挂载主机敏感目录，尤其是在读写模式下
+</code></pre><h2 id="限制容器的内存使用量">限制容器的内存使用量</h2>
+<h3 id="描述-4">描述</h3>
+<p>默认情况下，Docker主机上的所有容器均等地共享资源。 通过使用Docker主机的资源管理功能（例如内存限制），您可以控制容器可能消耗的内存量。 默认情况下，容器可以使用主机上的所有内存。 您可以使用内存限制机制来防止由于一个容器消耗主机的所有资源而导致的服务拒绝，从而使同一主机上的其他容器无法执行其预期的功能。 对内存没有限制可能会导致一个问题，即一个容器很容易使整个系统不稳定并因此无法使用。</p>
+<h3 id="加固建议-4">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">仅使用所需的内存来运行容器。 始终使用<span style="color:#e6db74">&#39;--memory&#39;</span>参数运行容器。 您应该按以下方式启动容器：
+<span style="color:#e6db74">```</span>
+docker run --interactive --tty --memory 256m &lt;Container Image Name or ID&gt;
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="不共享主机的进程名称空间">不共享主机的进程名称空间</h2>
+<h3 id="描述-5">描述</h3>
+<p>进程ID（PID）命名空间隔离了进程ID号空间，这意味着不同PID命名空间中的进程可以具有相同的PID。 这是容器和主机之间的进程级别隔离。 PID名称空间提供了流程分离。 PID命名空间删除了系统进程的视图，并允许进程ID重复使用，包括PID1。如果主机的PID命名空间与容器共享，则它将基本上允许容器内的进程查看主机上的所有进程。 系统。 这破坏了主机和容器之间的进程级别隔离的好处。 有权访问容器的人最终可以知道主机系统上正在运行的所有进程，甚至可以从容器内部杀死主机系统进程。 这可能是灾难性的。 因此，请勿与容器共享主机的进程名称空间。</p>
+<h3 id="加固建议-5">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">不要使用<span style="color:#e6db74">&#39;--pid = host&#39;</span>参数启动容器。
+</code></pre></div><h2 id="将容器的根文件系统挂载为只读">将容器的根文件系统挂载为只读</h2>
+<h3 id="描述-6">描述</h3>
+<p>容器的根文件系统应被视为“黄金映像”，并且应避免对根文件系统的任何写操作。 您应该显式定义用于写入的容器卷。 您不应该在容器中写入数据。 属于容器的数据量应明确定义和管理。 在管理员控制他们希望开发人员在何处写入文件和错误的许多情况下，这很有用。</p>
+<h3 id="加固建议-6">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">添加<span style="color:#e6db74">&#34;--read-only&#34;</span>标志，以允许将容器的根文件系统挂载为只读。 可以将其与卷结合使用，以强制容器的过程仅写入要保留的位置。
+您应该按以下方式运行容器：
+<span style="color:#e6db74">```</span>
+docker run --interactive --tty --read-only --volume &lt;writable-volume&gt; &lt;Container Image Name or ID&gt; &lt;Command&gt;
+<span style="color:#e6db74">```</span>
+如果您是k8s或其他容器编排软件编排的容器，请按照相应的安全策略配置或忽略。
+</code></pre></div><h2 id="确保dockersock不被挂载">确保docker.sock不被挂载</h2>
+<h3 id="描述-7">描述</h3>
+<p>docker.sock挂载的容器容易被获取特殊权限，一旦危险进入到docker中，严重影响了宿主机的安全</p>
+<h3 id="加固建议-7">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">按照提示&lt;image name&gt;&lt;container name&gt;查找启动的docker容器  ，
+以非docker挂载docker.sock的形式重新启动容器           
+<span style="color:#e6db74">```</span>
+docker stop &lt;container name&gt;
+<span style="color:#e6db74">```</span>             
+ <span style="color:#e6db74">```</span>
+docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> &lt;image name&gt;或docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> &lt;image id&gt;
+<span style="color:#e6db74">```</span>              
+</code></pre></div><h2 id="为docker启用内容信任">为Docker启用内容信任</h2>
+<h3 id="描述-8">描述</h3>
+<p>默认情况下禁用内容信任。 您应该启用它。 内容信任提供了将数字签名用于发送到远程Docker注册表和从远程Docker注册表接收的数据的功能。 这些签名允许客户端验证特定图像标签的完整性和发布者。 这确保了容器图像的出处</p>
+<h3 id="加固建议-8">加固建议</h3>
+<pre><code>要在bash shell中启用内容信任，请输入以下命令：`export DOCKER_CONTENT_TRUST=1`
+或者，在您的配置文件中设置此环境变量，以便在每次登录时启用内容信任。
+内容信任目前仅适用于公共Docker Hub的用户。 当前不适用于Docker Trusted Registry或私有注册表。
+</code></pre><h2 id="确认docker相关的文件具有合适的权限">确认Docker相关的文件具有合适的权限</h2>
+<h3 id="描述-9">描述</h3>
+<p>确保可能包含敏感参数的文件和目录的安全对确保Docker守护程序的正确和安全运行至关重要</p>
+<h3 id="加固建议-9">加固建议</h3>
+<p>执行以下命令为docker相关文件配置权限：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">```</span>
+chown root:root /usr/lib/systemd/system/docker.service
+chmod <span style="color:#ae81ff">644</span> /usr/lib/systemd/system/docker.service
+chown root:root /usr/lib/systemd/system/docker.socket
+chmod <span style="color:#ae81ff">644</span> /usr/lib/systemd/system/docker.socket
+chown root:root /etc/docker
+chmod <span style="color:#ae81ff">755</span> /etc/docker
+<span style="color:#e6db74">```</span>
+<span style="color:#75715e"># 若文件路径与实际系统中不同可以使用以下命令获取文件路径：</span>
+<span style="color:#e6db74">```</span>
+systemctl show -p FragmentPath docker.socket
+systemctl show -p FragmentPath docker.service
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="不要使用aufs存储驱动程序">不要使用aufs存储驱动程序</h2>
+<h3 id="描述-10">描述</h3>
+<p><code>aufs</code>存储驱动程序是最早的存储驱动程序。 它基于Linux内核补丁集，该补丁集不太可能合并到主要Linux内核中。 还已知<code>aufs</code>驱动程序会导致一些严重的内核崩溃。 &lsquo;aufs&rsquo;刚刚获得了Docker的支持。 最重要的是，许多使用最新Linux内核的Linux发行版都不支持<code>aufs</code>驱动程序。</p>
+<h3 id="加固建议-10">加固建议</h3>
+<p>不要明确使用<code>aufs</code>作为存储驱动程序。例如，请勿按以下方式启动Docker守护程序：若以systemctl管理docker服务则需要编辑<code>/usr/lib/systemd/system/docker.service</code>的ExecStart参数删除<code>--storage-driver aufs</code>重启docker服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">```</span>
+systemctl daemon-reload
+systemctl restart docker
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="允许docker对iptables进行更改">允许Docker对iptables进行更改</h2>
+<h3 id="描述-11">描述</h3>
+<p>iptables用于在Linux内核中设置，维护和检查IP数据包过滤器规则表。 允许Docker守护程序对iptables进行更改。 如果您选择这样做，Docker将永远不会对您的系统iptables规则进行更改。 如果允许，Docker服务器将根据您为容器选择网络选项的方式自动对iptables进行所需的更改。 建议让Docker服务器自动对iptables进行更改，以避免网络配置错误，这可能会妨碍容器之间以及与外界的通信。 此外，每次选择运行容器或修改网络选项时，它都可以避免更新iptables的麻烦。</p>
+<h3 id="加固建议-11">加固建议</h3>
+<p>不使用<code>--iptables = false</code>参数运行Docker守护程序。 若以systemctl管理docker服务则需要编辑<code>/usr/lib/systemd/system/docker.service</code>的ExecStart参数删除<code>--iptables = false</code>，
+重启docker服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">```</span>
+systemctl daemon-reload
+systemctl restart docker
+<span style="color:#e6db74">```</span>
+</code></pre></div><h2 id="设置日志记录级别">设置日志记录级别</h2>
+<h3 id="描述-12">描述</h3>
+<p>设置适当的日志级别，将Docker守护程序配置为记录您以后想要查看的事件。 基本日志级别为“ info”及更高版本将捕获除调试日志以外的所有日志。 直到且除非有必要，否则您不应在“debug”日志级别运行Docker守护程序</p>
+<h3 id="加固建议-12">加固建议</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 运行Docker守护程序，如下所示：</span>
+<span style="color:#e6db74">```</span>
+dockerd --log-level<span style="color:#f92672">=</span>info
+<span style="color:#e6db74">```</span>
+<span style="color:#75715e"># 若以systemctl管理docker服务则需要编辑`/usr/lib/systemd/system/docker.service`的ExecStart参数添加`--log-level=&#34;info&#34;`，并重启docker</span>
+<span style="color:#e6db74">```</span>
+systemctl stop docker
+systemctl start docker
+<span style="color:#e6db74">```</span>
+</code></pre></div>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接: </strong>
+      <a href="https://www.devopsman.cn/2021/09/01/" title="基于阿里云最佳安全实践的Docker基线标准" target="_blank" rel="external">https://www.devopsman.cn/2021/09/01/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/marionxue" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://www.devopsman.cn/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/marionxue" target="_blank"><span class="text-dark">云原生生态圈</span><small class="ml-1x">DevOps Enginer</small></a></h3>
+        <div>一个爱分享的攻城狮~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://www.devopsman.cn/2021/08/31/" title="prometheus钉钉告警通知实现"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="文章目录" role="button">
+                    <span>[&nbsp;</span><span>文章目录</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-twitter"></i></a></li>
+    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-weibo"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2016  -
+    2021
+    
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+<script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(未命名)',
+            },
+            ROOT_URL: 'https:\/\/www.devopsman.cn',
+            CONTENT_URL: 'https:\/\/www.devopsman.cn\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://www.devopsman.cn/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>

@@ -11,6 +11,24 @@
     
     
     <item>
+      <title>基于阿里云最佳安全实践的Docker基线标准</title>
+      <link>https://www.devopsman.cn/2021/09/01/</link>
+      <pubDate>Wed, 01 Sep 2021 21:58:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/09/01/</guid>
+      <description>审核Docker文件和目录 描述 除了审核常规的Linux文件系统和系统调用之外，还审核所有与Docker相关的文件和目录。 Docker守护程序</description>
+    </item>
+    
+    <item>
+      <title>prometheus钉钉告警通知实现</title>
+      <link>https://www.devopsman.cn/2021/08/31/</link>
+      <pubDate>Tue, 31 Aug 2021 10:58:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/08/31/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linux虚拟网络设备bridge你真的搞懂了吗？</title>
       <link>https://www.devopsman.cn/2021/08/27/</link>
       <pubDate>Fri, 27 Aug 2021 08:30:06 +0900</pubDate>
@@ -170,24 +188,6 @@
       
       <guid>https://www.devopsman.cn/2020/07/10/</guid>
       <description>前段时间，发现新运维社区的赵班长(赵舜东)更新了一版《运维知识体系 v3.1》其中新增了一些目前比较火的、成熟的运维解决方案，也包括容器编排，</description>
-    </item>
-    
-    <item>
-      <title>如何确定CPU消耗在哪些函数上</title>
-      <link>https://www.devopsman.cn/2020/07/04/</link>
-      <pubDate>Sat, 04 Jul 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/07/04/</guid>
-      <description>文章背景 日常的工作中，会收到一堆CPU使用率过高的告警邮件，遇到某台服务的CPU被占满了，这时候我们就要去查看是什么进程将服务器的CPU资源</description>
-    </item>
-    
-    <item>
-      <title>Docker容器命令行可视化工具-Lazydocker</title>
-      <link>https://www.devopsman.cn/2020/06/10/</link>
-      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2020/06/10/</guid>
-      <description>Lazydocker的使用背景 平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如Docker的各种</description>
     </item>
     
   </channel>

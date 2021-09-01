@@ -2,7 +2,7 @@
 <html lang="zh">
   <head>
     <title>
-        ECS上手把手搭建个人博客系统wordpress - 云原生生态圈
+        python脚本分析拉钩网站招聘信息 - 云原生生态圈
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,32 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="wordpress博客网站搭建指南" />
+    <meta name="description" content="学习xlwt和requests的模块爬取数据" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>ECS上手把手搭建个人博客系统wordpress - 云原生生态圈</title>
+    <title>python脚本分析拉钩网站招聘信息 - 云原生生态圈</title>
     
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="ECS上手把手搭建个人博客系统wordpress" />
-<meta property="og:description" content="wordpress博客网站搭建指南" />
+    <meta property="og:title" content="python脚本分析拉钩网站招聘信息" />
+<meta property="og:description" content="学习xlwt和requests的模块爬取数据" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devopsman.cn/2020/06/10/" />
 <meta property="article:published_time" content="2020-06-10T12:00:06+09:00" />
 <meta property="article:modified_time" content="2020-06-10T12:00:06+09:00" />
-<meta itemprop="name" content="ECS上手把手搭建个人博客系统wordpress">
-<meta itemprop="description" content="wordpress博客网站搭建指南">
+<meta itemprop="name" content="python脚本分析拉钩网站招聘信息">
+<meta itemprop="description" content="学习xlwt和requests的模块爬取数据">
 <meta itemprop="datePublished" content="2020-06-10T12:00:06&#43;09:00" />
 <meta itemprop="dateModified" content="2020-06-10T12:00:06&#43;09:00" />
-<meta itemprop="wordCount" content="1279">
+<meta itemprop="wordCount" content="1481">
 
 
 
-<meta itemprop="keywords" content="博客,运维," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ECS上手把手搭建个人博客系统wordpress"/>
-<meta name="twitter:description" content="wordpress博客网站搭建指南"/>
+<meta itemprop="keywords" content="Python,编程," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="python脚本分析拉钩网站招聘信息"/>
+<meta name="twitter:description" content="学习xlwt和requests的模块爬取数据"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -163,12 +163,16 @@
     <div id="tag-cloud-list" class="widget-body">
             
             
+            <a href="https://www.devopsman.cn/tags/alertmanager/" class="tag-list-link" rel="1">alertmanager<span
+               class="tag-list-count">1</span></a>
+            
+            
             <a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link" rel="1">devops<span
                class="tag-list-count">1</span></a>
             
             
-            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="2">docker<span
-               class="tag-list-count">2</span></a>
+            <a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link" rel="3">docker<span
+               class="tag-list-count">3</span></a>
             
             
             <a href="https://www.devopsman.cn/tags/git/" class="tag-list-link" rel="1">git<span
@@ -184,6 +188,10 @@
             
             
             <a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link" rel="1">linux<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://www.devopsman.cn/tags/prometheus/" class="tag-list-link" rel="1">prometheus<span
                class="tag-list-count">1</span></a>
             
             
@@ -255,8 +263,8 @@
                class="tag-list-count">2</span></a>
             
             
-            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link" rel="13">运维<span
-               class="tag-list-count">13</span></a>
+            <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link" rel="14">运维<span
+               class="tag-list-count">14</span></a>
             
             
             <a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link" rel="1">运维技术<span
@@ -304,12 +312,16 @@ function tagCloud(where, min, max) {
         <ul class="tag-list">
             
             
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/alertmanager/" class="tag-list-link">alertmanager</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/devops/" class="tag-list-link">devops</a><span
                     class="tag-list-count">1</span></li>
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/docker/" class="tag-list-link">docker</a><span
-                    class="tag-list-count">2</span></li>
+                    class="tag-list-count">3</span></li>
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/git/" class="tag-list-link">git</a><span
@@ -325,6 +337,10 @@ function tagCloud(where, min, max) {
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/linux/" class="tag-list-link">linux</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/prometheus/" class="tag-list-link">prometheus</a><span
                     class="tag-list-count">1</span></li>
             
             
@@ -397,7 +413,7 @@ function tagCloud(where, min, max) {
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4/" class="tag-list-link">运维</a><span
-                    class="tag-list-count">13</span></li>
+                    class="tag-list-count">14</span></li>
             
             
             <li class="tag-list-item"><a href="https://www.devopsman.cn/tags/%E8%BF%90%E7%BB%B4%E6%8A%80%E6%9C%AF/" class="tag-list-link">运维技术</a><span
@@ -416,6 +432,26 @@ function tagCloud(where, min, max) {
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
         <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/09/01/" class="title">基于阿里云最佳安全实践的Docker基线标准</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-09-01 21:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-09-01</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://www.devopsman.cn/2021/08/31/" class="title">prometheus钉钉告警通知实现</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2021-08-31 10:58:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-31</time>
+                    </p>
+                </div>
+            </li>
             <li>
                 <div class="item-inner">
                     <p class="item-title">
@@ -446,26 +482,6 @@ function tagCloud(where, min, max) {
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://www.devopsman.cn/2021/08/13/" class="title">18个分析Linux系统占用网络带宽的程序</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-13 09:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-13</time>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="item-inner">
-                    <p class="item-title">
-                        <a href="https://www.devopsman.cn/2021/08/12/" class="title">好家伙！原来Redis是这样用的（16个电商应用场景）</a>
-                    </p>
-                    <p class="item-date">
-                        <time datetime="2021-08-12 08:00:06 &#43;0900 &#43;0900" itemprop="datePublished">2021-08-12</time>
-                    </p>
-                </div>
-            </li>
         </ul>
     </div>
 </div>
@@ -491,7 +507,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/2020/06/10/"
-    >ECS上手把手搭建个人博客系统wordpress</a
+    >python脚本分析拉钩网站招聘信息</a
   >
 </h1>
 
@@ -506,8 +522,8 @@ function tagCloud(where, min, max) {
   
   <span class="article-tag">
     <i class="icon icon-tags"></i>&nbsp;
-    <a class="article-tag-link" href="/tags/%E5%8D%9A%E5%AE%A2/"> 博客 </a>
-    <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
+    <a class="article-tag-link" href="/tags/python/"> Python </a>
+    <a class="article-tag-link" href="/tags/%E7%BC%96%E7%A8%8B/"> 编程 </a>
   </span>
 
 	<span class="article-read hidden-xs">
@@ -518,135 +534,115 @@ function tagCloud(where, min, max) {
 	</span>
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="ECS上手把手搭建个人博客系统wordpress">0</span>
+    	<span id="https://www.devopsman.cn/2020/06/10/" class="leancloud_visitors"  data-flag-title="python脚本分析拉钩网站招聘信息">0</span>
     </span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1279字</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1481字</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <h2 id="安装-apache-http-服务">安装 Apache HTTP 服务</h2>
-<p>Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是最流行的Web服务器端软件之一。</p>
+      <h2 id="python脚本分析拉钩招聘网站职位">Python脚本分析拉钩招聘网站职位</h2>
+<h3 id="场景">场景</h3>
+<p>最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革新越来越快，对新的岗位的需求也是不断的变化，因此就会想知道现在的应聘岗位对面试者的要求有哪些，各地的某个岗位薪资范围大概是多少等信息时候，我们就需要到某个招聘网站上不断的刷页面，看数据，但是简单的想一下，可以通过Python脚本来批量的分析招聘网站上各个岗位在不同城市的需求，高效的快捷的方便我们掌握大致的方向。</p>
+<h3 id="实现">实现</h3>
+<p>如何获取数据，需要掌握基本的Python爬虫知识，[<code>requests</code>](<a href="https://requests.readthedocs.io/en/master/">https://requests.readthedocs.io/en/master/</a> Requests)模块就可以搞定了，在爬取数据之后，将其存在Excel中，因此需要[<code>xlwt</code>](<a href="https://xlwt.readthedocs.io/en/latest/">https://xlwt.readthedocs.io/en/latest/</a> xlwt)模块处理，当然在诸多的Python模块中，你可以选择你喜欢的，毕竟能抓老鼠的猫都是好猫。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xlwt                   1.3.0 
+requests               2.18.4
+</code></pre></div><p>下面我们就拿拉钩网站为例，思考和获取部分的数据作为个人简单的分析参考，脚本中没有涉及到隐私数据信息，大可放心，同时也是为了找工作的小伙伴们提供一下参考的方向：</p>
+<p><strong>注意</strong>：</p>
 <ol>
-<li>执行如下命令，安装Apache服务及其扩展包。</li>
+<li>脚本中获取的是通过指定的页的数量获取全国各城市的岗位信息，你可以修改<code>FetchData</code>方法中的<code>referer</code>和请求地址中城市的值，以便获取你需要的目标城市的岗位信息</li>
+<li>如果获取的比较频繁的话，可能会出现以下情况，这里你可以通过设置代理的方式解决，免费的代理IP网站上有很多，你可以参考这篇获取代理的文章。</li>
 </ol>
-<pre><code>yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql
-</code></pre><p>返回类似如下图结果则表示安装成功。</p>
-<p><img src="/images/images.assets/TB1l7DUHpY7gK0jSZKzXXaikpXa-1050-137.png" alt="img"></p>
-<ol start="2">
-<li>执行如下命令，启动Apache服务。</li>
-</ol>
-<pre><code>systemctl start httpd.service
-</code></pre><ol start="3">
-<li>测试Apache服务是否安装并启动成功。</li>
-</ol>
-<p>Apache默认监听80端口，所以只需在浏览器访问ECS分配的IP地址http://&lt;ECS公网地址&gt;，如下图：</p>
-<p><img src="/images/images.assets/TB1HmVpaepyVu4jSZFhXXbBpVXa-1920-937.png" alt="img"></p>
-<h2 id="安装-mysql-数据库">安装 MySQL 数据库</h2>
-<p>由于使用wordpress搭建云上博客，需要使用MySQL数据库存储数据，所以这一步我们安装一下MySQL。</p>
-<ol>
-<li>执行如下命令，下载并安装MySQL官方的<code>Yum Repository</code>。</li>
-</ol>
-<pre><code>wget http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
-yum -y install mysql57-community-release-el7-10.noarch.rpm
-yum -y install mysql-community-server
-</code></pre><p><img src="/images/images.assets/TB1BRnVHxz1gK0jSZSgXXavwpXa-958-431.png" alt="img"></p>
-<ol start="2">
-<li>执行如下命令，启动 MySQL 数据库。</li>
-</ol>
-<pre><code>systemctl start mysqld.service
-</code></pre><ol start="3">
-<li>执行如下命令，查看MySQL运行状态。</li>
-</ol>
-<pre><code>systemctl status mysqld.service
-</code></pre><p><img src="/images/images.assets/TB1gszWHuT2gK0jSZFvXXXnFXXa-945-229.png" alt="img"></p>
-<ol start="4">
-<li>执行如下命令，查看MySQL初始密码。</li>
-</ol>
-<pre><code>grep &quot;password&quot; /var/log/mysqld.log
-</code></pre><p><img src="/images/images.assets/TB1FmNpaepyVu4jSZFhXXbBpVXa-834-36.png" alt="img"></p>
-<ol start="5">
-<li>执行如下命令，登录数据库。</li>
-</ol>
-<pre><code>mysql -uroot -p
-</code></pre><p><img src="/images/images.assets/TB1Wz6UHvb2gK0jSZK9XXaEgFXa-675-226.png" alt="img"></p>
-<ol start="6">
-<li>执行如下命令，修改MySQL默认密码。</li>
-</ol>
-<blockquote>
-<p><strong>说明</strong> 新密码设置的时候如果设置的过于简单会报错，必须同时包含大小写英文字母、数字和特殊符号中的三类字符。</p>
-</blockquote>
-<pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY 'NewPassWord1.';
-</code></pre><ol start="7">
-<li>执行如下命令，创建wordpress库。</li>
-</ol>
-<pre><code>create database wordpress; 
-</code></pre><ol start="8">
-<li>执行如下命令，创建wordpress库。 执行如下命令，查看是否创建成功。</li>
-</ol>
-<pre><code>show databases;
-</code></pre><ol start="9">
-<li>输入<code>exit</code>退出数据库。</li>
-</ol>
-<p><img src="/images/images.assets/TB14Bj0HxD1gK0jSZFKXXcJrVXa-836-664.png" alt="img"></p>
-<h2 id="安装-php-语言环境">安装 PHP 语言环境</h2>
-<p>WordPress是使用PHP语言开发的博客平台，用户可以在支持PHP和MySQL数据库的服务器上架设属于自己的网站。也可以把WordPress当作一个内容管理系统（CMS）来使用。</p>
-<ol>
-<li>执行如下命令，安装PHP环境。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install php php-mysql gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap
-</code></pre></div><ol start="2">
-<li>执行如下命令创建PHP测试页面。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#34;&lt;?php phpinfo(); ?&gt;&#34;</span> &gt; /var/www/html/phpinfo.php
-</code></pre></div><ol start="3">
-<li>执行如下命令，重启Apache服务。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
-</code></pre></div><ol start="4">
-<li>打开浏览器，访问<code>http://&lt;ECS公网地址&gt;/phpinfo.php</code>，显示如下页面表示PHP语言环境安装成功。</li>
-</ol>
-<p><img src="/images/images.assets/TB1oCVpaepyVu4jSZFhXXbBpVXa-601-840-20200609121710332.png" alt="img"></p>
-<h2 id="wordpress安装和配置">Wordpress安装和配置</h2>
-<p>本小节将在已搭建好的LAMP 环境中，安装部署 WordPress</p>
-<ol>
-<li>执行如下命令，安装wordpress。</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y install wordpress
-</code></pre></div><p>显示如下信息表示安装成功。</p>
-<p><img src="/images/images.assets/TB1b02VHEz1gK0jSZLeXXb9kVXa-1042-156.png" alt="img"></p>
-<ol start="2">
-<li>修改WordPress配置文件。</li>
-</ol>
-<p>1）执行如下命令，修改wp-config.php指向路径为绝对路径。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 进入/usr/share/wordpress目录。</span>
-cd /usr/share/wordpress
-<span style="color:#75715e"># 修改路径。</span>
-ln -snf /etc/wordpress/wp-config.php wp-config.php
-<span style="color:#75715e"># 查看修改后的目录结构。</span>
-ll
-</code></pre></div><p>2）执行如下命令，移动wordpress到Apache根目录。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 在Apache的根目录/var/www/html下，创建一个wp-blog文件夹。</span>
-mkdir /var/www/html/wp-blog
-mv * /var/www/html/wp-blog/
-</code></pre></div><p>3）执行以下命令修改wp-config.php配置文件。</p>
-<p>在执行命令前，请先替换以下三个参数值。</p>
-<ul>
-<li>database_name_here为之前步骤中创建的数据库名称，本示例为wordpress。</li>
-<li>username_here为数据库的用户名，本示例为root。</li>
-<li>password_here为数据库的登录密码，本示例为NewPassWord1.。</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sed -i <span style="color:#e6db74">&#39;s/database_name_here/wordpress/&#39;</span> /var/www/html/wp-blog/wp-config.php
-sed -i <span style="color:#e6db74">&#39;s/username_here/root/&#39;</span> /var/www/html/wp-blog/wp-config.php
-sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</span> /var/www/html/wp-blog/wp-config.php
-</code></pre></div><p>4）执行以下命令，查看配置文件信息是否修改成功。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat -n /var/www/html/wp-blog/wp-config.php
-</code></pre></div><p><img src="/images/images.assets/TB1j02VHEz1gK0jSZLeXXb9kVXa-913-631.png" alt="img"></p>
+<p><img src="/images/images.assets/image-20200626202227154.png" alt="image-20200626202227154"></p>
 <ol start="3">
-<li>执行如下命令，重启Apache服务。</li>
+<li>在交互式输入需要获取的页数之后，爬取的数据将会存储在当前执行位置下的<code>data.xls</code>。</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart httpd
-</code></pre></div><p><img src="/images/images.assets/wordpress-installing-1-1140x570.jpg" alt=""></p>
+<p>下面就简单的提供一下写好的Python脚本：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3.4</span>
+<span style="color:#75715e"># encoding: utf-8</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Created on 2020-06-26
+</span><span style="color:#e6db74">@title: &#39;爬去网站的招聘信息&#39;
+</span><span style="color:#e6db74">@author: marionxue
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> xlwt
+
+
+<span style="color:#75715e"># 获取存储职位信息的json对象，遍历获得公司名、福利待遇、工作地点、学历要求、工作类型、发布时间、职位名称、薪资、工作年限</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">FetchData</span>(url, datas):
+    my_headers <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#34;User-Agent&#34;</span>: <span style="color:#e6db74">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36&#34;</span>,
+        <span style="color:#e6db74">&#34;Referer&#34;</span>: <span style="color:#e6db74">&#34;https://www.lagou.com/jobs/list_Python?city=</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">5</span><span style="color:#e6db74">%85%</span><span style="color:#e6db74">A8</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">5%9B%BD&amp;cl=false&amp;fromSearch=true&amp;labelWords=&amp;suginput=&#34;</span>,
+        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/x-www-form-urlencoded;charset = UTF-8&#34;</span>
+    }
+
+    ses <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>session()  <span style="color:#75715e"># 获取session</span>
+    ses<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>update(my_headers)  <span style="color:#75715e"># 更新头部信息</span>
+
+    ses<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://www.lagou.com/jobs/list_</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">9</span><span style="color:#e6db74">%83%</span><span style="color:#e6db74">91</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">5%B7</span><span style="color:#e6db74">%9E</span><span style="color:#e6db74">java?city=</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">5</span><span style="color:#e6db74">%85%</span><span style="color:#e6db74">A8</span><span style="color:#e6db74">%E</span><span style="color:#e6db74">5%9B%BD&amp;cl=false&amp;fromSearch=true&amp;labelWords=&amp;suginput=&#34;</span>)
+    content <span style="color:#f92672">=</span> ses<span style="color:#f92672">.</span>post(url<span style="color:#f92672">=</span>url, data<span style="color:#f92672">=</span>datas)
+    result <span style="color:#f92672">=</span> content<span style="color:#f92672">.</span>json()
+    info <span style="color:#f92672">=</span> result[<span style="color:#e6db74">&#39;content&#39;</span>][<span style="color:#e6db74">&#39;positionResult&#39;</span>][<span style="color:#e6db74">&#39;result&#39;</span>]
+    info_list <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> job <span style="color:#f92672">in</span> info:
+        information <span style="color:#f92672">=</span> []
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;positionId&#39;</span>])  <span style="color:#75715e"># 岗位对应ID</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;city&#39;</span>])  <span style="color:#75715e"># 岗位对应城市</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;companyFullName&#39;</span>])  <span style="color:#75715e"># 公司全名</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;companyLabelList&#39;</span>])  <span style="color:#75715e"># 福利待遇</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;district&#39;</span>])  <span style="color:#75715e"># 工作地点</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;education&#39;</span>])  <span style="color:#75715e"># 学历要求</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;firstType&#39;</span>])  <span style="color:#75715e"># 工作类型</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;formatCreateTime&#39;</span>])  <span style="color:#75715e"># 发布时间</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;positionName&#39;</span>])  <span style="color:#75715e"># 职位名称</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;salary&#39;</span>])  <span style="color:#75715e"># 薪资</span>
+        information<span style="color:#f92672">.</span>append(job[<span style="color:#e6db74">&#39;workYear&#39;</span>])  <span style="color:#75715e"># 工作年限</span>
+        info_list<span style="color:#f92672">.</span>append(information)
+
+    <span style="color:#66d9ef">return</span> info_list
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    page <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#39;请输入你要抓取的页码总数：&#39;</span>))
+
+    info_result <span style="color:#f92672">=</span> []
+    title <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;岗位id&#39;</span>, <span style="color:#e6db74">&#39;城市&#39;</span>, <span style="color:#e6db74">&#39;公司全名&#39;</span>, <span style="color:#e6db74">&#39;福利待遇&#39;</span>, <span style="color:#e6db74">&#39;工作地点&#39;</span>, <span style="color:#e6db74">&#39;学历要求&#39;</span>, <span style="color:#e6db74">&#39;工作类型&#39;</span>, <span style="color:#e6db74">&#39;发布时间&#39;</span>, <span style="color:#e6db74">&#39;职位名称&#39;</span>, <span style="color:#e6db74">&#39;薪资&#39;</span>, <span style="color:#e6db74">&#39;工作年限&#39;</span>]
+    info_result<span style="color:#f92672">.</span>append(title)
+    <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, page <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+        url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false&#39;</span>
+        datas <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;first&#39;</span>: <span style="color:#e6db74">&#39;false&#39;</span>,
+            <span style="color:#e6db74">&#39;pn&#39;</span>: x,
+            <span style="color:#e6db74">&#39;kd&#39;</span>: <span style="color:#e6db74">&#39;devops工程师&#39;</span>,
+        }
+        <span style="color:#66d9ef">try</span>:
+            info <span style="color:#f92672">=</span> FetchData(url, datas)
+            info_result <span style="color:#f92672">=</span> info_result <span style="color:#f92672">+</span> info
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;第</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">页数据已采集&#34;</span> <span style="color:#f92672">%</span> x)
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> msg:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;第</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">页数据采集出现问题&#34;</span> <span style="color:#f92672">%</span> x)
+
+        <span style="color:#75715e"># 创建workbook,即excel</span>
+        workbook <span style="color:#f92672">=</span> xlwt<span style="color:#f92672">.</span>Workbook(encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        <span style="color:#75715e"># 创建表,第二参数用于确认同一个cell单元是否可以重设值</span>
+        worksheet <span style="color:#f92672">=</span> workbook<span style="color:#f92672">.</span>add_sheet(datas[<span style="color:#e6db74">&#34;kd&#34;</span>], cell_overwrite_ok<span style="color:#f92672">=</span>True)
+        <span style="color:#66d9ef">for</span> i, row <span style="color:#f92672">in</span> enumerate(info_result):
+            <span style="color:#75715e"># print(row)</span>
+            <span style="color:#66d9ef">for</span> j, col <span style="color:#f92672">in</span> enumerate(row):
+                worksheet<span style="color:#f92672">.</span>write(i, j, col)
+        workbook<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;data.xls&#39;</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>当我们需要查看某个岗位的时候，我们只需要在<code>58</code>行处修改岗位的名称即可，然后输入你要采集多少页的数据即可，这样很快就会将数据采集并且存储在Excel表中</p>
+<p><img src="/images/images.assets/image-20200626200816903.png" alt="image-20200626200816903"></p>
+<h3 id="数据显示">数据显示</h3>
+<p><img src="/images/images.assets/image-20200626202639522.png" alt="image-20200626202639522"></p>
+<p>数据基本上完成采集，当然对于自己有需要的话，还可以继续完善啊</p>
 
     </div>
     <div class="article-footer">
@@ -654,7 +650,7 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://www.devopsman.cn/2020/06/10/" title="ECS上手把手搭建个人博客系统wordpress" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
+      <a href="https://www.devopsman.cn/2020/06/10/" title="python脚本分析拉钩网站招聘信息" target="_blank" rel="external">https://www.devopsman.cn/2020/06/10/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License: </strong>
@@ -685,13 +681,13 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/2020/06/10/" title="Mac下手把手带你打造骚气的命令行终端"><i
+                <a href="https://www.devopsman.cn/2020/06/07/" title="P站风格Logo生成器"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             <li class="next">
                 <a href="https://www.devopsman.cn/2020/06/10/"
-                    title="Docker容器命令行可视化工具-Lazydocker"><span>上一篇&nbsp;&nbsp;</span><i
+                    title="Mac下手把手带你打造骚气的命令行终端"><span>上一篇&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
@@ -797,79 +793,7 @@ sed -i <span style="color:#e6db74">&#39;s/password_here/NewPassWord1./&#39;</spa
 
   </body>
 </html>
-"true"></i><span>&nbsp;&nbsp;下一篇</span></a>
-            </li>
-            <li class="next">
-                <a href="https://www.devopsman.cn/2020/06/10/"
-                    title="Mac下手把手带你打造骚气的命令行终端"><span>上一篇&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
-            </li>
-            
-            <li class="toggle-toc">
-                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
-                    title="文章目录" role="button">
-                    <span>[&nbsp;</span><span>文章目录</span>
-                    <i class="text-collapsed icon icon-anchor"></i>
-                    <i class="text-in icon icon-close"></i>
-                    <span>]</span>
-                </a>
-            </li>
-        </ul>
-        <div class="bar-right">
-            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
-                data-mobile-sites="weibo,qq,qzone"></div>
-        </div>
-    </div>
-</nav>
-
-
-</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-<ul class="social-links">
-    <li><a href="https://github.com/marionxue" target="_blank" title="github" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-github"></i></a></li>
-    <li><a href="https://www.devopsman.cn/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-rss"></i></a></li>
-    <li><a href="https://twitter.com/" target="_blank" title="twitter" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-twitter"></i></a></li>
-    <li><a href="http://weibo.com/marionxue" target="_blank" title="weibo" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-weibo"></i></a></li>
-</ul>
-  <div class="copyright">
-    &copy;2016  -
-    2021
-    
-    
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-            showMathMenu: false, //disables context menu
-            tex2jax: {
-            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
-           }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/go.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/devops.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/%e8%bf%90%e7%bb%b4.min.js" defer></script><script>
-    hljs.configure({
-        tabReplace: '    ', 
-        classPrefix: ''     
-        
-    })
-    hljs.initHighlightingOnLoad();
-</script>
-<script src="https://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
+ps://www.devopsman.cn/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js"></script>
 <script src="https://www.devopsman.cn/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js"></script>
 
 <script>

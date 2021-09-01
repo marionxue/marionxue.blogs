@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>alertmanager on 云原生生态圈</title>
+    <link>https://www.devopsman.cn/tags/alertmanager/</link>
+    <description>Recent content in alertmanager on 云原生生态圈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY 4.0 CN</copyright>
+    <lastBuildDate>Tue, 31 Aug 2021 10:58:06 +0900</lastBuildDate>
+    
+        <atom:link href="https://www.devopsman.cn/tags/alertmanager/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何确定CPU消耗在哪些函数上</title>
+      <link>https://www.devopsman.cn/2020/07/04/</link>
+      <pubDate>Sat, 04 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/04/</guid>
+      <description>文章背景 日常的工作中，会收到一堆CPU使用率过高的告警邮件，遇到某台服务的CPU被占满了，这时候我们就要去查看是什么进程将服务器的CPU资源</description>
+    </item>
+    
+    <item>
+      <title>Docker容器命令行可视化工具-Lazydocker</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Lazydocker的使用背景 平时的工作管理中会使用到各种各样的命令行工具，有些人是比较厌烦的去学习各种命令以及选项，比如Docker的各种</description>
+    </item>
+    
+    <item>
+      <title>ECS上手把手搭建个人博客系统wordpress</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>安装 Apache HTTP 服务 Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是</description>
+    </item>
+    
+    <item>
+      <title>Mac下手把手带你打造骚气的命令行终端</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>最近有很多朋友看了我的文章之后，问我你终端是怎么设置的，为什么如此炫酷，这这这&amp;hellip;让我怎么说，难道我的文章不干吗？还是特干看不下</description>
+    </item>
+    
+    <item>
+      <title>python脚本分析拉钩网站招聘信息</title>
+      <link>https://www.devopsman.cn/2020/06/10/</link>
+      <pubDate>Wed, 10 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/10/</guid>
+      <description>Python脚本分析拉钩招聘网站职位 场景 最近发现一些朋友想要跳槽，正值疫情，也不知道现在市场的如何，同时目前的IT行业更是越来越难,技术革</description>
+    </item>
+    
+    <item>
+      <title>P站风格Logo生成器</title>
+      <link>https://www.devopsman.cn/2020/06/07/</link>
+      <pubDate>Sun, 07 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/07/</guid>
+      <description>​ 最近发现很多的微信文章上出现了一种logo设计，跟P站的logo设计风格一样让人印象深刻，黑底白字，配上一小撮橙色，给人极强的冲击力。后来</description>
+    </item>
+    
+    <item>
+      <title>mkdocs自动化部署知识库</title>
+      <link>https://www.devopsman.cn/2020/06/04/</link>
+      <pubDate>Thu, 04 Jun 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/06/04/</guid>
+      <description>了解过Traefik,nginx-ingress的同学都知道他们的官方文档都是基于mkdocs和material主题制作而成，你觉得这种文档</description>
+    </item>
+    
+    <item>
+      <title>技术人员最常用的命令行工具</title>
+      <link>https://www.devopsman.cn/2020/05/30/</link>
+      <pubDate>Sat, 30 May 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/05/30/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>关于</title>
+      <link>https://www.devopsman.cn/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/about/</guid>
+      <description>关于站点 云原生生态圈是一个分享技术的站点。分享源于运维而不止于运维，涉及运维、开发等方面，诸如Docker、微服务、Devops、Go、Py</description>
+    </item>
+    
+    <item>
+      <title>友情链接</title>
+      <link>https://www.devopsman.cn/links/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/links/</guid>
+      <description>技术博客 飞翔沫沫情 其他</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>常用的 ping，tracert，nslookup 一般用来判断主机的网络连通性，其实 Linux 下有一个更好用的网络联通性判断工具，它可以结合ping nslookup</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>MySQLTuner MySQLTuner是perl编写的脚本程序，可以快速的你的MySQL的安装，并且对你MySQL的配置、提高稳定性给出建议，检索当前MyS</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>Docker Docker国内源加速 cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/docker/daemon.json { &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;https://registry.docker-cn.com&amp;#34;, &amp;#34;https://dockerhub.azk8s.cn&amp;#34;, &amp;#34;https://reg-mirror.qiniu.com&amp;#34;, &amp;#34;http://hub-mirror.c.163.com&amp;#34;, &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34; ] } ```</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wordPress原来还可以这么用</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>wordpress简介 WordPress是一个免费的开源内容管理系统CMS建立在具有PHP处理功能的MYSQL数据库上。凭借其可扩展的插件体</description>
+    </item>
+    
+    <item>
+      <title>与网络面试官开撕的那几个问题</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>前言 最近和一同学聊天，他想换工作，然后去面了一家大厂。当时，他在简历上写着精通TCP/IP，本着对TCP协议稍有了解，面试官也不会深问的想法</description>
+    </item>
+    
+    <item>
+      <title>云原生键值数据库TIKV毕业了</title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>云原生键值数据库TIKV毕业了 云原生键值数据库项目现在在全球拥有近1,000个生产用户 旧金山，加利福尼亚- 2020年9月2日Cloud Native Computing F</description>
+    </item>
+    
+  </channel>
+</rss>
