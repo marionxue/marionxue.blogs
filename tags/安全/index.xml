@@ -6,10 +6,19 @@
     <description>Recent content in 安全 on 云原生生态圈</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>CC BY 4.0 CN</copyright>
-    <lastBuildDate>Wed, 01 Sep 2021 21:58:06 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 02 Sep 2021 12:58:06 +0900</lastBuildDate>
     
         <atom:link href="https://www.devopsman.cn/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>遵循CIS Benchmarks规范的开源Docker安全巡检脚本</title>
+      <link>https://www.devopsman.cn/2021/09/02/</link>
+      <pubDate>Thu, 02 Sep 2021 12:58:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2021/09/02/</guid>
+      <description>CIS是什么？ CIS即Center for Internet Security (CIS) 为安全基准计划提供了定义明确、公正、基于一致性的行业最佳实践来帮助组织评估和增强其安全性 Docker Bench Security Docker Bench</description>
+    </item>
     
     <item>
       <title>基于阿里云最佳安全实践的Docker基线标准</title>
@@ -18,15 +27,6 @@
       
       <guid>https://www.devopsman.cn/2021/09/01/</guid>
       <description>审核Docker文件和目录 描述 除了审核常规的Linux文件系统和系统调用之外，还审核所有与Docker相关的文件和目录。 Docker守护程序</description>
-    </item>
-    
-    <item>
-      <title>遵循CIS Benchmarks规范的开源Docker安全巡检脚本</title>
-      <link>https://www.devopsman.cn/2021/09/01/</link>
-      <pubDate>Wed, 01 Sep 2021 21:58:06 +0900</pubDate>
-      
-      <guid>https://www.devopsman.cn/2021/09/01/</guid>
-      <description>CIS是什么？ CIS即Center for Internet Security (CIS) 为安全基准计划提供了定义明确、公正、基于一致性的行业最佳实践来帮助组织评估和增强其安全性 Docker Bench Security Docker Bench</description>
     </item>
     
     <item>
