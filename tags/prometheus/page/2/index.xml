@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>运维知识体系-v3.1</title>
+      <link>https://www.devopsman.cn/2020/07/10/</link>
+      <pubDate>Fri, 10 Jul 2020 12:00:06 +0900</pubDate>
+      
+      <guid>https://www.devopsman.cn/2020/07/10/</guid>
+      <description>前段时间，发现新运维社区的赵班长(赵舜东)更新了一版《运维知识体系 v3.1》其中新增了一些目前比较火的、成熟的运维解决方案，也包括容器编排，</description>
+    </item>
+    
+    <item>
       <title>如何确定CPU消耗在哪些函数上</title>
       <link>https://www.devopsman.cn/2020/07/04/</link>
       <pubDate>Sat, 04 Jul 2020 12:00:06 +0900</pubDate>
@@ -116,7 +125,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.devopsman.cn/1/01/01/</guid>
-      <description>MySQLTuner MySQLTuner是perl编写的脚本程序，可以快速的你的MySQL的安装，并且对你MySQL的配置、提高稳定性给出建议，检索当前MyS</description>
+      <description>对于正在运行的mysql，性能如何，参数设置的是否合理，账号设置的是否存在安全隐患，你是否了然于胸呢？ 俗话说工欲善其事，必先利其器，定期对你</description>
     </item>
     
     <item>
@@ -126,6 +135,15 @@
       
       <guid>https://www.devopsman.cn/1/01/01/</guid>
       <description>Docker Docker国内源加速 cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/docker/daemon.json { &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;https://registry.docker-cn.com&amp;#34;, &amp;#34;https://dockerhub.azk8s.cn&amp;#34;, &amp;#34;https://reg-mirror.qiniu.com&amp;#34;, &amp;#34;http://hub-mirror.c.163.com&amp;#34;, &amp;#34;https://docker.mirrors.ustc.edu.cn&amp;#34; ] } ```</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.devopsman.cn/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.devopsman.cn/1/01/01/</guid>
+      <description>1. unauthenticated user 现象 使用show full processlist查看到的User列出现unauthenticated user的问题 mysql&amp;gt; show full processlist; +-----+----------------------+--------------------+------+---------+------+----------------------------------+-----------------------+ | Id | User | Host | db |</description>
     </item>
     
     <item>
