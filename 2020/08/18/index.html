@@ -2,7 +2,7 @@
 <html lang="zh">
   <head>
     <title>
-        如何搭建适合自己的个人网盘 - 云原生生态圈
+        Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈
       </title>
         <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,32 +20,32 @@
     <meta http-equiv="window-target" content="_top" />
     
     
-    <meta name="description" content="搭建个人网盘的几种选择方案" />
+    <meta name="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
     <meta name="generator" content="Hugo 0.73.0 with theme pure" />
-    <title>如何搭建适合自己的个人网盘 - 云原生生态圈</title>
+    <title>Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群 - 云原生生态圈</title>
     
     
     <link rel="stylesheet" href="https://www.devopsman.cn/css/style.min.544edf4e480fd84dba4b535b9c42ace7af9a975d149b3f584c0e3a6f120cee55.css">
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
-    <meta property="og:title" content="如何搭建适合自己的个人网盘" />
-<meta property="og:description" content="搭建个人网盘的几种选择方案" />
+    <meta property="og:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" />
+<meta property="og:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.devopsman.cn/2020/08/18/" />
 <meta property="article:published_time" content="2020-08-18T12:00:06+09:00" />
 <meta property="article:modified_time" content="2020-08-18T12:00:06+09:00" />
-<meta itemprop="name" content="如何搭建适合自己的个人网盘">
-<meta itemprop="description" content="搭建个人网盘的几种选择方案">
+<meta itemprop="name" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">
+<meta itemprop="description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群">
 <meta itemprop="datePublished" content="2020-08-18T12:00:06&#43;09:00" />
 <meta itemprop="dateModified" content="2020-08-18T12:00:06&#43;09:00" />
-<meta itemprop="wordCount" content="774">
+<meta itemprop="wordCount" content="1244">
 
 
 
-<meta itemprop="keywords" content="运维," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何搭建适合自己的个人网盘"/>
-<meta name="twitter:description" content="搭建个人网盘的几种选择方案"/>
+<meta itemprop="keywords" content="容器,消息队列,运维," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群"/>
+<meta name="twitter:description" content="基于Consul服务发现和Haproxy实现的RabbitMQ高可用的负载均衡集群"/>
 
     <!--[if lte IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -507,7 +507,7 @@ function tagCloud(where, min, max) {
   <a
     class="article-title"
     href="/2020/08/18/"
-    >如何搭建适合自己的个人网盘</a
+    >Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群</a
   >
 </h1>
 
@@ -522,6 +522,8 @@ function tagCloud(where, min, max) {
   
   <span class="article-tag">
     <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/%E5%AE%B9%E5%99%A8/"> 容器 </a>
+    <a class="article-tag-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"> 消息队列 </a>
     <a class="article-tag-link" href="/tags/%E8%BF%90%E7%BB%B4/"> 运维 </a>
   </span>
 
@@ -533,73 +535,293 @@ function tagCloud(where, min, max) {
 	</span>
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="https://www.devopsman.cn/2020/08/18/" class="leancloud_visitors"  data-flag-title="如何搭建适合自己的个人网盘">0</span>
+    	<span id="https://www.devopsman.cn/2020/08/18/" class="leancloud_visitors"  data-flag-title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群">0</span>
     </span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 774字</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2分 </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1244字</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3分 </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>介绍几种开源的网盘存储解决方案，可以在开源的网盘服务基础上，结合一些某云的存储服务，实现私人定制化个人网盘。</p>
-<h3 id="nextcloud">Nextcloud</h3>
-<p>[NextCloud](&ldquo;<a href="https://docs.nextcloud.com/%22">https://docs.nextcloud.com/&quot;</a> Nextcloud)是一个完全开源的个人网盘，部署简单，可以直接通过Docker进行部署和使用，同时支持手机和电脑端的客户端远程访问上传和下载:</p>
-<h3 id="安装部署">安装部署</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir nextcloud
-docker run -d --name nextcloud -p 8080:80 -v ~/nextcloud:/var/www/html nextcloud
-</code></pre></div><p>部署完成之后，直接访问&quot;http://localhost:8080&quot;即可</p>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200822234424374.png" alt="image-20200822234424374"></p>
-<p>完成注册之后，即可进去使用，下面是安装成功之后，上传文件的效果图:</p>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200822234508451.png" alt="image-20200822234508451"></p>
-<h2 id="owncloud">Owncloud</h2>
-<p>ownCloud]是一个开源免费的存储管理工具，它能帮你快速架设一套专属的网盘服务，可以像 Dropbox 那样实现文件跨平台同步、共享、版本控制、团队协作等等</p>
-<h3 id="owncloud功能">Owncloud功能</h3>
+      <p><img src="/images/images.assets/1*-gAK0fG63XGl-4-rhmLfuw.png" alt="Image for post"></p>
+<p>实验中通过Docker swarm建立RabbitMQ集群，同时我们将专注于<a href="https://www.rabbitmq.com/cluster-formation.html#peer-discovery-consul" title="RabbitMQ discovery consul">基于Consul的RabbitMQ集群</a>。我们还将添加<a href="http://www.haproxy.org/">HAProxy</a>服务器场以负载均衡AMQP请求，并提高群集的整体可用性。以下是最终的逻辑拓扑。</p>
+<p><img src="https://image.devopsman.cn/wechat2020/1*blfjK6gNwZKG3_EKZTd_Dg-20200818212351193.png" alt="Image for post"></p>
+<p>So, Let’s get started! 👊</p>
+<h2 id="安装docker-swarm集群">安装docker swarm集群</h2>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>192.168.99.128</td>
+</tr>
+<tr>
+<td>Node1</td>
+<td>192.168.99.133</td>
+</tr>
+<tr>
+<td>Node2</td>
+<td>192.168.99.134</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安装docker">安装docker</h3>
+<pre><code>curl -fsSL get.docker.com -o get-docker.sh
+CHANNEL=stable sh get-docker.sh --mirror Aliyun
+root@master:~# docker -v
+Docker version 19.03.12, build 48a66213fe
+</code></pre><h3 id="初始化docker-swarm集群">初始化docker swarm集群</h3>
 <ul>
-<li>存储：图片，文档，视频，通讯录以及其他等等</li>
-<li>客户端支持：Android，IOS,MaxOS,Windows,Web,Linux</li>
-<li>分享：可以直接共享<strong>直接链接</strong>给朋友</li>
-<li>在线看视频，文档，音乐。</li>
-<li>非常适合作为家庭网络存储中心，全家共享</li>
-<li>可以自行修改功能（作为开发者）</li>
+<li>在master上初始化集群</li>
 </ul>
-<p>如果在阿里云上，可以结合阿里云的oss文件存储搭建个人私有网盘，配置文件<code>owncloud.yml</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">owncloud</span>:
-  <span style="color:#66d9ef">image</span>: owncloud:<span style="color:#ae81ff">9</span>
-  <span style="color:#66d9ef">restart</span>: always
-  <span style="color:#66d9ef">links</span>:
-    - mysql:mysql
-  <span style="color:#66d9ef">volumes</span>:
-    - owncloud:/owncloud
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">aliyun.routing.port_80</span>: <span style="color:#e6db74">&#39;owncloud&#39;</span>
-<span style="color:#66d9ef">mysql</span>:
-  <span style="color:#66d9ef">image</span>: mysql:<span style="color:#ae81ff">5.7</span>
-  <span style="color:#66d9ef">restart</span>: always
-  <span style="color:#66d9ef">environment</span>:
-    <span style="color:#66d9ef">MYSQL_ROOT_PASSWORD</span>: changeme
-</code></pre></div><p>开始部署owncloud</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker-compose -f owncloud.yml up -d
-</code></pre></div><p><img src="https://image.devopsman.cn/wechat2020/image-20200822235706938.png" alt="image-20200822235706938"></p>
-<p>安装初始化完成之后的界面:</p>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200822235737595.png" alt="image-20200822235737595"></p>
-<h2 id="seafile">seafile</h2>
+<pre><code>#Init Docker Swarm - run on master
+root@master:~# docker swarm init --advertise-addr 192.168.99.128
+Swarm initialized: current node (htu24tq7mhip4ca7a9uqnndef) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+</code></pre><ul>
+<li>node1加入集群</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+This node joined a swarm as a worker.
+
+root@master:~# docker node ls
+ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
+vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active                                  19.03.12
+root@master:~# docker node promote node1.devopsman.cn
+Node node1.devopsman.cn promoted to a manager in the swarm.
+</code></pre></div><ul>
+<li>node2加入集群</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node2:~# docker swarm join --token SWMTKN-1-1ifiwgcc2k4ztyr80zm6e3vj7ewbbi1fqfnba1vfisesnos6o4-es73sy0dx4ie5lbivx90mcbky 192.168.99.128:2377
+This node joined a swarm as a worker.
+root@master:~# docker node ls
+ID                            HOSTNAME              STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+htu24tq7mhip4ca7a9uqnndef *   master.devopsman.cn   Ready               Active              Leader              19.03.12
+vlfb0ibx4k1z41r76yhgpummk     node1.devopsman.cn    Ready               Active              Reachable           19.03.12
+99f5xkfepct301n48tqqslz22     node2.devopsman.cn    Ready               Active                                  19.03.12
+root@master:~# docker node promote node2.devopsman.cn
+Node node2.devopsman.cn promoted to a manager in the swarm.
+
+root@master:~# docker network create --driver<span style="color:#f92672">=</span>overlay --attachable prod
+q5rzw0i1xdh9kovytjeg0sj9p
+
+root@master:~# docker network ls
+NETWORK ID          NAME                            DRIVER              SCOPE
+ba6f05d438cf        bridge                          bridge              local
+ee47cd6a4247        docker_gwbridge                 bridge              local
+8df9d4ecb5be        host                            host                local
+rl5o9jz6fxp8        ingress                         overlay             swarm
+25lk998untvk        local                           overlay             swarm
+3a66aac75dbf        none                            null                local
+q5rzw0i1xdh9        prod                            overlay             swarm
+</code></pre></div><h2 id="部署consul集群">部署consul集群</h2>
+<p><strong>注意点</strong></p>
 <ul>
-<li>
-<p>Seafile 支持端到端的加密技术来保护你的数据安全</p>
-</li>
-<li>
-<p>Seafile 支持基于角色的用户管理，Seafile 支持<code>LDAP/AD</code>集成。用户可以通过邮箱或者 Windows 用户名来登录。AD 中的群组也可以同步到 Seafile 中。</p>
-</li>
-<li>
-<p>Seafile 支持定期的数据备份 (通过 mysqldump 和 rsync). Seafile 也支持运行一台备份服务器，将主服务器上的数据实时备份到备份服务器上。</p>
-<p>Seafile 包含 seaf-fsck 工具来帮助管理员来检查和移除损坏的数据。fsck 工具也支持在没有数据库的情况下导出原始文件。</p>
-</li>
-<li>
-<p>Seafile 包含 WebDAV 接口。你可以通过该接口和其他移动应用集成。</p>
-<p>Seafile 也包含 HTTP 的 REST API 来和第三方应用整合。</p>
-</li>
+<li>持久化consul的数据，避免数据丢失</li>
+<li>在<code>global</code>模式下部署Consul服务，并通过节点标签管理服务调度</li>
+<li>使用两个单独的网络，一个用于内部consul的通信，另一个用于RabbitMQ与Consul服务之间的通信</li>
 </ul>
-<p><img src="https://image.devopsman.cn/wechat2020/image-20200823122115897.png" alt="image-20200823122115897"></p>
-<p>大家可以自行研究，按需选择。</p>
+<h2 id="consul部署清单">consul部署清单</h2>
+<pre><code>version: '3.6'
+services:
+  consul:
+    image: consul:1.4.0
+    hostname: &quot;{{.Node.Hostname}}&quot;
+    networks:
+      - consul
+      - prod
+    ports:
+      - 8400:8400
+      - 8500:8500
+      - 8600:53
+    volumes:
+      - consul-data:/consul/data
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.consul == true]
+    command: [ &quot;agent&quot;, &quot;-server&quot;, &quot;-bootstrap-expect=3&quot;, &quot;-retry-max=3&quot;, &quot;-retry-interval=10s&quot;, &quot;-datacenter=prod&quot;, &quot;-join=consul&quot;, &quot;-retry-join=consul&quot;, &quot;-bind={{ GetInterfaceIP \&quot;eth0\&quot; }}&quot;, &quot;-client=0.0.0.0&quot;, &quot;-ui&quot;]
+networks:
+  consul:
+  prod:
+    external: true
+volumes:
+  consul-data:
+</code></pre><h3 id="初始化consul集群">初始化consul集群</h3>
+<pre><code>docker node update --label-add consul=true node1.devopsman.cn
+node1.devopsman.cn
+docker stack deploy -c docker-compose_consul.yaml consul
+# 等待10s
+root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true master.devopsman.cn
+master.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add consul=true node1.devopsman.cn
+node1.devopsman.cn
+
+root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/leader
+&quot;10.0.3.5:8300&quot;
+root@master:~/consul_rabbitmq_docker# curl 192.168.99.134:8500/v1/status/peers
+[&quot;10.0.3.5:8300&quot;,&quot;10.0.3.7:8300&quot;,&quot;10.0.3.9:8300&quot;]
+root@master:~/consul_rabbitmq_docker#
+</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818215926636.png" alt="image-20200818215926636"></p>
+<p>在浏览器打开http://192.168.99.128:8500访问consul的dashboard来验证安装是否成功。</p>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818220043988.png" alt="image-20200818220043988"></p>
+<h2 id="部署rabbitmq集群">部署RabbitMQ集群</h2>
+<p><strong>注意点</strong></p>
+<ul>
+<li>持久化数据防止数据丢失。</li>
+<li>在<code>global</code>模式下部署RabbitMQ服务，并通过节点标签管理服务调度</li>
+<li>使用Prod网络进行<code>内部/外部</code>RabbitMQ通信</li>
+<li>不要暴露 <code>RABBITMQ_ERLANG_COOKIE</code> and <code>RABBITMQ_DEFAULT_PASS</code></li>
+<li>主机名很重要，因为RabbitMQ使用主机名作为数据目录</li>
+</ul>
+<h3 id="rabbitmq部署清单">RabbitMQ部署清单</h3>
+<pre><code>version: &quot;3.6&quot;
+services:
+  rabbitmq-01:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-01
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-01-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq1 == true]rabbitmq-02:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-02
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-02-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq2 == true]rabbitmq-03:
+    image: olgac/rabbitmq:3.7.8-management
+    hostname: rabbitmq-03
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Passw0rd
+      - RABBITMQ_ERLANG_COOKIE=&quot;MY-SECRET-KEY-123&quot;
+    networks:
+      - prod
+    volumes:
+      - rabbitmq-03-data:/var/lib/rabbitmq
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.labels.rabbitmq3 == true]networks:
+  prod:
+    external: true
+volumes:
+  rabbitmq-01-data:
+  rabbitmq-02-data:
+  rabbitmq-03-data:
+</code></pre><h3 id="configenabled_plugins">config/enabled_plugins</h3>
+<pre><code>[rabbitmq_management,
+rabbitmq_peer_discovery_consul,
+rabbitmq_federation,
+rabbitmq_federation_management,
+rabbitmq_shovel,
+rabbitmq_shovel_management].
+</code></pre><h3 id="configrabbitmqconf">config/rabbitmq.conf</h3>
+<pre><code>loopback_users.admin = false
+cluster_formation.peer_discovery_backend = rabbit_peer_discovery_consul
+cluster_formation.consul.host = consul
+cluster_formation.node_cleanup.only_log_warning = true
+cluster_formation.consul.svc_addr_auto = true
+cluster_partition_handling = autoheal#Flow Control is triggered if memory usage above %80.
+vm_memory_high_watermark.relative = 0.8#Flow Control is triggered if free disk size below 5GB.
+disk_free_limit.absolute = 5GB
+</code></pre><h3 id="rabbitmq集群初始化">RabbitMQ集群初始化</h3>
+<pre><code>root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq1=true master.devopsman.cn
+master.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq2=true node1.devopsman.cn
+node1.devopsman.cn
+root@master:~/consul_rabbitmq_docker# docker node update --label-add rabbitmq3=true node2.devopsman.cn
+node2.devopsman.cn
+
+root@master:~/consul_rabbitmq_docker# docker stack deploy -c docker-compose_rabbitmq.yml rabbitmq
+Creating service rabbitmq_rabbitmq-03
+Creating service rabbitmq_rabbitmq-01
+Creating service rabbitmq_rabbitmq-02
+root@master:~/consul_rabbitmq_docker#
+</code></pre><p><img src="https://image.devopsman.cn/wechat2020/image-20200818221955073.png" alt="image-20200818221955073"></p>
+<h2 id="配置haproxy代理端口">配置haproxy代理端口</h2>
+<h3 id="haproxy部署清单">haproxy部署清单</h3>
+<pre><code>version: &quot;3.6&quot;
+services:
+  haproxy:
+    image: olgac/haproxy-for-rabbitmq:1.8.14-alpine
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 1936:1936
+    networks:
+      - prod
+    deploy:
+      mode: global
+networks:
+  prod:
+    external: true
+</code></pre><h3 id="confighaproxycfg">config/haproxy.cfg</h3>
+<pre><code>global
+    log 127.0.0.1   local0
+    log 127.0.0.1   local1 notice
+    maxconn 4096
+ 
+defaults
+    log     global
+    option  tcplog
+    option  dontlognull
+    timeout connect 6s
+    timeout client 60s
+    timeout server 60s
+ 
+listen  stats
+    bind *:1936
+    mode http
+    stats enable
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /listen rabbitmq
+    bind   *:5672
+    mode   tcp
+    server rabbitmq-01 rabbitmq-01:5672 check
+    server rabbitmq-02 rabbitmq-02:5672 check
+    server rabbitmq-03 rabbitmq-03:5672 checklisten rabbitmq-ui
+    bind   *:15672
+    mode   http
+    server rabbitmq-01 rabbitmq-01:15672 check
+    server rabbitmq-02 rabbitmq-02:15672 check
+    server rabbitmq-03 rabbitmq-03:15672 check
+</code></pre><h3 id="验证rabbitmq集群">验证RabbitMQ集群</h3>
+<p>访问 <a href="http://192.168.99.128:15672/">http://192.168.99.128:15672</a> RabbitMQ的控制后台，密码为:(admin/Passw0rd)</p>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818223017251.png" alt="image-20200818223017251"></p>
+<p>最后，查看一下haproxy的后台。</p>
+<ul>
+<li>Check <a href="http://192.168.99.128:1936/">http://192.168.99.128:1936</a></li>
+</ul>
+<p><img src="https://image.devopsman.cn/wechat2020/image-20200818222844405.png" alt="image-20200818222844405"></p>
 
     </div>
     <div class="article-footer">
@@ -607,7 +829,7 @@ docker run -d --name nextcloud -p 8080:80 -v ~/nextcloud:/var/www/html nextcloud
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接: </strong>
-      <a href="https://www.devopsman.cn/2020/08/18/" title="如何搭建适合自己的个人网盘" target="_blank" rel="external">https://www.devopsman.cn/2020/08/18/</a>
+      <a href="https://www.devopsman.cn/2020/08/18/" title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群" target="_blank" rel="external">https://www.devopsman.cn/2020/08/18/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License: </strong>
@@ -638,13 +860,13 @@ docker run -d --name nextcloud -p 8080:80 -v ~/nextcloud:/var/www/html nextcloud
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://www.devopsman.cn/2020/07/20/" title="Hugo-部署静态网站设计的一些思考"><i
+                <a href="https://www.devopsman.cn/2020/08/18/" title="如何搭建适合自己的个人网盘"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;下一篇</span></a>
             </li>
             <li class="next">
                 <a href="https://www.devopsman.cn/2020/08/18/"
-                    title="Docker swarm实现基于Consul和Haproxy的RabbitMQ高可用集群"><span>上一篇&nbsp;&nbsp;</span><i
+                    title="2020年10个最佳的Kubernetes工具"><span>上一篇&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
@@ -683,6 +905,15 @@ docker run -d --name nextcloud -p 8080:80 -v ~/nextcloud:/var/www/html nextcloud
     
     
   </div>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?93d3a379642931719953b2de7cfb0b8c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>    
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
